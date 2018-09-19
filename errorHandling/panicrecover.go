@@ -15,7 +15,7 @@ func fullName(firstName *string, lastName *string) {
 	}
 	if lastName == nil {
 		fmt.Println("will trigger panic here")
-		panic("runtime error: last name cannot be nil")
+		panic("runtime error: last name cannot be nil ")
 	}
 	fmt.Printf("%s %s\n", *firstName, *lastName)
 	fmt.Println("returned normally from fullName")
@@ -24,6 +24,14 @@ func fullName(firstName *string, lastName *string) {
 func main() {
 	defer fmt.Println("deferred call in main")
 	firstName := "Elon"
-	fullName(&firstName, nil)
+	done:= make ( chan interface {} )
+	go func(){
+			fullName(&firstName, nil)
+			done <- 123
+		}()
+
+	<-done
+
+	fullName(nil, nil)
 	fmt.Println("returned normally from main")
 }

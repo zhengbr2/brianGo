@@ -1,4 +1,4 @@
-package main
+package formatprint
 
 import (
 	"fmt"

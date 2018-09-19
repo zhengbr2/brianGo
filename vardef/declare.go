@@ -1,4 +1,4 @@
-package main
+package vardef
 
 var x, y int = 1, 2
 var z float32 = 3.14
