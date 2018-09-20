@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-
-
 	// just return default vlaue
 	m := make(map[string]int)
 	aa := m["nice"];
@@ -95,5 +93,4 @@ func main() {
 	fmt.Println(unsafe.Sizeof(map1))
 	map2["mike"] = 18000
 	fmt.Println("map1 changed", map2)
-
 }
