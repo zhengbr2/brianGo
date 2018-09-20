@@ -9,8 +9,8 @@ import (
 
 func main() {
 	//	fileNotExist()
-	// pathError()
-	safeFileNotExist()
+	//pathError()
+	//safeFileNotExist()
 	dnsError()
 	glob()
 	ignored()
@@ -32,6 +32,8 @@ func safeFileNotExist() {
 		defer func() {
 			if err := recover(); err != nil {
 				fmt.Println("handing panic here!", err)
+				//fmt.Println("stack trace")
+				//debug.PrintStack()
 			}
 			isDone <- 1
 		}()
@@ -68,9 +70,11 @@ func glob() {
 	files, error := filepath.Glob("[")
 	if error != nil && error == filepath.ErrBadPattern {
 		fmt.Println(error)
+		fmt.Println("returned")
 		return
+	} else {
+		fmt.Println("matched files", files)
 	}
-	fmt.Println("matched files", files)
 }
 
 func ignored() {

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"runtime/debug"
+	"time"
 )
 
 func r() {
@@ -27,6 +28,8 @@ func main() {
 	}()
 
 	fmt.Println("will trigger an panic here")
-	a()
+	go a()
 	fmt.Println("normally returned from main")
+	time.Sleep(time.Millisecond*100)
+
 }
