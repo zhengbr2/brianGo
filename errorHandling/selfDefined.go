@@ -45,11 +45,11 @@ func main() {
 		if err, ok := err.(*areaError); ok {
 			if err.lengthNegative() {
 				fmt.Printf("error: length %0.2f is less than zero\n", err.length)
-
+				return
 			}
 			if err.widthNegative() {
 				fmt.Printf("error: width %0.2f is less than zero\n", err.width)
-
+				return
 			}
 			return
 		}
