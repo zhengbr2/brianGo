@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type Test interface {
+type ITest interface {
 	Tester()
 }
 
@@ -14,14 +14,16 @@ func (m MyFloat) Tester() {
 	fmt.Println(m)
 }
 
-func describe(t Test) {
+func describeobj(t ITest) {
 	fmt.Printf("Interface type %T value %v\n", t, t)
+	t.Tester()
+
 }
 
 func main() {
-	var t Test
+	var t ITest
 	f := MyFloat(89.7)
 	t = f
-	describe(t)
+	describeobj(t)
 	t.Tester()
 }

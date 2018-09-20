@@ -9,10 +9,10 @@ type Person struct {
 	name string
 	age  int
 }
-
 func (p Person) Describe() { // 使用值接受者实现
 	fmt.Printf("%s is %d years old\n", p.name, p.age)
 }
+
 
 type Address struct {
 	state   string

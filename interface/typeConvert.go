@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go/token"
+)
 
 type Describer interface {
 	Describe()
@@ -18,6 +21,7 @@ func findType(i interface{}) {
 	switch v := i.(type) {
 	case Describer:
 		v.Describe()
+
 	default:
 		fmt.Printf("unknown type %v \n", i)
 	}

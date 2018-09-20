@@ -12,18 +12,19 @@ type Permanent struct {
 	pf       int
 }
 
-type Contract struct {
-	empId    int
-	basicpay int
-}
-
 //salary of permanent employee is sum of basic pay and pf
 func (p Permanent) CalculateSalary() int {
 	return p.basicpay + p.pf
 }
 
+
+type Contractor struct {
+	empId    int
+	basicpay int
+}
+
 //salary of contract employee is the basic pay alone
-func (c Contract) CalculateSalary() int {
+func (c Contractor) CalculateSalary() int {
 	return c.basicpay
 }
 
@@ -42,7 +43,7 @@ func totalExpense(s []SalaryCalculator) {
 func main() {
 	pemp1 := Permanent{1, 5000, 20}
 	pemp2 := Permanent{2, 6000, 30}
-	cemp1 := Contract{3, 3000}
+	cemp1 := Contractor{3, 3000}
 	employees := []SalaryCalculator{pemp1, pemp2, cemp1}
 	totalExpense(employees)
 
