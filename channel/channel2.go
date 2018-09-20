@@ -30,13 +30,24 @@ func main() {
 	_ = inta
 	fmt.Println("after read a")
 
-	i := make(chan int)
+	i := make(chan int, 1)
+
+
+
 	ci := make(chan chan int, 10)
 	ci <- i
 	ci <- i
 	ci <- i
-	ri := <-i
-	fmt.Println("after read i", ri)
-	fmt.Println("after read ci")
+
+	i<-888
+
+	cb:= (<-(<-ci))
+
+	//ca:=(<-ci)
+	//cb:=(<-ca)
+
+
+	println(cb==888)
+
 
 }

@@ -9,7 +9,7 @@ func digits(number int, dchnl chan int) {
 		dchnl <- digit
 		number /= 10
 	}
-	close(dchnl)
+	close(dchnl)  // must close, otherwise range will collapse
 	fmt.Println("Chanel closed")
 
 }
@@ -17,7 +17,7 @@ func calcSquares(number int, squareop chan int) {
 	sum := 0
 	dch := make(chan int)
 	go digits(number, dch)
-	for digit := range dch {
+	for digit := range dch {     // just like the yield in python
 		sum += digit * digit
 	}
 	squareop <- sum

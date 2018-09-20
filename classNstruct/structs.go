@@ -1,4 +1,4 @@
-package classNstruct
+package main
 
 //import "github.com/golangbot/structs/computer"
 import (

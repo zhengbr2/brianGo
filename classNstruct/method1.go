@@ -1,4 +1,4 @@
-package classNstruct
+package main
 
 import "fmt"
 
