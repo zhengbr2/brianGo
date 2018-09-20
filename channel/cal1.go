@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func calcSquares(number int, squareop chan int) {
@@ -38,7 +39,13 @@ func main() {
 	fmt.Print(squares, " ", cubes, "\n")
 	fmt.Println("Final output", squares+cubes)
 
+	time.Sleep(time.Millisecond*100)
 	ci := make(chan int)
+
+	go func(c chan int) {
+		c <- 1
+	}(ci)
+
 	ri, ok := <-ci
 	println(ri)
 	println(ok)
@@ -46,19 +53,8 @@ func main() {
 
 	//inta,ok:=<-ci   //lobck
 
-	close(ci)
+	close(ci)   // must close , other wise deadlock
 
-	//ci <-1
-
-	go func(c chan int) {
-		c <- 1
-	}(ci)
-
-	//time.Sleep(time.Millisecond * 1)
-	//
-	//go func(c chan int) {
-	//	c <- 1
-	//}(ci)
 
 	ia, ok := <-ci
 	fmt.Print("ra read:", ia, ok)
