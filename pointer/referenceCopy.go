@@ -1,4 +1,4 @@
-package main
+package pointer
 
 import "fmt"
 
@@ -9,6 +9,10 @@ func refSwap(x *int, y *int) {
 	*y = temp /* 将 temp 值赋给 y */
 }
 
+func refSwap2(x *int, y *int) {
+	*x, *y = *y, *x
+}
+
 func main() {
 	/* 定义局部变量 */
 	var a int = 100
@@ -16,12 +20,12 @@ func main() {
 
 	fmt.Printf("交换前，a, b 的值 : %d,  %d\n", a, b)
 
-	/* 调用 swap() 函数
-	* &a 指向 a 指针，a 变量的地址
-	* &b 指向 b 指针，b 变量的地址
-	 */
 	refSwap(&a, &b)
 
-	fmt.Printf("交换前，a, b 的值 : %d,  %d\n", a, b)
+	fmt.Printf("交换1，a, b 的值 : %d,  %d\n", a, b)
+
+	refSwap2(&a, &b)
+
+	fmt.Printf("交换2，a, b 的值 : %d,  %d\n", a, b)
 
 }

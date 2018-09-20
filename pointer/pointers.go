@@ -1,4 +1,4 @@
-package main
+package pointer
 
 import "fmt"
 
@@ -28,6 +28,7 @@ func main() {
 	//Zero value of a pointer is nil
 	d := 25
 	var p *int
+	fmt.Println("value of p is nil:", p)
 	if p == nil {
 		fmt.Println("\np is", p)
 		p = &d
@@ -38,6 +39,7 @@ func main() {
 	i := 255
 	j := &i
 	fmt.Println("\naddress of i is", j)
+	fmt.Println("\naddress of i is", &i)
 	fmt.Println("value of i is", *j)
 	//changing the value pointed using dereference
 	*j++

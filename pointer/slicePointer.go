@@ -1,4 +1,4 @@
-package main
+package pointer
 
 import "fmt"
 
@@ -16,8 +16,10 @@ func main() {
 	slice := arr[1:4]
 	slice2 := arr[2:5]
 
-	fmt.Printf("arr %v, slice1 %v, slice2 %v, %p %p %p\n", arr, slice, slice2, &arr, &slice, &slice2)
+	fmt.Printf("values: arr %v, slice1 %v, slice2 %v \n", arr, slice, slice2)
+	fmt.Printf("pointers: %p %p %p\n",  &arr, &slice, &slice2)
 
+	// they refer to the same memory address
 
 	fmt.Printf("arr[2]%p slice[1] %p slice2[0]%p\n", &arr[2], &slice[1], &slice2[0])
 	fmt.Printf("arr[3]%p slice[2] %p slice2[1]%p\n", &arr[3], &slice[2], &slice2[1])
@@ -32,8 +34,3 @@ func main() {
 	fmt.Printf("arr %v, slice1 %v, slice2 %v\n", arr, slice, slice2)
 }
 
-func changeSlice(s []int) []int {
-	fmt.Printf("slice: %v , slice addr %p \n", s, &s)
-	s[1] = 111
-	return s
-}

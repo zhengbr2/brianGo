@@ -1,4 +1,4 @@
-package main
+package pointer
 
 import "fmt"
 
@@ -16,11 +16,14 @@ func main() {
 	/*  & 和 * 运算符实例 */
 	ptr = &a /* 'ptr' 包含了 'a' 变量的地址 */
 	fmt.Printf("a 的值为  %d\n", a)
-	fmt.Printf("a 的ptr为  %d\n", ptr)
-	fmt.Printf("a 的ptr为  %x\n", ptr)
-	fmt.Printf("*ptr 为 %d\n", *ptr)
+	fmt.Printf("a 的ptr为  %d\n", ptr)   // memory address in 10 format
+	fmt.Printf("a 的ptr为  %x\n", ptr)    // memory address in 16 format
+	fmt.Printf("变量的地址: %x\n", &a)// memory address in 16 format
 
-	fmt.Printf("变量的地址: %x\n", &a)
+	fmt.Printf("*ptr 为 %d\n", *ptr)
+	fmt.Printf("*ptr 为 %d\n", a)
+
+
 
 	var nptr *int
 
