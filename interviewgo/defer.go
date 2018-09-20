@@ -11,9 +11,9 @@ func calc(index string, a, b int) int {
 func main() {
 	a := 1
 	b := 2
-	defer calc("1", a, b)
+	defer calc("index 1:", a, b)
 	a = 6
 	b = 7
-	defer calc("2", a, b)
+	defer calc("index 2:", a, b)
 
 }

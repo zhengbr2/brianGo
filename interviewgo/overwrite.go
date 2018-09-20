@@ -23,4 +23,5 @@ func (t *Teacher) ShowB() {
 func main() {
 	t := Teacher{}
 	t.ShowA()
+	t.ShowB()
 }

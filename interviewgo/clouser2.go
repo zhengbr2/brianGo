@@ -4,17 +4,18 @@ import (
 	"runtime"
 	"sync"
 	"fmt"
-)
+	)
 
 func main() {
 	runtime.GOMAXPROCS(4)
 	wg := sync.WaitGroup{}
-	wg.Add(20)
-	for i := 0; i < 10; i++ {
+	wg.Add(50)
+	for i := 0; i < 40; i++ {
 		go func() {
 			fmt.Println("i: ", i)
 			wg.Done()
 		}()
+		//time.Sleep(1)
 	}
 	for i := 0; i < 10; i++ {
 		go func(i int) {
