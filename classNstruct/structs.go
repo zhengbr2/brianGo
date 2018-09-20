@@ -1,9 +1,8 @@
-package main
+package classNstruct
 
 //import "github.com/golangbot/structs/computer"
 import (
-	"brianGo/computer"
-	"fmt"
+		"fmt"
 )
 
 //struct with anonymous field
@@ -94,6 +93,7 @@ func main() {
 	emp8 := &Employee{"Sam", "Anderson", 55, 6000}
 	fmt.Println("\nEmployee 8\nFirst Name:", (*emp8).firstName)
 	fmt.Println("Age:", (*emp8).age)
+	fmt.Println("Age:", emp8.lastName)
 
 	emp9 := &emp7
 	fmt.Println("\nEmployee 9\nFirst Name:", emp9.firstName)
@@ -137,12 +137,7 @@ func main() {
 	fmt.Println("City:", p3.city)   //city is promoted field
 	fmt.Println("State:", p3.state) //state is promoted field
 
-	//accessing exported fields from another package
-	var spec computer.Spec
-	spec.Maker = "apple"
-	spec.Price = 50000
-	//spec.model = "Mac Mini"//trying to access unexported field will result in compilation error
-	fmt.Println("Spec:", spec)
+
 
 	//structs equality
 	name1 := name{"Steve", "Jobs"}

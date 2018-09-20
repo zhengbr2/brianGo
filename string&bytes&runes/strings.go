@@ -22,4 +22,5 @@ func main() {
 	p()
 	p("Len: ", len("hello"))
 	p("Char:", "hello"[1])
+	p("value is:",("hello"=="hello"))
 }
