@@ -52,6 +52,7 @@ func main() {
 	fmt.Println(string(res2B))
 
 	byt := []byte(`{"num":6.13,"strs":["a","b"]}`)
+	fmt.Println(string(byt))
 
 	var dat map[string]interface{}
 
@@ -65,11 +66,12 @@ func main() {
 	fmt.Printf("type is %T\n",dat["num"])
 	fmt.Println(dat["strs"])
 	num := dat["num"].(float64)
-	fmt.Println(num)
+	anum := dat["num"]
+	fmt.Println(num, anum)
 
 	fmt.Printf("type is %t\n",dat["strs"])
 	fmt.Printf("type is %T\n",dat["strs"])
-	strs := dat["strs"].([]interface{})
+	strs := dat["strs"].([]interface{})    // must convert to slice!!!!
 
 	str1 := strs[0].(string)
 	fmt.Println(str1)
