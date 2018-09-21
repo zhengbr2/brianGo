@@ -17,6 +17,7 @@ func createQuery(q interface{}) {
 		fmt.Println("Number of fields", v.NumField())
 		for i := 0; i < v.NumField(); i++ {
 			fmt.Printf("Field:%d type:%T value:%v\n", i, v.Field(i), v.Field(i))
+
 		}
 	}
 
