@@ -20,23 +20,22 @@ func pase_student() {
 	fmt.Printf("%p\n", &stus[1])
 	fmt.Printf("%v\n", &stus[1])
 
-
 	for _, stu := range stus {
 		fmt.Printf(" range value &stu %p\n", &stu)
-		m[stu.Name] = &stu   // don't get pointer in a range loop
+		m[stu.Name] = &stu // don't get pointer in a range loop
 	}
 	for k, v := range m {
-		fmt.Printf("key=%s, value=%v \n",k,v)
+		fmt.Printf("key=%s, value=%v \n", k, v)
 	}
 
-	for i:=0;i<3;i++  {
-		m[stus[i].Name] = &stus[i]  // need pointer ? use index to get
+	for i := 0; i < 3; i++ {
+		m[stus[i].Name] = &stus[i] // need pointer ? use index to get
 	}
 	for k, v := range m {
-		fmt.Printf("key=%s, value=%v \n",k,v)
+		fmt.Printf("key=%s, value=%v \n", k, v)
 	}
 }
 
-func main(){
+func main() {
 	pase_student()
 }

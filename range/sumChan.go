@@ -1,8 +1,8 @@
 package main
 
 import (
-		"fmt"
-	)
+	"fmt"
+)
 
 func sum(values []int, resultChan chan int) {
 	sum := 0
@@ -19,13 +19,12 @@ func main() {
 	//sum1, sum2 := <-resultChan, <-resultChan // 接收结果
 	//fmt.Println("Result:", sum1, sum2, sum1+sum2)
 
-
-	total:=0
+	total := 0
 	//time.Sleep(time.Second)
 	//close(resultChan)  // need close chan before range it
-	for i:= range resultChan{
+	for i := range resultChan {
 		fmt.Println("read:", i)
-		total = i+ total
+		total = i + total
 	}
 	println(total)
 }

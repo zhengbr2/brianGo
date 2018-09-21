@@ -72,7 +72,7 @@ func (r *Runner) Start() error {
 
 	select {
 	case err := <-r.complete:
-		_=err
+		_ = err
 		return ErrApplication
 	case <-r.timeout:
 		return ErrTimeOut
@@ -101,7 +101,7 @@ func main() {
 
 		}
 	} else {
-		log.Println("no error" ,err)
+		log.Println("no error", err)
 	}
 
 	log.Println("...任务执行结束...")

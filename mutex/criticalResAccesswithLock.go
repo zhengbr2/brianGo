@@ -15,7 +15,7 @@ func increment(wg *sync.WaitGroup, m *sync.Mutex) {
 	wg.Done()
 }
 func main() {
-	before:=time.Now()
+	before := time.Now()
 	var w sync.WaitGroup
 	var m sync.Mutex
 	for i := 0; i < 1000000; i++ {

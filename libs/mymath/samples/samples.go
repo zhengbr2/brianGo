@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"brianGo/libs/mymatho/libs/mymath"
+	"fmt"
 )
 
 func main() {

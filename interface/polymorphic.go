@@ -17,7 +17,6 @@ func (p Permanent) CalculateSalary() int {
 	return p.basicpay + p.pf
 }
 
-
 type Contractor struct {
 	empId    int
 	basicpay int

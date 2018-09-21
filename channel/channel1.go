@@ -17,4 +17,3 @@ func hello(done chan bool) {
 	fmt.Println("Hello world goroutine")
 	done <- true
 }
-

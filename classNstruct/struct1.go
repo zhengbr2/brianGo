@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(Books{title: "Go 语言", author: "wBrianZhengm", subject: "Go 语言教程", book_id: 6495407})
 
 	// 忽略的字段为 0 或 空
-	fmt.Println(Books{title: "Go 语言", subject:"golang in action"})
+	fmt.Println(Books{title: "Go 语言", subject: "golang in action"})
 
 	var Book1 Books /* 声明 Book1 为 Books 类型 */
 
@@ -34,7 +34,7 @@ func main() {
 
 }
 
-func printBook(book Books) {  // value copy
+func printBook(book Books) { // value copy
 	fmt.Printf("Book title : %s\n", book.title)
 	fmt.Printf("Book author : %s\n", book.author)
 	fmt.Printf("Book subject : %s\n", book.subject)

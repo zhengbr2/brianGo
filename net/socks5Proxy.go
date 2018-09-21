@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"io"
 	"log"
 	"net"
 	"strconv"
-	"io"
-	"fmt"
 )
 
 func main() {

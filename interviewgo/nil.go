@@ -17,11 +17,10 @@ func live0() IPeople {
 	return nil
 }
 
-
 func live1() IPeople {
 	var stu *Student
-	fmt.Printf("%h\n",&stu)
-	fmt.Printf("%h\n",stu)
+	fmt.Printf("%h\n", &stu)
+	fmt.Printf("%h\n", stu)
 	// fmt.Printf("%h\n",*stu)  nil pointer here! panic
 	return stu
 }
@@ -31,12 +30,11 @@ func live2() IPeople {
 	return &Student{}
 }
 
-
 func main() {
 	b0 := live0()
-	_=b0;
+	_ = b0
 	b1 := live1()
-	b2 :=live2()
+	b2 := live2()
 	if b1 == nil {
 		fmt.Println("AAAAAAA")
 	} else {

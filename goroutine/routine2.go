@@ -28,7 +28,6 @@ func chars() {
 	}
 }
 
-
 func main() {
 	go numbers()
 	go alphabets()

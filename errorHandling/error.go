@@ -27,7 +27,7 @@ func main() {
 	// 正常情况
 	result, errorMsg := Divide(100, 10)
 
-	if  errorMsg == "" {
+	if errorMsg == "" {
 		fmt.Println("100/10 = ", result)
 	}
 	// 当被除数为零的时候会返回错误信息
@@ -42,7 +42,6 @@ type DivideError struct {
 	dividee int
 	divider int
 }
-
 
 // 实现 `error` 接口
 func (de *DivideError) Error() string {

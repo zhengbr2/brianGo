@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"runtime"
 	"sync"
-	"fmt"
-	)
+)
 
 func main() {
 	runtime.GOMAXPROCS(4)

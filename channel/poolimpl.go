@@ -147,6 +147,6 @@ var idCounter int32
 func createConnection() (io.Closer, error) {
 	//并发安全，给数据库连接生成唯一标志
 	id := atomic.AddInt32(&idCounter, 1)
-	log.Printf("connection created: %d",id)
+	log.Printf("connection created: %d", id)
 	return &dbConnection{id}, nil
 }

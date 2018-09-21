@@ -58,8 +58,8 @@ func main() {
 	str := string(byteSlice)
 	fmt.Println("String constructed from hexadecimal byte slice")
 	fmt.Println(str)
-	fmt.Println("length",len(str)) // len is 5
-	fmt.Println("length",len([] rune (str))) // len is 4
+	fmt.Println("length", len(str))         // len is 5
+	fmt.Println("length", len([]rune(str))) // len is 4
 
 	byteSlice = []byte{67, 97, 102, 195, 169} //decimal equivalent of {'\x43', '\x61', '\x66', '\xC3', '\xA9'}
 	str = string(byteSlice)

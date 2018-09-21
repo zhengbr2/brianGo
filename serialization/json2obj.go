@@ -1,8 +1,8 @@
 package main
 
 import (
-"encoding/json"
-"fmt"
+	"encoding/json"
+	"fmt"
 )
 
 type Server struct {
@@ -16,7 +16,7 @@ type Serverslice struct {
 
 func main() {
 	var s Serverslice
-	str :=`
+	str := `
 {
   "servers": [
     {

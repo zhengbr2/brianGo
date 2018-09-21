@@ -2,24 +2,22 @@ package main
 
 import (
 	"fmt"
-		"sync/atomic"
-	"time"
 	"runtime"
+	"sync/atomic"
+	"time"
 )
 
 func main() {
 
 	var ops uint64 = 0
 
-	before:=time.Now()
+	before := time.Now()
 	for i := 0; i < 100000; i++ {
 		go func() {
 
+			atomic.AddUint64(&ops, 1)
 
-				atomic.AddUint64(&ops, 1)
-
-				runtime.Gosched()
-
+			runtime.Gosched()
 
 		}()
 	}

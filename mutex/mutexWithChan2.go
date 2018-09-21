@@ -1,25 +1,21 @@
 package main
 
 import (
-	"math/rand"
 	"fmt"
+	"math/rand"
 	"sync/atomic"
 	"time"
 )
 
-
-
 type readOp struct {
-	key  int
-
+	key int
 }
 type writeOp struct {
-	key  int
-	val  int
-
+	key int
+	val int
 }
 
-var b=make( chan int)
+var b = make(chan int)
 
 func main() {
 
@@ -36,21 +32,20 @@ func main() {
 				b <- state[read.key]
 			case write := <-writes:
 				state[write.key] = write.val
-				b<-0
+				b <- 0
 			}
 		}
 	}()
 
 	for r := 0; r < 100; r++ {
 		go func() {
-			total:=0
+			total := 0
 			for {
 				read := &readOp{
-					key:  rand.Intn(5),
-
+					key: rand.Intn(5),
 				}
 				reads <- read
-				total +=<-b
+				total += <-b
 				fmt.Println(total)
 				atomic.AddInt64(&ops, 1)
 			}
@@ -61,9 +56,8 @@ func main() {
 		go func() {
 			for {
 				write := &writeOp{
-					key:  rand.Intn(5),
-					val:  rand.Intn(100),
-
+					key: rand.Intn(5),
+					val: rand.Intn(100),
 				}
 				writes <- write
 				<-b
@@ -77,4 +71,3 @@ func main() {
 	opsFinal := atomic.LoadInt64(&ops)
 	fmt.Println("ops:", opsFinal)
 }
-

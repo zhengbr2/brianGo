@@ -1,9 +1,9 @@
 package main
 
 import (
-	"time"
 	"context"
 	"fmt"
+	"time"
 )
 
 // 模拟一个最小执行时间的阻塞函数

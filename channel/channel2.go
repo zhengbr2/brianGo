@@ -12,7 +12,6 @@ func hello(done chan bool) {
 	done <- true
 }
 
-
 func main() {
 	done := make(chan bool)
 	fmt.Println("Main going to call hello go goroutine!")
@@ -32,22 +31,18 @@ func main() {
 
 	i := make(chan int, 1)
 
-
-
 	ci := make(chan chan int, 10)
 	ci <- i
 	ci <- i
 	ci <- i
 
-	i<-888
+	i <- 888
 
-	cb:= (<-(<-ci))
+	cb := (<-(<-ci))
 
 	//ca:=(<-ci)
 	//cb:=(<-ca)
 
-
-	println(cb==888)
-
+	println(cb == 888)
 
 }

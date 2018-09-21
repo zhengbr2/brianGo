@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	_ "brianGo/libs/mymath"
+	"fmt"
 )
 
 /* 定义结构体 */

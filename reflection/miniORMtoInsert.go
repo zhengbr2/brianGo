@@ -8,7 +8,7 @@ import (
 type order struct {
 	ordId      int
 	customerId int
-	remark string
+	remark     string
 }
 
 type employee struct {
@@ -55,7 +55,7 @@ func main() {
 	o := order{
 		ordId:      456,
 		customerId: 56,
-		remark: "hello world!",
+		remark:     "hello world!",
 	}
 	createQuery(o)
 

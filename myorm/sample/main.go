@@ -16,12 +16,11 @@ type User struct {
 	UpdatedAt time.Time `json:"updated_at"` // 更新时间
 }
 
-
 func main() {
 	ormDB, _ := myorm.Connect("root:root@tcp(127.0.0.1:3306)/ormdb")
 	users := myorm.Table(ormDB, "user")
 
-	a:=users()
+	a := users()
 	fmt.Println(a)
 
 	user1 := User{

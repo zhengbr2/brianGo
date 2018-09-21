@@ -17,19 +17,19 @@ func createQuery(q interface{}) {
 	t := reflect.TypeOf(q)
 	v := reflect.ValueOf(q)
 	k := t.Kind()
-	k2 :=v.Kind()
-	println(k2==k)   //true
+	k2 := v.Kind()
+	println(k2 == k) //true
 
-	fmt.Println("Type ", t)  // main.order
+	fmt.Println("Type ", t) // main.order
 	fmt.Println("Value ", v)
-	fmt.Println("Kind ", k)   //struct
+	fmt.Println("Kind ", k) //struct
 
 	ti := reflect.TypeOf(3)
 	ts := reflect.TypeOf("string")
 	tsli := reflect.TypeOf([]string{"string", "kk"})
 	tinf := reflect.TypeOf(order{2, 3})
 
-	fmt.Println(ti, ts, tsli, tinf)   //int string []string main.order
+	fmt.Println(ti, ts, tsli, tinf) //int string []string main.order
 
 	switch t2 := q.(type) {
 	case order:

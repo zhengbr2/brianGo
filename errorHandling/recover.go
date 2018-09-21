@@ -23,13 +23,13 @@ func a() {
 
 func main() {
 	fmt.Println("entring into main funciton")
-	defer func(){
+	defer func() {
 		fmt.Println("defer func() expected to executed before the end return")
 	}()
 
 	fmt.Println("will trigger an panic here")
 	go a()
 	fmt.Println("normally returned from main")
-	time.Sleep(time.Millisecond*100)
+	time.Sleep(time.Millisecond * 100)
 
 }

@@ -9,7 +9,7 @@ func producer(chnl chan int) {
 	for i := 0; i < 10; i++ {
 		chnl <- i
 	}
-	close(chnl)   // must close it if no more msg write into chan
+	close(chnl) // must close it if no more msg write into chan
 	fmt.Println("Closed")
 }
 func main() {
@@ -24,7 +24,6 @@ func main() {
 		}
 		fmt.Println("Received ", v, ok)
 	}
-
 
 	ch2 := make(chan int)
 	go producer(ch2)

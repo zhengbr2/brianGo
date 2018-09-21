@@ -1,17 +1,17 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
+	"io"
 	"log"
 	"net"
-	"fmt"
-	"bytes"
 	"net/url"
 	"strings"
-	"io"
 )
 
 func main() {
-	log.SetFlags(log.LstdFlags|log.Lshortfile)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	l, err := net.Listen("tcp", ":8081")
 	if err != nil {
 		log.Panic(err)

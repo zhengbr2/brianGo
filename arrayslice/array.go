@@ -10,8 +10,8 @@ func main() {
 	for i = 0; i < 10; i++ {
 		n[i] = i + 100 // before we can run this , arr is initialized as 0.0.0.0..
 	}
-	sl:= append( n[:], 888)
-	fmt.Printf("after append 888 %v\n",sl)
+	sl := append(n[:], 888)
+	fmt.Printf("after append 888 %v\n", sl)
 
 	/* 输出每个数组元素的值 */
 	for j = 0; j < 10; j++ {
@@ -28,13 +28,13 @@ func main() {
 		var c [5]string
 		fmt.Println(len(c), cap(c))
 
-		fmt.Printf("c[1]=%s", c[1])  // array can be initiliazed as ""
+		fmt.Printf("c[1]=%s", c[1]) // array can be initiliazed as ""
 	}
 
 	fmt.Printf("---------------------------------\n")
 	{
-		a := []string{"USA", "China", "India", "Germany", "France"}  // this is a slice
-		b := a // a copy of a is assigned to b
+		a := []string{"USA", "China", "India", "Germany", "France"} // this is a slice
+		b := a                                                      // a copy of a is assigned to b
 		b[0] = "Singapore"
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b)

@@ -39,13 +39,13 @@ func main() {
 
 	for r := 0; r < 100; r++ {
 		go func() {
-			total:=0
+			total := 0
 			for {
 				read := &readOp{
 					key:  rand.Intn(5),
 					resp: make(chan int)}
 				reads <- read
-				total +=<-read.resp
+				total += <-read.resp
 				fmt.Println(total)
 				atomic.AddInt64(&ops, 1)
 			}

@@ -16,10 +16,9 @@ func increment(wg *sync.WaitGroup, ch chan bool) {
 }
 func main() {
 
-	before:=time.Now()
+	before := time.Now()
 	var w sync.WaitGroup
-	ch := make(chan bool,1)
-
+	ch := make(chan bool, 1)
 
 	for i := 0; i < 1000000; i++ {
 		w.Add(1)

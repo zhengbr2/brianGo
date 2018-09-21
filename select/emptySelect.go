@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	select {}  //dead lock
+	select {} //dead lock
 }

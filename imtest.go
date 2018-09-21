@@ -1,11 +1,11 @@
 package main
 
 import (
-	"runtime"
 	"fmt"
+	"runtime"
 )
 
-func main(){
+func main() {
 	fmt.Println(runtime.NumCPU())
 	runtime.GOMAXPROCS(8)
 }

@@ -1,14 +1,14 @@
 package main
 
 import (
-	"reflect"
 	"fmt"
+	"reflect"
 )
 
 type order struct {
 	ordId      int
 	customerId int
-	commodity string
+	commodity  string
 }
 
 func createQuery(q interface{}) {
@@ -26,7 +26,7 @@ func main() {
 	o := order{
 		ordId:      456,
 		customerId: 56,
-		commodity: "fruits",
+		commodity:  "fruits",
 	}
 	createQuery(o)
 }

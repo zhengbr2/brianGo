@@ -24,11 +24,11 @@ func fullName(firstName *string, lastName *string) {
 func main() {
 	defer fmt.Println("deferred call in main")
 	firstName := "Elon"
-	done:= make ( chan interface {} )
-	go func(){
-			fullName(&firstName, nil)
-			done <- 123
-		}()
+	done := make(chan interface{})
+	go func() {
+		fullName(&firstName, nil)
+		done <- 123
+	}()
 
 	<-done
 

@@ -17,7 +17,7 @@ func main() {
 	slice2 := arr[2:5]
 
 	fmt.Printf("values: arr %v, slice1 %v, slice2 %v \n", arr, slice, slice2)
-	fmt.Printf("pointers: %p %p %p\n",  &arr, &slice, &slice2)
+	fmt.Printf("pointers: %p %p %p\n", &arr, &slice, &slice2)
 
 	// they refer to the same memory address
 
@@ -28,9 +28,7 @@ func main() {
 
 	fmt.Printf("arr %v, slice1 %v, slice2 %v\n", arr, slice, slice2)
 
-
 	slice[1] = 1111
 
 	fmt.Printf("arr %v, slice1 %v, slice2 %v\n", arr, slice, slice2)
 }
-

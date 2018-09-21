@@ -11,7 +11,6 @@ func main() {
 		fmt.Println("default case executed")
 	}
 
-
 	select {
 	case v := <-ch:
 		fmt.Println("received value", v)

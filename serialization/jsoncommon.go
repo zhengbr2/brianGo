@@ -62,16 +62,16 @@ func main() {
 	fmt.Println(dat)
 
 	fmt.Println(dat["num"])
-	fmt.Printf("type is %t\n",dat["num"])
-	fmt.Printf("type is %T\n",dat["num"])
+	fmt.Printf("type is %t\n", dat["num"])
+	fmt.Printf("type is %T\n", dat["num"])
 	fmt.Println(dat["strs"])
 	num := dat["num"].(float64)
 	anum := dat["num"]
 	fmt.Println(num, anum)
 
-	fmt.Printf("type is %t\n",dat["strs"])
-	fmt.Printf("type is %T\n",dat["strs"])
-	strs := dat["strs"].([]interface{})    // must convert to slice!!!!
+	fmt.Printf("type is %t\n", dat["strs"])
+	fmt.Printf("type is %T\n", dat["strs"])
+	strs := dat["strs"].([]interface{}) // must convert to slice!!!!
 
 	str1 := strs[0].(string)
 	fmt.Println(str1)

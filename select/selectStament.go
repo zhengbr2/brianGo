@@ -6,18 +6,18 @@ import (
 )
 
 func main() {
-	var c1, c2, c3 = make( chan int), make( chan int),make( chan int)
+	var c1, c2, c3 = make(chan int), make(chan int), make(chan int)
 	var i1, i2 int = 11, 22
 
-	go  func(){
+	go func() {
 		c1 <- 100
 	}()
 
-	go  func(){
+	go func() {
 		fmt.Println("received c2", <-c2)
 	}()
 
-	go  func(){
+	go func() {
 		c3 <- 100
 		//close(c3)
 	}()
@@ -38,8 +38,7 @@ func main() {
 			fmt.Println("c3 is closed\n")
 		}
 
-
 	}
 
-	time.Sleep(10* time.Millisecond)
+	time.Sleep(10 * time.Millisecond)
 }

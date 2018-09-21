@@ -1,21 +1,21 @@
 package main
 
 import (
-
-	"net/http"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
-func func1 (c *gin.Context)  {
+func func1(c *gin.Context) {
 	// 回复一个200OK,在client的http-get的resp的body中获取数据
 	c.String(http.StatusOK, "test1 OK")
 }
+
 // func2: 处理最基本的POST
-func func2 (c *gin.Context) {
+func func2(c *gin.Context) {
 	// 回复一个200 OK, 在client的http-post的resp的body中获取数据
 	c.String(http.StatusOK, "test2 OK")
 }
-func main(){
+func main() {
 	// 注册一个默认的路由器
 	router := gin.Default()
 	// 最基本的用法

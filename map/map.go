@@ -8,13 +8,13 @@ import (
 func main() {
 	// just return default vlaue
 	m := make(map[string]int)
-	aa := m["nice"];
-	m["foo"]=35
-	fmt.Println("aa:",aa)
+	aa := m["nice"]
+	m["foo"] = 35
+	fmt.Println("aa:", aa)
 
 	mi := make(map[int]int)
-	ab := mi[123];
-	fmt.Println("ab:",ab)
+	ab := mi[123]
+	fmt.Println("ab:", ab)
 
 	//map declaration
 	var personSalary1 map[string]int //zero value of map is nil
@@ -89,7 +89,7 @@ func main() {
 	}
 	fmt.Println("Original map1", map1)
 	map2 := map1
-	fmt.Printf("map1 %p, map2 %p \n", &map1,&map2)
+	fmt.Printf("map1 %p, map2 %p \n", &map1, &map2)
 	fmt.Println(unsafe.Sizeof(map1))
 	map2["mike"] = 18000
 	fmt.Println("map1 changed", map2)

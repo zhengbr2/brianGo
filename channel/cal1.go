@@ -39,7 +39,7 @@ func main() {
 	fmt.Print(squares, " ", cubes, "\n")
 	fmt.Println("Final output", squares+cubes)
 
-	time.Sleep(time.Millisecond*100)
+	time.Sleep(time.Millisecond * 100)
 	ci := make(chan int)
 
 	go func(c chan int) {
@@ -53,8 +53,7 @@ func main() {
 
 	//inta,ok:=<-ci   //lobck
 
-	close(ci)   // must close , other wise deadlock
-
+	close(ci) // must close , other wise deadlock
 
 	ia, ok := <-ci
 	fmt.Print("ra read:", ia, ok)

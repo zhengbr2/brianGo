@@ -1,8 +1,8 @@
 package geometry
 
 import (
-	"fmt"
 	"brianGo/libs/geometrylibs/geometry/rectangle" // 导入自定义包
+	"fmt"
 )
 
 func main() {

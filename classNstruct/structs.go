@@ -2,7 +2,7 @@ package main
 
 //import "github.com/golangbot/structs/computer"
 import (
-		"fmt"
+	"fmt"
 )
 
 //struct with anonymous field
@@ -136,8 +136,6 @@ func main() {
 	fmt.Println("Age:", p3.age)
 	fmt.Println("City:", p3.city)   //city is promoted field
 	fmt.Println("State:", p3.state) //state is promoted field
-
-
 
 	//structs equality
 	name1 := name{"Steve", "Jobs"}

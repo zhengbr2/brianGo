@@ -1,6 +1,5 @@
 package main
 
-
 type person struct {
 	name   string
 	age    byte
@@ -17,5 +16,3 @@ func isDead(p interface{}) {
 		p.(person).isDead = true
 	}
 }
-
-

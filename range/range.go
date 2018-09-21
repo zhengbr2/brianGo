@@ -10,13 +10,11 @@ func main() {
 	}
 	fmt.Println("sum:", sum)
 
-
 	sum = 0
-	for  num := range nums {
-		sum += num   // sum index :)
+	for num := range nums {
+		sum += num // sum index :)
 	}
 	fmt.Println("sum:", sum)
-
 
 	sum = 0
 	for i, num := range nums {

@@ -25,19 +25,18 @@ func main() {
 	s[2] = 333
 	s[3] = 444
 	s[4] = 555
-//	s[5] = 666
+	//	s[5] = 666
 	printSlice(s)
 
-	slice1:=[]int{1,2,3,4,5}
-	slice2:=[]int{4:1}
+	slice1 := []int{1, 2, 3, 4, 5}
+	slice2 := []int{4: 1}
 	printSlice(slice1)
 	printSlice(slice2)
 
-	array:=[5]int{4:1}
+	array := [5]int{4: 1}
 	printSlice(array[:])
-	array2:=[...]int{4:1}
+	array2 := [...]int{4: 1}
 	printSlice(array2[:])
-
 
 	var ok = append(s, 666)
 	//var ok = append(s, []int{1,,1}) not accepted
@@ -50,7 +49,7 @@ func main() {
 	var s3 []int
 	printSlice(s3)
 
-	var s4=[]int{}
+	var s4 = []int{}
 	printSlice(s4)
 	//numbers := []int{0,1,2,3,4,5,6,7,8}
 	//printSlice(numbers)
@@ -82,7 +81,7 @@ func main() {
 
 	fmt.Println("-----------------------------")
 	var numbers3 []int
-	numbers3 = append(numbers3, 1, 2, 3,4,5)
+	numbers3 = append(numbers3, 1, 2, 3, 4, 5)
 	printSlice(numbers3)
 	numbers3 = append(numbers3, 1, 2, 3)
 	printSlice(numbers3)
