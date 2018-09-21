@@ -15,7 +15,8 @@ func main() {
 
 	//time.Sleep(time.Millisecond * 4000)
 	//ticker.Stop()
-	<-make(chan int)
+	<- make (chan int)
+
 
 	fmt.Println("Ticker stopped")
 }

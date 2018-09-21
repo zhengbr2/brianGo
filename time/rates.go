@@ -13,12 +13,16 @@ func main() {
 	}
 	close(requests)
 
+	fmt.Println(time.Now())
 	limiter := time.Tick(time.Millisecond * 200)
-
+	time.Sleep(time.Second)
 	for req := range requests {
-		<-limiter
-		fmt.Println("request", req, time.Now())
+
+		fmt.Println("request", req, <-limiter,  "current time:" ,time.Now())
 	}
+
+	time.Sleep(time.Second)
+	fmt.Println("outseide request",  <-limiter, "current time:" ,time.Now())
 
 	fmt.Println("----------------")
 	burstyLimiter := make(chan time.Time, 3)
@@ -33,13 +37,9 @@ func main() {
 		}
 	}()
 
-	burstyRequests := make(chan int, 5)
+
 	for i := 1; i <= 5; i++ {
-		burstyRequests <- i
-	}
-	close(burstyRequests)
-	for req := range burstyRequests {
-		<-burstyLimiter
-		fmt.Println("request", req, time.Now())
+
+		fmt.Println("request", i, <-burstyLimiter, "time:",time.Now())
 	}
 }
