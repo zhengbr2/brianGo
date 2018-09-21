@@ -6,13 +6,14 @@ import (
 )
 
 func process(ch chan string) {
-	time.Sleep(10500 * time.Millisecond)
+	time.Sleep(4500 * time.Millisecond)
 	ch <- "process successful"
 }
 
 func main() {
 	ch := make(chan string)
 	go process(ch)
+	// if have default: must use infinite loop for:
 	for {
 		time.Sleep(1000 * time.Millisecond)
 		select {

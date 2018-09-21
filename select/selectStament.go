@@ -17,6 +17,11 @@ func main() {
 		fmt.Println("received c2", <-c2)
 	}()
 
+	go  func(){
+		c3 <- 100
+		//close(c3)
+	}()
+
 	//time.Sleep(10* time.Millisecond)
 	select {
 	case i1 = <-c1:
