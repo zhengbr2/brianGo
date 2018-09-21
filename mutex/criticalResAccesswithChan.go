@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 var x = 0
@@ -14,19 +15,19 @@ func increment(wg *sync.WaitGroup, ch chan bool) {
 	wg.Done()
 }
 func main() {
+
+	before:=time.Now()
 	var w sync.WaitGroup
-	ch := make(chan bool)
+	ch := make(chan bool,1)
 
-	ch <- false
-	fmt.Println("write in")
-	var _ = <-ch
-	fmt.Println("read out")
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 1000000; i++ {
 		w.Add(1)
 		go increment(&w, ch)
 	}
 	w.Wait()
+
 	fmt.Println("final value of x", x)
+	fmt.Println("cost:%f", time.Now().Sub(before).Seconds())
 
 }
