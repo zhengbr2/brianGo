@@ -13,7 +13,7 @@ func sum(values []int, resultChan chan int, wg * sync.WaitGroup) {
 		sum += value
 	}
 	resultChan <- sum // 将计算结果发送到channel中
-	
+
 	wg.Done()
 }
 func main() {
