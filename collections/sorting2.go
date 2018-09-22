@@ -42,37 +42,47 @@ func printTracks(tracks []*Track) {
 	tw.Flush() // calculate column widths and print table
 }
 
-type byArtist []*Track
 
-func (x byArtist) Len() int           { return len(x) }
-func (x byArtist) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
-func (x byArtist) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
-type byYear []*Track
+type defaultSort []*Track
 
-func (x byYear) Len() int           { return len(x) }
-func (x byYear) Less(i, j int) bool { return x[i].Year < x[j].Year }
-func (x byYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x defaultSort) Len() int           { return len(x) }
+func (x defaultSort) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x defaultSort) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
+
+
+type byArtistReverse struct {
+	defaultSort
+}
+func (x byArtistReverse) Less(i, j int) bool { return x.defaultSort[j].Artist < x.defaultSort[i].Artist }
+
+
+type byYear struct {
+	defaultSort
+}
+func (x byYear) Less(i, j int) bool { return x.defaultSort[i].Year < x.defaultSort[j].Year }
+
 
 type customSort struct {
-	t    []*Track
+	defaultSort
 	less func(x, y *Track) bool
 }
 
-func (x customSort) Len() int           { return len(x.t) }
-func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
-func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
+func (x customSort) Less(i, j int) bool { return x.less(x.defaultSort[i], x.defaultSort[j]) }     ///  ATTENTION!!!!!!!!!!
+
 
 func main() {
 	fmt.Println("initial")
 	printTracks(tracks)
-	sort.Sort(byArtist(tracks))
+	sort.Sort(defaultSort(tracks))
 	fmt.Println("defaultSort")
 	printTracks(tracks)
-	sort.Sort(sort.Reverse(byArtist(tracks)))
+	//sort.Sort(sort.Reverse(defaultSort(tracks)))
+
+	sort.Sort(byArtistReverse{tracks})
 	fmt.Println("Reverse(defaultSort)")
 	printTracks(tracks)
-	sort.Sort(byYear(tracks))
+	sort.Sort(byYear{tracks})
 	fmt.Println("byYear")
 	printTracks(tracks)
 

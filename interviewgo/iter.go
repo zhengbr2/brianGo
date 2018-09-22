@@ -5,14 +5,16 @@ import (
 	"sync"
 )
 
+
+// don't know what this is for
 type threadSafeSet struct {
 	sync.RWMutex
 	s []interface{}
 }
 
 func (set *threadSafeSet) Iter() <-chan interface{} {
-	ch := make(chan interface{}) // 解除注释看看！
-	//ch := make(chan interface{}, len(set.s))
+	//ch := make(chan interface{}) // 解除注释看看！
+	ch := make(chan interface{}, len(set.s))
 	go func() {
 		set.RLock()
 
@@ -34,9 +36,9 @@ func main() {
 		s: []interface{}{"a", "b"},
 	}
 	v := <-th.Iter()
-	fmt.Printf("\n%v ",  v)
-	{
-		v := <-th.Iter()
-		fmt.Printf("\n%v ", v)
-	}
+	fmt.Printf("\noutgoing value:%v ",  v)
+	//{
+	//	v := <-th.Iter()
+	//fmt.Printf("\noutgoing value:%v ",  v)
+	//}
 }
