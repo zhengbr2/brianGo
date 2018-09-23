@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
-	"go/token"
+	"io"
+	"os"
+	"bytes"
 )
 
 type Describer interface {
@@ -35,4 +37,10 @@ func main() {
 		age:  25,
 	}
 	findType(p)
+
+	var w io.Writer
+	w = os.Stdout
+	f := w.(*os.File)      // success: f == os.Stdout
+	c := w.(*bytes.Buffer)
+	println(f,c)
 }
