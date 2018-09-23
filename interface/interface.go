@@ -42,4 +42,16 @@ func main() {
 	var x interface{} = [3]int{1, 2, 3}
 	fmt.Println("array is comparble, equal?:",x == x)  //uncomparable for [] int
 
+	//var _ = (IntSet{}).String() // compile error: String requires *IntSet receiver
+	var _ = (&IntSet{}).String() // compile error: String requires *IntSet receiver
+
+	s:=IntSet{}
+	var _ fmt.Stringer = &s // OK
+	// var _ fmt.Stringer = s  // compile error: IntSet lacks String method
+}
+
+type IntSet struct { /* ... */ }
+
+func (*IntSet) String() string{
+	return ""
 }

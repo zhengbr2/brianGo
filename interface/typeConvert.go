@@ -42,5 +42,5 @@ func main() {
 	w = os.Stdout
 	f := w.(*os.File)      // success: f == os.Stdout
 	c := w.(*bytes.Buffer)
-	println(f,c)
+	fmt.Println("\n",f,c)
 }
