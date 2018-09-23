@@ -18,4 +18,16 @@ func main() {
 	//rwc = new(bytes.Buffer) // compile error: *bytes.Buffer lacks Close method
 
 	fmt.Println(w, rwc)
+
+	os.Stdout.Write([]byte("hello")) // OK: *os.File has Write method
+	os.Stdout.Close()                // OK: *os.File has Close method
+
+	w = os.Stdout
+	w.Write([]byte("hello")) // OK: io.Writer has Write method
+	//w.Close()                // compile error: io.Writer lacks Close method
+
+	var w2 io.Writer = new(bytes.Buffer)
+	var w3 io.Writer = (*bytes.Buffer)(nil)
+	fmt.Println(w2,w3)
+
 }
