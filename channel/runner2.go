@@ -10,7 +10,7 @@ import (
 
 var ErrTimeOut = errors.New("Timeout!")
 var ErrInterrupt = errors.New("Interrupted")
-var ErrApplication = errors.New("ApplicationErr")
+var ErrApplication = errors.New("Application Encounters an Error!")
 
 //一个执行者，可以执行任何任务，但是这些任务是限制完成的，
 //该执行者可以通过发送终止信号终止它
@@ -42,7 +42,7 @@ func (r *Runner) run() error {
 		if r.isInterrupt() {
 			return ErrInterrupt
 		}
-		e := task(id)
+		e := task(id + 1)
 		if e != nil {
 			return e
 		}
@@ -72,8 +72,11 @@ func (r *Runner) Start() error {
 
 	select {
 	case err := <-r.complete:
-		_ = err
-		return ErrApplication
+		if err == ErrApplication {
+			return ErrApplication
+		} else {
+			return err
+		}
 	case <-r.timeout:
 		return ErrTimeOut
 	}
@@ -97,6 +100,7 @@ func main() {
 			log.Println(err)
 			os.Exit(2)
 		case ErrApplication:
+			log.Println(err)
 			os.Exit(3)
 
 		}
@@ -111,8 +115,8 @@ func createTask() func(int) error {
 	return func(id int) error {
 		log.Printf("正在执行任务%d", id)
 		time.Sleep(time.Duration(id) * time.Second)
-		if id == 1 {
-			return errors.New("dislike 1!!!")
+		if id == 2 {
+			return ErrApplication
 		}
 		log.Printf("执行完毕：%d", id)
 		return nil
