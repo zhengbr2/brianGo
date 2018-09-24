@@ -1,7 +1,7 @@
 package main
 
 import (
-	"brianGo/libs/mymatho/libs/mymath"
+	"brianGo/libs/mymath"
 	"fmt"
 )
 

@@ -1,7 +1,7 @@
 package geometry
 
 import (
-	"brianGo/libs/geometrylibs/geometry/rectangle" // 导入自定义包
+	"brianGo/libs/geometry/rectangle" // 导入自定义包
 	"fmt"
 )
 
