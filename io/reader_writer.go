@@ -4,7 +4,7 @@ import (
 	"fmt"
 		"bytes"
 	"os"
-)
+	)
 
 func main() {
 	//定义零值Buffer类型变量b
@@ -23,4 +23,6 @@ func main() {
 	var p=[]byte{'a','b','c','d','e'}
 	n,err:=b.Read(p[:])
 	fmt.Println(n,err,string(p[:n]))   // abcde-> ILove
+
+
 }
