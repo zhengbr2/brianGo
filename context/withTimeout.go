@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"time"
-)
+	)
 
 // 模拟一个最小执行时间的阻塞函数
 func inc(a int) int {
@@ -23,6 +23,7 @@ func Add(ctx context.Context, a, b int) int {
 		res = inc(res)
 		select {
 		case <-ctx.Done():
+			fmt.Println(ctx.Err())
 			return -1
 		default:
 		}
@@ -31,6 +32,7 @@ func Add(ctx context.Context, a, b int) int {
 		res = inc(res)
 		select {
 		case <-ctx.Done():
+			fmt.Println(ctx.Err())
 			return -1
 		default:
 		}
@@ -39,24 +41,25 @@ func Add(ctx context.Context, a, b int) int {
 }
 
 func main() {
-	{
+
 		// 使用开放的 API 计算 a+b
 		a := 1
 		b := 2
-		timeout := 4 * time.Second
-		ctx, _ := context.WithTimeout(context.Background(), timeout)
+		timeout := 25 * time.Second / 10
+	{	ctx, _:= context.WithTimeout(context.Background(), timeout)    // context deadline exceeded
 		res := Add(ctx, 1, 2)
+
 		fmt.Printf("Compute: %d+%d, result: %d\n", a, b, res)
 	}
 	{
 		// 手动取消
 		a := 1
 		b := 2
-		ctx, cancel := context.WithCancel(context.Background())
+		ctx, cancel := context.WithTimeout(context.Background(),timeout)
 
 		go func() {
 			time.Sleep(2 * time.Second)
-			cancel() // 在调用处主动取消
+			cancel() // 在调用处主动取消    //context canceled
 		}()
 		res := Add(ctx, 1, 2)
 		fmt.Printf("Compute: %d+%d, result: %d\n", a, b, res)
