@@ -39,10 +39,20 @@ func (p *Pool) Acquire() (io.Closer, error) {
 			return nil, ErrPoolClosed
 		}
 		return r, nil
-	default:
-		log.Println("Acquire:新生成资源")
-		return p.factory()
+	//default:
+	//	log.Println("Acquire:新生成资源")
+	//	return p.factory()
 	}
+}
+
+//Init
+func (p *Pool) Init() (error) {
+	count :=cap(p.res)-len(p.res)
+	for i:=0 ;i<count ; i++ {
+		res , _:= p.factory()
+		p.res <-res
+	}
+	return nil
 }
 
 //关闭资源池，释放资源
@@ -87,7 +97,7 @@ func (p *Pool) Release(r io.Closer) {
 
 const (
 	//模拟的最大goroutine
-	maxGoroutine = 30
+	maxGoroutine = 15
 	//资源池的大小
 	poolRes = 10
 )
@@ -97,7 +107,8 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(maxGoroutine)
 
-	p, err := New(createConnection, poolRes)
+	pool, err := New(createConnection, poolRes)
+	pool.Init()
 	if err != nil {
 		log.Println(err)
 		return
@@ -105,14 +116,23 @@ func main() {
 	//模拟好几个goroutine同时使用资源池查询数据
 	for query := 0; query < maxGoroutine; query++ {
 		go func(q int) {
-			dbQuery(q, p)
+			dbQuery(q, pool)
 			wg.Done()
 		}(query)
 	}
-
+	wg.Wait()
+	log.Println("----------------------------------------------------")
+	time.Sleep(time.Second)
+	wg.Add(maxGoroutine)
+	for query := 15; query < 2*maxGoroutine; query++ {
+		go func(q int) {
+			dbQuery(q, pool)
+			wg.Done()
+		}(query)
+	}
 	wg.Wait()
 	log.Println("开始关闭资源池")
-	p.Close()
+	pool.Close()
 }
 
 //模拟数据库查询
@@ -122,7 +142,6 @@ func dbQuery(query int, pool *Pool) {
 		log.Println(err)
 		return
 	}
-
 	defer pool.Release(conn)
 
 	//模拟查询
