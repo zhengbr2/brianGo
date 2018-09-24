@@ -140,6 +140,7 @@ func dbQuery(query int, pool *Pool) {
 	conn, err := pool.Acquire()
 	if err != nil {
 		log.Println(err)
+		time.Sleep( time.Duration(query) * time.Microsecond)
 		return
 	}
 	defer pool.Release(conn)
