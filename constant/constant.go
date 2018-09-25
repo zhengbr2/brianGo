@@ -38,7 +38,7 @@ func main() {
 	println(a, b, c)
 	println(Unknown + Female + Male)
 
-	
+
 	log.Println("0.0==0?", Zero1==Zero2)
 	log.Println( 3+0.1)
 	math.Sin(Zero1)
