@@ -5,6 +5,7 @@ import (
 		"bytes"
 		"log"
 	"os"
+	"io/ioutil"
 )
 
 func main() {
@@ -38,5 +39,7 @@ func main() {
 	n,err=b.Read(p[:])
 	log.Println(n,err,string(p[:n]))   // _ 0 EOF
 
+	data,err:=ioutil.ReadAll(&b)
+	fmt.Println(string(data),err)
 
 }

@@ -87,11 +87,24 @@ func main() {
 	printSlice(numbers3)
 
 	fmt.Println("-----------------------------")
-	var from = []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
-	var to = []int{9, 9, 9, 9, 9}
+	{
+		var from = []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
+		var to = []int{9, 9, 9, 9, 9}
 
-	copy(to, from)
-	printSlice(to)
+		copy(to, from)
+		printSlice(from)
+		printSlice(to)
+
+	}
+	{
+		var from = []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
+		var to = []int{9, 9, 9, 9, 9}
+
+		copy(from, to)
+		printSlice(from)
+		printSlice(to)
+	}
+
 }
 
 func printSlice(s []int) {
