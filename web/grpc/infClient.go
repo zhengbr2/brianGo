@@ -1,16 +1,16 @@
 package main
 
 import (
+	"brianGo/web/grpc/inf"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"log"
+	"math/rand"
 	"runtime"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
-	"math/rand"
-	"brianGo/web/grpc/inf"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
 )
 
 var (
