@@ -2,27 +2,27 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"sync"
-	"log"
 )
 
 func main() {
-	log.Println("number of cpu",runtime.NumCPU())
+	log.Println("number of cpu", runtime.NumCPU())
 	runtime.GOMAXPROCS(2)
 	var wg sync.WaitGroup
 	wg.Add(2)
-	go func(){
+	go func() {
 		defer wg.Done()
-		for i:=1;i<1000;i++ {
-			fmt.Println("A:",i)
+		for i := 1; i < 1000; i++ {
+			fmt.Println("A:", i)
 
 		}
 	}()
-	go func(){
+	go func() {
 		defer wg.Done()
-		for i:=1;i<1000;i++ {
-			fmt.Println("B:",i)
+		for i := 1; i < 1000; i++ {
+			fmt.Println("B:", i)
 
 		}
 	}()

@@ -5,7 +5,6 @@ import (
 
 	"fmt"
 	"log"
-
 )
 
 type dollars float32
@@ -15,7 +14,7 @@ func main2() {
 	mux := http.NewServeMux()
 	mux.Handle("/list", http.HandlerFunc(db.list))
 	mux.Handle("/price", http.HandlerFunc(db.price))
-	log.Fatal(http.ListenAndServe("localhost:8000", mux))  // suppose never exit to log.Fatal()
+	log.Fatal(http.ListenAndServe("localhost:8000", mux)) // suppose never exit to log.Fatal()
 }
 
 func main() {

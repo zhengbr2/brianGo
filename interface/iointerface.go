@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
 	"io"
 	"os"
-		"bytes"
-	"fmt"
 )
 
 func main() {
@@ -28,6 +28,6 @@ func main() {
 
 	var w2 io.Writer = new(bytes.Buffer)
 	var w3 io.Writer = (*bytes.Buffer)(nil)
-	fmt.Println(w2,w3)
+	fmt.Println(w2, w3)
 
 }

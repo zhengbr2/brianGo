@@ -39,18 +39,18 @@ func (p *Pool) Acquire() (io.Closer, error) {
 			return nil, ErrPoolClosed
 		}
 		return r, nil
-	//default:
-	//	log.Println("Acquire:新生成资源")
-	//	return p.factory()
+		//default:
+		//	log.Println("Acquire:新生成资源")
+		//	return p.factory()
 	}
 }
 
 //Init
-func (p *Pool) Init() (error) {
-	count :=cap(p.res)-len(p.res)
-	for i:=0 ;i<count ; i++ {
-		res , _:= p.factory()
-		p.res <-res
+func (p *Pool) Init() error {
+	count := cap(p.res) - len(p.res)
+	for i := 0; i < count; i++ {
+		res, _ := p.factory()
+		p.res <- res
 	}
 	return nil
 }
@@ -140,7 +140,7 @@ func dbQuery(query int, pool *Pool) {
 	conn, err := pool.Acquire()
 	if err != nil {
 		log.Println(err)
-		time.Sleep( time.Duration(query) * time.Microsecond)
+		time.Sleep(time.Duration(query) * time.Microsecond)
 		return
 	}
 	defer pool.Release(conn)
