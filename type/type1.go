@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
-	"time"
-	"log"
 	"bytes"
+	"fmt"
+	"log"
+	"time"
 )
 
 type Duration int64
-func (a Duration)  String() string{    //toString() in golang
+
+func (a Duration) String() string { //toString() in golang
 
 	var b bytes.Buffer
-	fmt.Fprint(&b,int64(a),"(my local duration)")
+	fmt.Fprint(&b, int64(a), "(my local duration)")
 	return (b.String())
 }
 

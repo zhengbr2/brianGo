@@ -5,7 +5,6 @@ import (
 	"sync"
 )
 
-
 // don't know what this is for
 type threadSafeSet struct {
 	sync.RWMutex
@@ -36,7 +35,7 @@ func main() {
 		s: []interface{}{"a", "b"},
 	}
 	v := <-th.Iter()
-	fmt.Printf("\noutgoing value:%v ",  v)
+	fmt.Printf("\noutgoing value:%v ", v)
 	//{
 	//	v := <-th.Iter()
 	//fmt.Printf("\noutgoing value:%v ",  v)

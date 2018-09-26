@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"os"
-	"bytes"
 )
 
 type Describer interface {
@@ -40,7 +40,7 @@ func main() {
 
 	var w io.Writer
 	w = os.Stdout
-	f := w.(*os.File)      // success: f == os.Stdout
+	f := w.(*os.File) // success: f == os.Stdout
 	c := w.(*bytes.Buffer)
-	fmt.Println("\n",f,c)
+	fmt.Println("\n", f, c)
 }

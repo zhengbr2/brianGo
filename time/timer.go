@@ -11,17 +11,17 @@ func main() {
 		time.Sleep(time.Second * 2)
 		c1 <- "result 1"
 	}()
-	before:=time.Now()
-	fmt.Println("now is:" , before)
+	before := time.Now()
+	fmt.Println("now is:", before)
 	select {
 
 	case res := <-c1:
 		fmt.Println(res)
-	case d:=<-time.After(time.Second * 1):
+	case d := <-time.After(time.Second * 1):
 		fmt.Println("timeout 1")
-		fmt.Println("duration is:" , d)
+		fmt.Println("duration is:", d)
 	}
-	fmt.Println("ellapse duration:" , time.Now().Sub(before).Seconds())
+	fmt.Println("ellapse duration:", time.Now().Sub(before).Seconds())
 
 	c2 := make(chan string, 1)
 	go func() {

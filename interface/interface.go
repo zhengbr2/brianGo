@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-		"time"
+	"time"
 	"unsafe"
 )
 
@@ -31,7 +31,6 @@ func main() {
 
 	phone = new(NokiaPhone)
 
-
 	phone.call()
 
 	phone = new(IPhone)
@@ -40,18 +39,19 @@ func main() {
 	fmt.Println("size of phone", unsafe.Sizeof(phone))
 	fmt.Println("size of x", unsafe.Sizeof(x))
 	var x interface{} = [3]int{1, 2, 3}
-	fmt.Println("array is comparble, equal?:",x == x)  //uncomparable for [] int
+	fmt.Println("array is comparble, equal?:", x == x) //uncomparable for [] int
 
 	//var _ = (IntSet{}).String() // compile error: String requires *IntSet receiver
 	var _ = (&IntSet{}).String() // compile error: String requires *IntSet receiver
 
-	s:=IntSet{}
+	s := IntSet{}
 	var _ fmt.Stringer = &s // OK
 	// var _ fmt.Stringer = s  // compile error: IntSet lacks String method
 }
 
-type IntSet struct { /* ... */ }
+type IntSet struct { /* ... */
+}
 
-func (*IntSet) String() string{
+func (*IntSet) String() string {
 	return ""
 }

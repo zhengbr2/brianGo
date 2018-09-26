@@ -2,10 +2,9 @@ package main
 
 import "fmt"
 
-type person struct
-{
+type person struct {
 	name string
-	age int
+	age  int
 }
 
 type student struct {
@@ -13,25 +12,25 @@ type student struct {
 	*person
 }
 
-func main(){
-	a:= person{"brian",30}
-	b:= person{"brian",30}
-	c:=&a
-	fmt.Println("a==b?:", a==b)
-	fmt.Println("&a==&b?:", &a==&b)
-	fmt.Println("&a==c?:", &a==c)
+func main() {
+	a := person{"brian", 30}
+	b := person{"brian", 30}
+	c := &a
+	fmt.Println("a==b?:", a == b)
+	fmt.Println("&a==&b?:", &a == &b)
+	fmt.Println("&a==c?:", &a == c)
 
 	var any interface{}
 	any = a
 	var any2 interface{}
-	any2 =a
-	fmt.Println("any==any2:", any==any2)
-	fmt.Println("any&==&any2:", &any==&any2)
+	any2 = a
+	fmt.Println("any==any2:", any == any2)
+	fmt.Println("any&==&any2:", &any == &any2)
 
-	s1  :=student{123,&person{"brian",30}}
-	s2  :=student{123,&person{"brian",30}}
-	fmt.Println("s1.person==s2.person:", s1.person==s2.person)   // false, compara memory address
-	fmt.Println("*s1.person==*s2.person:", *s1.person==*s2.person)   // ture, compare value
-	fmt.Println("s1==s2:", s1==s2) // false, since s1.person <> s2.person
+	s1 := student{123, &person{"brian", 30}}
+	s2 := student{123, &person{"brian", 30}}
+	fmt.Println("s1.person==s2.person:", s1.person == s2.person)     // false, compara memory address
+	fmt.Println("*s1.person==*s2.person:", *s1.person == *s2.person) // ture, compare value
+	fmt.Println("s1==s2:", s1 == s2)                                 // false, since s1.person <> s2.person
 
 }

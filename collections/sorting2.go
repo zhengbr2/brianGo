@@ -42,34 +42,30 @@ func printTracks(tracks []*Track) {
 	tw.Flush() // calculate column widths and print table
 }
 
-
-
 type defaultSort []*Track
 
 func (x defaultSort) Len() int           { return len(x) }
 func (x defaultSort) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 func (x defaultSort) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
 
-
 type byArtistReverse struct {
 	defaultSort
 }
-func (x byArtistReverse) Less(i, j int) bool { return x.defaultSort[j].Artist < x.defaultSort[i].Artist }
 
+func (x byArtistReverse) Less(i, j int) bool { return x.defaultSort[j].Artist < x.defaultSort[i].Artist }
 
 type byYear struct {
 	defaultSort
 }
-func (x byYear) Less(i, j int) bool { return x.defaultSort[i].Year < x.defaultSort[j].Year }
 
+func (x byYear) Less(i, j int) bool { return x.defaultSort[i].Year < x.defaultSort[j].Year }
 
 type customSort struct {
 	defaultSort
 	less func(x, y *Track) bool
 }
 
-func (x customSort) Less(i, j int) bool { return x.less(x.defaultSort[i], x.defaultSort[j]) }     ///  ATTENTION!!!!!!!!!!
-
+func (x customSort) Less(i, j int) bool { return x.less(x.defaultSort[i], x.defaultSort[j]) } ///  ATTENTION!!!!!!!!!!
 
 func main() {
 	fmt.Println("initial")

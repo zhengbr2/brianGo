@@ -16,7 +16,7 @@ type Person struct {
 func (p Person) Describe() { // 使用值接受者实现
 
 	fmt.Printf("%s is %d years old\n", p.name, p.age)
-	p.name="brian"
+	p.name = "brian"
 }
 
 type Address struct {
@@ -25,7 +25,7 @@ type Address struct {
 }
 
 func (a *Address) Describe() { // 使用指针接受者实现
-    a.state="GuangDong"
+	a.state = "GuangDong"
 	fmt.Printf("State %s Country %s\n", a.state, a.country)
 }
 
@@ -38,7 +38,6 @@ func main() {
 	d1 = &p2
 	d1.Describe()
 	log.Println("value NOT changed!", p2)
-
 
 	var d2 Describer
 	a := Address{"Washington", "USA"}
@@ -54,7 +53,6 @@ func main() {
 	d2 = &a // 这是合法的
 	// 因为在第 22 行，Address 类型的指针实现了 Describer 接口
 	d2.Describe()
-	log.Println("value changed!",a)
-
+	log.Println("value changed!", a)
 
 }

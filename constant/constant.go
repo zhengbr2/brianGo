@@ -3,19 +3,18 @@ package main
 import "fmt"
 
 import (
-	"unsafe"
 	"log"
 	"math"
+	"unsafe"
 )
 
 const (
-	aa = "abc"
-	bb = len(aa)
-	cc = unsafe.Sizeof(aa)
-	Zero1 =0
+	aa    = "abc"
+	bb    = len(aa)
+	cc    = unsafe.Sizeof(aa)
+	Zero1 = 0
 	Zero2 = 0.0
-	T=3
-
+	T     = 3
 )
 
 const LENGTH int = 10
@@ -38,9 +37,8 @@ func main() {
 	println(a, b, c)
 	println(Unknown + Female + Male)
 
-
-	log.Println("0.0==0?", Zero1==Zero2)
-	log.Println( 3+0.1)
+	log.Println("0.0==0?", Zero1 == Zero2)
+	log.Println(3 + 0.1)
 	math.Sin(Zero1)
 	math.Sin(T)
 	math.Sin(Zero2)

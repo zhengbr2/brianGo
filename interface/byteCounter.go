@@ -6,11 +6,11 @@ type ByteCounter int
 
 func (c *ByteCounter) Write(p []byte) (int, error) {
 	//*c += ByteCounter(len(p)) // convert int to ByteCounter
-	*c = *c + ByteCounter(len(p))    // complain mismatching type without conversion
+	*c = *c + ByteCounter(len(p)) // complain mismatching type without conversion
 	return len(p), nil
 }
 
-func main(){
+func main() {
 	var c ByteCounter
 	c.Write([]byte("hello"))
 	fmt.Println(c) // "5", = len("hello")
