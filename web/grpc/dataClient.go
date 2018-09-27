@@ -6,6 +6,9 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"sync"
+	"time"
+
+	"strconv"
 )
 
 // 定义请求地址
@@ -16,10 +19,12 @@ const (
 var wg sync.WaitGroup
 
 // main 方法实现对 gRPC 接口的请求
+var now=time.Now()
 func main() {
 
-	wg.Add(20)
-	for i := 0; i < 20; i++ {
+
+	wg.Add(100)
+	for i := 0; i < 100; i++ {
 		go dial(i)
 	}
 	wg.Wait()
@@ -32,13 +37,14 @@ func dial(j int) {
 	}
 	for i := 0; i < 1000; i++ {
 		client := example.NewFormatDataClient(conn)
-		resp, err := client.DoFormat(context.Background(), &example.Data{Text: "hello,world!"})
+		resp, err := client.DoFormat(context.Background(), &example.Data{Text: "hello,world:"+ strconv.Itoa(j*1000+i)})
 		if err != nil {
 			log.Fatalln("Do Format error:" + err.Error())
 		}
-		log.Println(resp.Text, "in try#:", j*1000+i)
+		log.Println(resp.Text)
 	}
 	conn.Close()
 	wg.Done()
-
+	pass:=time.Now().Sub(now).Seconds()
+	log.Println("elapse:",pass)
 }
