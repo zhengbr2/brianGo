@@ -109,6 +109,3 @@ func init() {
 	session.Register("memory", pder)
 }
 
-func Foo() {
-
-}

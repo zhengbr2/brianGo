@@ -2,12 +2,12 @@ package session
 
 import (
 	"encoding/base64"
-	"fmt"
-	"math/rand"
+		"math/rand"
 	"net/http"
 	"net/url"
 	"sync"
 	"time"
+	"fmt"
 )
 
 type Session interface {
@@ -17,16 +17,6 @@ type Session interface {
 	SessionID() string                // back current sessionID
 }
 
-var provides = make(map[string]Provider)
-
-func NewManager(provideName, cookieName string, maxLifeTime int64) (*Manager, error) {
-	provider, ok := provides[provideName]
-	if !ok {
-		return nil, fmt.Errorf("session: unknown provide %q (forgotten import?)", provideName)
-	}
-	return &Manager{provider: provider, cookieName: cookieName, maxLifeTime: maxLifeTime}, nil
-}
-
 type Provider interface {
 	SessionInit(sid string) (Session, error)
 	SessionRead(sid string) (Session, error)
@@ -34,6 +24,7 @@ type Provider interface {
 	SessionGC(maxLifeTime int64)
 }
 
+var provides = make(map[string]Provider)
 func Register(name string, provider Provider) {
 	if provider == nil {
 		panic("session: Register provider is nil")
@@ -94,4 +85,11 @@ func (manager *Manager) GC() {
 	defer manager.lock.Unlock()
 	manager.provider.SessionGC(manager.maxLifeTime)
 	time.AfterFunc(time.Duration(manager.maxLifeTime), func() { manager.GC() })
+}
+func NewManager(provideName, cookieName string, maxLifeTime int64) (*Manager, error) {
+	provider, ok := provides[provideName]
+	if !ok {
+		return nil, fmt.Errorf("session: unknown provide %q (forgotten import?)", provideName)
+	}
+	return &Manager{provider: provider, cookieName: cookieName, maxLifeTime: maxLifeTime}, nil
 }

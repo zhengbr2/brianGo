@@ -6,8 +6,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
-	"brianGo/web/http/session/memory"
+	_ "brianGo/web/http/session/memory"
 	"fmt"
 	"strings"
 )
@@ -16,8 +15,9 @@ var globalSessions *session.Manager
 
 //然后在init函数中初始化
 func init() {
-	memory.Foo()
+
 	globalSessions, _ = session.NewManager("memory", "gosessionid", 3600)
+	go globalSessions.GC()
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -30,6 +30,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, sess.Get("username"))
 	} else {
 		sess.Set("username", r.Form["username"])
+		sess.Set("password", r.Form["password"])
 		http.Redirect(w, r, "/", 302)
 	}
 
