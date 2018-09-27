@@ -1,10 +1,10 @@
 package memory
 
 import (
-"container/list"
-"sync"
-"time"
-"brianGo/web/http/session"
+	"brianGo/web/http/session"
+	"container/list"
+	"sync"
+	"time"
 )
 
 var pder = &Provider{list: list.New()}
@@ -109,6 +109,6 @@ func init() {
 	session.Register("memory", pder)
 }
 
-func Foo(){
+func Foo() {
 
 }

@@ -1,14 +1,15 @@
 package session
 
 import (
-	"sync"
-	"fmt"
 	"encoding/base64"
+	"fmt"
 	"math/rand"
 	"net/http"
 	"net/url"
+	"sync"
 	"time"
 )
+
 type Session interface {
 	Set(key, value interface{}) error // set session value
 	Get(key interface{}) interface{}  // get session value
@@ -26,16 +27,12 @@ func NewManager(provideName, cookieName string, maxLifeTime int64) (*Manager, er
 	return &Manager{provider: provider, cookieName: cookieName, maxLifeTime: maxLifeTime}, nil
 }
 
-
-
 type Provider interface {
 	SessionInit(sid string) (Session, error)
 	SessionRead(sid string) (Session, error)
 	SessionDestroy(sid string) error
 	SessionGC(maxLifeTime int64)
 }
-
-
 
 func Register(name string, provider Provider) {
 	if provider == nil {
@@ -78,7 +75,7 @@ func (manager *Manager) SessionStart(w http.ResponseWriter, r *http.Request) (se
 	return
 }
 
-func (manager *Manager) SessionDestroy(w http.ResponseWriter, r *http.Request){
+func (manager *Manager) SessionDestroy(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie(manager.cookieName)
 	if err != nil || cookie.Value == "" {
 		return
@@ -98,4 +95,3 @@ func (manager *Manager) GC() {
 	manager.provider.SessionGC(manager.maxLifeTime)
 	time.AfterFunc(time.Duration(manager.maxLifeTime), func() { manager.GC() })
 }
-

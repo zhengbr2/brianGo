@@ -4,8 +4,8 @@ import (
 	"brianGo/web/http/session"
 	"html/template"
 	"log"
-	"time"
 	"net/http"
+	"time"
 
 	"brianGo/web/http/session/memory"
 	"fmt"
@@ -32,7 +32,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 		sess.Set("username", r.Form["username"])
 		http.Redirect(w, r, "/", 302)
 	}
-
 
 }
 

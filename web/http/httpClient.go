@@ -3,21 +3,20 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"log"
+	"net/http"
 	"strconv"
-	"time"
 	"sync"
+	"time"
 )
 
 var wg sync.WaitGroup
 
 func main() {
 
-	var now=time.Now()
+	var now = time.Now()
 	wg.Add(200)
 	for j := 0; j < 200; j++ {
-
 
 		go gethttp(j)
 	}
@@ -49,7 +48,6 @@ func gethttp(j int) {
 
 		fmt.Println(string(body) + strconv.Itoa(j*100+i))
 		//resp.Body.Close()
-
 
 	}
 	wg.Done()
