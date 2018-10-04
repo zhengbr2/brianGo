@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "Usage: %s host:port ", os.Args[0])
-		os.Exit(1)
-	}
-	service := os.Args[1]
+	//if len(os.Args) != 2 {
+	//	fmt.Fprintf(os.Stderr, "Usage: %s host:port ", os.Args[0])
+	//	os.Exit(1)
+	//}
+	service := "localhost:1200"
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
