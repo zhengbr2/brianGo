@@ -5,6 +5,7 @@ import (
 
 	"fmt"
 	"log"
+	"errors"
 )
 
 type dollars float32
@@ -13,7 +14,10 @@ func main2() {
 	db := database{"shoes": 50, "socks": 5}
 	mux := http.NewServeMux()
 	mux.Handle("/list", http.HandlerFunc(db.list))
-	mux.Handle("/price", http.HandlerFunc(db.price))
+	mux.Handle("/price",http.HandlerFunc(db.price))
+	//special wrapper for err handling
+	mux.Handle("/err",(appHandler(foo)))
+
 	log.Fatal(http.ListenAndServe("localhost:8000", mux)) // suppose never exit to log.Fatal()
 }
 
@@ -41,4 +45,17 @@ func (db database) price(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	fmt.Fprintf(w, "%s\n", price)
+}
+
+func  foo(w http.ResponseWriter, req *http.Request)error {
+	return errors.New("an error triggered")
+}
+
+
+type appHandler func(http.ResponseWriter, *http.Request) error
+
+func (fn appHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if err := fn(w, r); err != nil {
+		http.Error(w, err.Error(), 500)
+	}
 }
