@@ -60,6 +60,7 @@ func (mc *MyChannel) SafeClose() {
 }
 
 func main() {
+
 	c := make(chan T)
 	log.Println(IsClosed(c)) // false
 	close(c)
