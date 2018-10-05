@@ -8,6 +8,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"log"
 )
 
 type Scenario struct {
@@ -249,7 +250,7 @@ func RunScenario4() {
 	select {
 	case c := <-result:
 		fmt.Printf("Got result %s ", c)
-	case <-time.After(time.Duration(3 * time.Second)):
+	case <-time.After(time.Duration(1 * time.Second)):
 		fmt.Errorf("指定时间内都没有得到结果")
 	}
 }
@@ -286,7 +287,9 @@ func RunScenario5() {
 					case <-stop:
 						return
 					default:
+						log.Println("breaked in default,bad design!")
 						break
+
 					}
 
 					res := doUploadMock()
