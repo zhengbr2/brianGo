@@ -15,7 +15,7 @@ func main() {
 	// ...
 	const MaxRandomNumber = 100000
 	const NumReceivers = 10
-	const NumSenders = 1000
+	const NumSenders = 333
 
 	wgReceivers := sync.WaitGroup{}
 	wgReceivers.Add(NumReceivers)
@@ -49,21 +49,8 @@ func main() {
 				if value == 0 {
 					// here, a trick is used to notify the moderator
 					// to close the additional signal channel.
-					select {
-					case toStop <- "sender#" + id:
-					default:
-					}
-					return
+					toStop <- "sender#" + id
 				}
-
-				// the first select here is to try to exit the
-				// goroutine as early as possible.
-				select {
-				case <-stopCh:
-					return
-				default:
-				}
-
 				select {
 				case <-stopCh:
 					return
@@ -77,37 +64,21 @@ func main() {
 	for i := 0; i < NumReceivers; i++ {
 		go func(id string) {
 			defer wgReceivers.Done()
-
 			for {
-				// same as senders, the first select here is to
-				// try to exit the goroutine as early as possible.
-				select {
-				case <-stopCh:
-					return
-				default:
-				}
-
 				select {
 				case <-stopCh:
 					return
 				case value := <-dataCh:
-					if value == MaxRandomNumber-1 {
-						// the same trick is used to notify the moderator
-						// to close the additional signal channel.
-						select {
-						case toStop <- "receiver#" + id:
-						default:
-						}
+					if value == 9999 {
+						toStop <- "receiver#" + id
 						return
 					}
-
 					log.Println(value)
 				}
 			}
 		}(strconv.Itoa(i))
 	}
 
-	// ...
 	wgReceivers.Wait()
 	log.Println("stopped by", stoppedBy)
 }
