@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(arr)
 
 	var s []int
-	s = append([]int(nil), 1,2,3)
+	s = append([]int(nil), 1, 2, 3)
 	//s = append(nil, 1,2,3)  // compilation error
 
 	s = make([]int, 5, 10)

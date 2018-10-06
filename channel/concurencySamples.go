@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"runtime"
 	"sync"
 	"sync/atomic"
 	"time"
-	"log"
 )
 
 type Scenario struct {
@@ -323,5 +323,3 @@ func RunScenario5() {
 
 	}
 }
-
-
