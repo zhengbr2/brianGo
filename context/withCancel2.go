@@ -29,7 +29,7 @@ func watch(ctx context.Context, name string) {
 		select {
 		case <-ctx.Done():
 			fmt.Println(name, "监控退出，停止了...")
-		
+
 			//or close(returned)
 			returned<- struct{}{}
 
