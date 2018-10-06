@@ -6,7 +6,12 @@ import (
 	"time"
 )
 
+var(
+	returned = make(chan struct{})
+)
+
 func main() {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	go watch(ctx, "【监控1】")
 	go watch(ctx, "【监控2】")
@@ -16,7 +21,7 @@ func main() {
 	fmt.Println("可以了，通知监控停止")
 	cancel()
 	//为了检测监控过是否停止，如果没有监控输出，就表示停止了
-	time.Sleep(5 * time.Second)
+	<-returned
 }
 
 func watch(ctx context.Context, name string) {
@@ -24,6 +29,7 @@ func watch(ctx context.Context, name string) {
 		select {
 		case <-ctx.Done():
 			fmt.Println(name, "监控退出，停止了...")
+			close(returned)
 			return
 		default:
 			fmt.Println(name, "goroutine监控中...")
