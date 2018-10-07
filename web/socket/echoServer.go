@@ -3,27 +3,28 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io"
+	_ "io"
 	"net"
 	"os"
 	"runtime/debug"
+	"io"
 )
 
 var (
 	host = flag.String("host", "", "host name or IP")
 	port = flag.String("port", "3333", "port #")
+
+	err      error
+	checkErr = func(err error) {
+		if err != nil {
+			fmt.Println(err)
+			debug.PrintStack()
+			os.Exit(1)
+		}
+	}
 )
 
 func main() {
-	var (
-		err      error
-		checkErr = func(err error) {
-			if err != nil {
-				debug.PrintStack()
-				os.Exit(1)
-			}
-		}
-	)
 
 	flag.Parse()
 	var l net.Listener
@@ -44,8 +45,15 @@ func main() {
 }
 
 func handleRequest(conn net.Conn) {
+	//var buf = make([]byte,1024)
 	defer conn.Close()
-	for {
-		io.Copy(conn, conn)
-	}
+
+		for {
+			fmt.Printf("expected only entring here for 1 time \n")
+			count, _ := io.Copy(conn, conn)
+			fmt.Printf("received chars:%d\n", count)
+		}
+		//n,_:=conn.Read(buf)
+		//conn.Write(buf[0:n])
+
 }
