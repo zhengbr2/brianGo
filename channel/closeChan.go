@@ -31,4 +31,23 @@ func main() {
 		time.Sleep(time.Millisecond * 100)
 		fmt.Println("Received ", v)
 	}
+
+	chanint := make(chan int)
+	close(chanint)
+	select {
+		case i:=<-chanint:
+			println("read i:",i)
+	}
+	select {
+	case i:=<-chanint:
+		println("read i:",i)
+	}
+	chanint =nil
+	select {
+	case i:=<-chanint:
+		println("read i:",i)
+	 default:
+		 println("never read i!")
+	}
+
 }
