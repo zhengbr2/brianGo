@@ -6,11 +6,21 @@ import (
 )
 
 func main() {
-	ticker := time.NewTicker(time.Millisecond * 500)
+	var chanTime  <- chan  time.Time
+	ticker := time.NewTicker(time.Second * 1)
+	chanTime=ticker.C
+	chanTime=time.Tick(time.Millisecond * 500)
+
 	go func() {
-		for t := range ticker.C {
+		for t := range chanTime {
 			fmt.Println("Tick at", t)
 		}
+	}()
+
+	go func() {
+		time.Sleep(time.Second * 3)
+		chanTime=time.Tick(time.Millisecond * 500)  // not work...
+
 	}()
 
 	//time.Sleep(time.Millisecond * 4000)

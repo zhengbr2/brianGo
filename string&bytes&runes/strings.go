@@ -1,13 +1,38 @@
 package main
 
 import "fmt"
-import s "strings"
+import (
+	s "strings"
+	"unicode/utf8"
+)
 
 var p = fmt.Println
 
 func main() {
 
-	p("Contains:  ", s.Contains("test", "es"))
+	 var str string
+	 if str == ""{
+	 	str = "default"
+	 	println(str)
+	 }
+
+	x := "text"
+	fmt.Println(x[0]) //print 116
+	fmt.Printf("%T\n",x[0]) //prints uint8
+
+	data := "♥"
+	fmt.Println(len(data))  //3
+	fmt.Println(utf8.RuneCountInString(data)) //prints: 1
+
+	data = "é"
+	fmt.Println(len(data))                    //prints: 3
+	fmt.Println(utf8.RuneCountInString(data)) //prints: 2
+
+
+
+
+
+p("Contains:  ", s.Contains("test", "es"))
 	p("Count:     ", s.Count("test", "t"))
 	p("HasPrefix: ", s.HasPrefix("test", "te"))
 	p("HasSuffix: ", s.HasSuffix("test", "st"))

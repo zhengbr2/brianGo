@@ -9,7 +9,9 @@ func main() {
 	// just return default vlaue
 	m := make(map[string]int)
 	aa := m["nice"]
+
 	m["foo"] = 35
+	println(len(m))
 	fmt.Println("aa:", aa)
 
 	mi := make(map[int]int)
