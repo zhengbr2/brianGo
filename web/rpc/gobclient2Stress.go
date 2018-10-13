@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	_"fmt"
 	"log"
 	"net/rpc"
 	"github.com/anacrolix/sync"
@@ -46,7 +46,7 @@ func main() {
 			if err != nil {
 				log.Fatalln("arith error: ", err)
 			}
-			fmt.Printf("%d * %d = %d\n", req.A, req.B, res.Pro)
+			//fmt.Printf("%d * %d = %d\n", req.A, req.B, res.Pro)
 		}
 		wg.Done()}()
 	}
