@@ -10,6 +10,7 @@ import (
 
 
 func main(){
+	log.SetFlags(log.Lmicroseconds)
 	addr:="localhost:8972"
 	args:=raw.Args{5,6}
 	reply:=&raw.Reply{}
@@ -33,14 +34,14 @@ func main(){
 
 
 
-	echo := client.NewXClient("Echo", client.Failtry, client.RandomSelect, d, client.DefaultOption)
-	defer echo.Close()
+	echoClient := client.NewXClient("Echo", client.Failtry, client.RandomSelect, d, client.DefaultOption)
+	defer echoClient.Close()
 
 	args2:="brian"
 	log.Printf("args:%v",args2)
 	var reply2 string
 
-	err2 := echo.Call(context.Background(), "Echo", args2, &reply2)
+	err2 := echoClient.Call(context.Background(), "Echo", args2, &reply2)
 	if err2!= nil{
 		log.Println("encountered error:",err2)
 	}
@@ -49,15 +50,15 @@ func main(){
 
 	{
 
-		tServer := client.NewXClient("TimeS", client.Failtry, client.RandomSelect, d, client.DefaultOption)
-		defer tServer.Close()
+		timeClient := client.NewXClient("TimeS", client.Failtry, client.RandomSelect, d, client.DefaultOption)
+		defer timeClient.Close()
 
 		tm:=time.Now().Add(time.Hour * 3)
 		log.Println(tm)
 
 		var ret time.Time
 
-		errT := tServer.Call(context.Background(), "Time", tm, &ret)
+		errT := timeClient.Call(context.Background(), "Time", tm, &ret)
 		if errT != nil{
 			log.Println("encountered error:", errT)
 		}
