@@ -34,9 +34,10 @@ func main() {
 	s.Serve("tcp", *addr)
 }
 func registerServices(s *server.Server) {
-	s.Register(new(raw.Arith), "")
-	s.Register(new(raw.Echo), "")
-	s.Register(new(raw.TimeS), "")
+	s.RegisterName("Arith",new(raw.Arith), "")
+	s.RegisterName("Echo",new(raw.Echo), "")
+	s.RegisterName("TimeS",new(raw.TimeS), "")
+	//s.Register(new(raw.TimeS), "")
 }
 func addRegistryPlugin(s *server.Server) {
 
