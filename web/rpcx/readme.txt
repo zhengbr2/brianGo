@@ -1,0 +1,1 @@
+xgen -o rpcServer.go   raw\server.go
