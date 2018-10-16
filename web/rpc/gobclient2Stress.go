@@ -6,7 +6,9 @@ import (
 	"log"
 	"net/rpc"
 	"time"
-	"runtime"
+	"flag"
+	"os"
+	"strconv"
 )
 
 // 算数运算请求结构体
@@ -23,13 +25,23 @@ type ArithResponse struct {
 }
 
 var (
-	ThreadCount = 20
+	ThreadCount = 100
 	Repeat      = 5000
 )
 
+func init(){
+	println("Usage Sample:")
+	println(os.Args[0] + " -thread 100  -repeat 5000")
+	flag.IntVar(&ThreadCount,"thread",100,"how many threads(goroutine) running in client side")
+	flag.IntVar(&Repeat,"repeat",5000,"repeat count within one thread")
+	flag.Parse()
+	println("your input: -thread:" + strconv.Itoa(ThreadCount) + " -repeat:"+ strconv.Itoa(Repeat))
+}
+
+
+
 func main() {
 
-	runtime.GOMAXPROCS(4)
 	before := time.Now()
 	var wg sync.WaitGroup
 	wg.Add(ThreadCount)
@@ -48,6 +60,7 @@ func main() {
 				if err != nil {
 					log.Fatalln("arith error: ", err)
 				}
+
 				//fmt.Printf("%d * %d = %d\n", req.A, req.B, res.Pro)
 			}
 			wg.Done()
