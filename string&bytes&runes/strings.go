@@ -17,6 +17,9 @@ func main() {
 	 }
 
 	x := "text"
+	slice:=[] byte(x)
+	slice[0]='T'
+	println(x,":",string(slice))  //text:Text
 	fmt.Println(x[0]) //print 116
 	fmt.Printf("%T\n",x[0]) //prints uint8
 
