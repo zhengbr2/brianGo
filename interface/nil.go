@@ -24,4 +24,12 @@ func main() {
 		//'data' is 'nil', but 'in' is not 'nil'
 	}
 
+	{
+		var I *int32
+		var v interface{}
+		fmt.Println("v is nil?", v==nil)
+		fmt.Println("I is nil?", I==nil)
+		v=I
+		fmt.Println("v is NOT nil any more:", v==nil)
+	}
 }
