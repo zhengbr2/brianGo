@@ -75,15 +75,26 @@ func main() {
 	}
 
 	{
-		mPrint:=v.MethodByName("Print")
-		args:=[]reflect.Value{reflect.ValueOf("UserInfo")}
-		fmt.Println(mPrint.Call(args))
+		x:=2
+		v:=reflect.ValueOf(&x)
+		v.Elem().SetInt(100)
+		fmt.Println("new x:",x)
 	}
 
 	{
+		mPrint:=v.MethodByName("Print")
+		args:=[]reflect.Value{reflect.ValueOf("UserInfo")}
+		rets:=mPrint.Call(args)
+		if(len(rets)>0) {
+			fmt.Println(rets[0])
+		}
+	}
+	
+	{
 		mPrint:=v.MethodByName("Greet")
 		args:=[]reflect.Value{}
-		fmt.Println(mPrint.Call(args))
+		fmt.Println("\n");
+		fmt.Println(mPrint.Call(args)[0])
 	}
 
 }
