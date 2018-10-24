@@ -18,22 +18,22 @@ func createQuery(q interface{}) {
 	v := reflect.ValueOf(q)
 	k := t.Kind()
 	k2 := v.Kind()
+	println(k)   //struct
 	println(k2 == k) //true
 
 	fmt.Println("Type ", t) // main.order
 	fmt.Println("Value ", v)
-	fmt.Println("Kind ", k) //struct
 
 	ti := reflect.TypeOf(3)
 	ts := reflect.TypeOf("string")
 	tsli := reflect.TypeOf([]string{"string", "kk"})
 	tinf := reflect.TypeOf(order{2, 3})
 
-	fmt.Println(ti, ts, tsli, tinf) //int string []string main.order
+	fmt.Println(ti, ts, tsli, tinf) //int, string, []string, main.order
 
 	switch t2 := q.(type) {
 	case order:
-		fmt.Println("type is oder")
+		fmt.Println("type is main.oder")
 	case int:
 		fmt.Println("type is int")
 	default:
@@ -44,7 +44,7 @@ func createQuery(q interface{}) {
 }
 func main() {
 	o := order{
-		ordId:      456,
+		ordId:      12,
 		customerId: 56,
 	}
 	createQuery(o)

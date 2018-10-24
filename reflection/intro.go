@@ -52,7 +52,7 @@ func main() {
 	fmt.Printf("%T\n",u)
 	fmt.Printf("%v\n",u)
 
-	user,ok:=v.Interface().(User)
+	user,ok:=v.Interface().(User)    // Value->Interface-> Type Instance
 
 	fmt.Println("ok?:",ok)
 	fmt.Println("user:",user)
@@ -89,7 +89,7 @@ func main() {
 			fmt.Println(rets[0])
 		}
 	}
-	
+
 	{
 		mPrint:=v.MethodByName("Greet")
 		args:=[]reflect.Value{}
