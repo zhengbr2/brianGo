@@ -10,7 +10,7 @@ import (
 
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	l, err := net.Listen("tcp", ":8081")
+	l, err := net.Listen("tcp", ":3128")
 	if err != nil {
 		log.Panic(err)
 	}

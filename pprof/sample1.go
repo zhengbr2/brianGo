@@ -13,7 +13,7 @@ func Counter(wg *sync.WaitGroup) {
 	time.Sleep(time.Second)
 
 	var counter int
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 10000000; i++ {
 		time.Sleep(time.Millisecond * 200)
 		counter++
 	}

@@ -60,13 +60,14 @@ func handleClientRequest(client net.Conn) {
 	} else { //http访问
 		if strings.Index(hostPortURL.Host, ":") == -1 { //host不带端口， 默认80
 			address = hostPortURL.Host + ":80"
+			_=address
 		} else {
 			address = hostPortURL.Host
 		}
 	}
 
 	//获得了请求的host和port，就开始拨号吧
-	server, err := net.Dial("tcp", address)
+	server, err := net.Dial("tcp", ":8080")
 	if err != nil {
 		log.Println(err)
 		return
