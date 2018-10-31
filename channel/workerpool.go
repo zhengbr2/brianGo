@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"time"
+	"sync"
 )
 
 // playload
@@ -21,6 +22,7 @@ type Job struct {
 
 //job queue
 var JobQueue chan Job
+var wg = &sync.WaitGroup{}
 
 type Worker struct {
 	name       string
@@ -45,13 +47,14 @@ func (w *Worker) Start() {
 		for {
 			//注册到对象池中,
 			w.WorkerPool <- w.JobChannel
-			fmt.Printf("[%s]把自己注册到 对象池中 \n", w.name)
+			//fmt.Printf("[%s]把自己注册到 对象池中 \n", w.name)
 			select {
 			//接收到了新的任务
 			case job := <-w.JobChannel:
 				fmt.Printf("[%s] 工人接收到了任务 当前空闲工人数是[%d]\n", w.name, len(w.WorkerPool))
 				job.Payload.Handle()
-				time.Sleep(time.Millisecond * 500)
+				wg.Done()
+				time.Sleep(time.Millisecond * 1000)
 				//接收到了任务
 			case <-w.quit:
 				return
@@ -93,7 +96,7 @@ func (d *Dispatcher) Run() {
 func (d *Dispatcher) dispatch() {
 	for {
 		select {
-		case job := <-JobQueue:
+		case job:= <-JobQueue:
 			fmt.Println("调度者,接收到一个工作任务")
 			//time.Sleep(10* time.Millisecond)
 			// 调度者接收到一个工作任务
@@ -108,8 +111,8 @@ func (d *Dispatcher) dispatch() {
 }
 
 func initialize() {
-	maxWorkers := 50000 //池子大小
-	maxQueue := 10      //指定任务的队列长度
+	maxWorkers := 80000 //池子大小
+	maxQueue := 10  //指定任务的队列长度
 	//初始化一个调度者,并指定它可以操作的 工人个数
 	dispatcher := NewDispatcher(maxWorkers)
 	JobQueue = make(chan Job, maxQueue)
@@ -118,7 +121,9 @@ func initialize() {
 }
 
 func main() {
+	before:=time.Now()
 	initialize()
+	wg.Add(1000000)
 	for i := 0; i < 1000000; i++ {
 		p := Payload{
 			fmt.Sprintf("playload-[%s]", strconv.Itoa(i)),
@@ -128,6 +133,9 @@ func main() {
 		}
 		//time.Sleep(time.Millisecond * 1)
 	}
-	time.Sleep(time.Second * 6)
+	fmt.Println("任务派遣完毕",time.Now())
+	//time.Sleep(time.Second * 1)
+	wg.Wait()
 	close(JobQueue)
+	fmt.Println("耗时：",time.Now().Sub(before).Seconds())
 }
