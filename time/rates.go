@@ -16,6 +16,7 @@ func main() {
 	fmt.Println(time.Now())
 	limiter := time.Tick(time.Millisecond * 200)
 	time.Sleep(time.Second)
+	fmt.Println(time.Now())
 	for req := range requests {
 
 		fmt.Println("request", req, <-limiter, "current time:", time.Now())
