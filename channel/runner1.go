@@ -79,10 +79,10 @@ func (r *Runner) Start() error {
 func main() {
 	log.Println("...开始执行任务...")
 
-	timeout := 3 * time.Second
+	timeout := 5 * time.Second
 	r := New(timeout)
 
-	r.Add(createTask2(), createTask2(), createTask2())
+	r.Add(createTask1(), createTask1(), createTask1())
 
 	if err := r.Start(); err != nil {
 		switch err {
@@ -97,7 +97,7 @@ func main() {
 	log.Println("...任务执行结束...")
 }
 
-func createTask2() func(int) {
+func createTask1() func(int) {
 	return func(id int) {
 		log.Printf("正在执行任务%d", id)
 		time.Sleep(time.Duration(id) * time.Second)
