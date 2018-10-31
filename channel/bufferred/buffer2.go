@@ -11,7 +11,7 @@ func write(ch chan int) {
 		fmt.Println("successfully wrote", i, "to ch", time.Now())
 	}
 	close(ch)
-	fmt.Println("channel closed here ", time.Now())
+	fmt.Println("channel is closed here ", time.Now())
 }
 func main() {
 	ch := make(chan int, 2) // if buffer is 1, then read out 4 numbers, instead of 5
