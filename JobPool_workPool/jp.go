@@ -13,7 +13,7 @@ type WorkProvider1 struct {
 
 func (wp *WorkProvider1) RunJob(jobRoutine int) {
 	fmt.Printf("Perform Job : Provider 1 : Started: %s\n", wp.Name)
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	fmt.Printf("Perform Job : Provider 1 : DONE: %s\n", wp.Name)
 }
 
@@ -23,7 +23,7 @@ type WorkProvider2 struct {
 
 func (wp *WorkProvider2) RunJob(jobRoutine int) {
 	fmt.Printf("Perform Job : Provider 2 : Started: %s\n", wp.Name)
-	time.Sleep(5 * time.Second)
+	time.Sleep(2 * time.Second)
 	fmt.Printf("Perform Job : Provider 2 : DONE: %s\n", wp.Name)
 }
 
