@@ -30,6 +30,12 @@ func live2() IPeople {
 	return &Student{}
 }
 
+type MyObject struct {
+	name int
+	count int
+}
+var ob MyObject
+
 func main() {
 	b0 := live0()
 	_ = b0
@@ -45,4 +51,6 @@ func main() {
 	} else {
 		fmt.Println("BBBBBBB2")
 	}
+
+	//fmt.Println("ob==nil?", ob==nil) error
 }
