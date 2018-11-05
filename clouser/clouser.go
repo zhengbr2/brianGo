@@ -1,4 +1,4 @@
-package clouser
+package main
 
 import "fmt"
 
