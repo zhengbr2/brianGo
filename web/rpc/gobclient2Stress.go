@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "fmt"
+
 	"github.com/anacrolix/sync"
 	"log"
 	"net/rpc"
@@ -9,6 +9,8 @@ import (
 	"flag"
 	"os"
 	"strconv"
+
+	"math/rand"
 )
 
 // 算数运算请求结构体
@@ -25,15 +27,15 @@ type ArithResponse struct {
 }
 
 var (
-	ThreadCount = 100
-	Repeat      = 5000
+	ThreadCount = 5000
+	Repeat      = 100
 )
 
 func init(){
 	println("Usage Sample:")
 	println(os.Args[0] + " -thread 100  -repeat 5000")
-	flag.IntVar(&ThreadCount,"thread",100,"how many threads(goroutine) running in client side")
-	flag.IntVar(&Repeat,"repeat",5000,"repeat count within one thread")
+	flag.IntVar(&ThreadCount,"thread",1000,"how many threads(goroutine) running in client side")
+	flag.IntVar(&Repeat,"repeat",500,"repeat count within one thread")
 	flag.Parse()
 	println("your input: -thread:" + strconv.Itoa(ThreadCount) + " -repeat:"+ strconv.Itoa(Repeat))
 }
@@ -41,6 +43,8 @@ func init(){
 
 
 func main() {
+	rd:=rand.New(rand.NewSource (time.Now().UnixNano()))
+	_=rd
 
 	before := time.Now()
 	var wg sync.WaitGroup
@@ -60,7 +64,8 @@ func main() {
 				if err != nil {
 					log.Fatalln("arith error: ", err)
 				}
-
+				//time.Sleep( time.Millisecond * time.Duration(rd.Intn(1000)));
+				//
 				//fmt.Printf("%d * %d = %d\n", req.A, req.B, res.Pro)
 			}
 			wg.Done()
