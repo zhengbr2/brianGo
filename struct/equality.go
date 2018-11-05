@@ -15,10 +15,9 @@ type student struct {
 func main() {
 	a := person{"brian", 30}
 	b := person{"brian", 30}
-	c := &a
+
 	fmt.Println("a==b?:", a == b)
 	fmt.Println("&a==&b?:", &a == &b)
-	fmt.Println("&a==c?:", &a == c)
 
 	var any interface{}
 	any = a

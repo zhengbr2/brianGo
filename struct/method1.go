@@ -7,19 +7,13 @@ type rectangle struct {
 	width  int
 }
 
-func area(r rectangle) {
-
-	fmt.Printf("Area Function result: %d\n", (r.length * r.width))
-	r.length = 99
-}
-
 func (r rectangle) area() {
 	fmt.Printf("Area Method result: %d\n", (r.length * r.width))
 	r.length = 88
 }
 
 func (r *rectangle) area2() {
-	fmt.Printf("Area Method result: %d\n", (r.length * r.width))
+	fmt.Printf("Area Method *result: %d\n", (r.length * r.width))
 	r.length = 88
 }
 
@@ -27,6 +21,12 @@ type myInt int
 
 func (a myInt) add(b myInt) myInt {
 	return a + b
+}
+
+func area(r rectangle) {
+
+	fmt.Printf("Area Function result: %d\n", (r.length * r.width))
+	r.length = 99
 }
 
 func main() {

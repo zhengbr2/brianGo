@@ -7,7 +7,7 @@ import (
 
 //struct with anonymous field
 type Person struct {
-	string
+	string;
 	int
 }
 
@@ -98,6 +98,8 @@ func main() {
 	emp9 := &emp7
 	fmt.Println("\nEmployee 9\nFirst Name:", emp9.firstName)
 	fmt.Println("Age:", emp9.age)
+	emp9.firstName="emp firstname"
+	fmt.Println("emp 7 updated?:",emp7)
 
 	//creating structure with anonymous field
 	p := Person{"Naveen", 50}

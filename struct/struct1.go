@@ -41,7 +41,6 @@ func printBook(book Books) { // value copy
 	book.subject = "changed"
 	fmt.Printf("Book book_id : %d\n", book.book_id)
 	fmt.Printf("---------\n")
-
 }
 
 func printBook2(book *Books) { // pass reference
