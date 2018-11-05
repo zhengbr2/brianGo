@@ -30,7 +30,7 @@ to the caller
 */
 func subtactOne(numbers []int) {
 	for i := range numbers {
-		numbers[i] -= 2
+		numbers[i] -= 1
 	}
 
 }

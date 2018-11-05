@@ -17,6 +17,8 @@ func main() {
 	for j = 0; j < 10; j++ {
 		fmt.Printf("Element[%d] = %d\n", j, n[j])
 	}
+	// not able to print n[11]
+
 
 	{
 		a := [...]string{"USA", "China", "India", "Germany", "France"}
@@ -37,7 +39,7 @@ func main() {
 		b := a                                                      // a copy of a is assigned to b
 		b[0] = "Singapore"
 		fmt.Println("a is ", a)
-		fmt.Println("b is ", b)
+		fmt.Println("b is ", b)   //both changed.
 
 	}
 
