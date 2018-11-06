@@ -1,19 +1,18 @@
 package main
 
-
 import (
 	"encoding/binary"
 	"errors"
-	"io"
-	"net"
 	"fmt"
+	"io"
 	"log"
+	"net"
 )
+
 const (
 	BYTES_SIZE uint16 = 1024
 	HEAD_SIZE  int    = 2
 )
-
 
 type buffer struct {
 	reader io.Reader
@@ -38,14 +37,14 @@ func (b *buffer) grow() {
 	}
 	copy(b.buf, b.buf[b.start:b.end])
 	b.end -= b.start
-	b.start = 0;
+	b.start = 0
 }
 
 //从reader里面读取数据，如果reader阻塞，会发生阻塞
 func (b *buffer) readFromReader() (int, error) {
 	b.grow()
 	n, err := b.reader.Read(b.buf[b.end:])
-	if (err != nil) {
+	if err != nil {
 		return n, err
 	}
 	b.end += n
@@ -55,16 +54,16 @@ func (b *buffer) readFromReader() (int, error) {
 //返回n个字节，而不产生移位
 func (b *buffer) seek(n int) ([]byte, error) {
 	if b.end-b.start >= n {
-		buf := b.buf[b.start:b.start+n]
+		buf := b.buf[b.start : b.start+n]
 		return buf, nil
 	}
 	return nil, errors.New("not enough")
 }
 
 //舍弃offset个字段，读取n个字段
-func (b *buffer) read(offset, n int) ([]byte) {
+func (b *buffer) read(offset, n int) []byte {
 	b.start += offset
-	buf := b.buf[b.start:b.start+n]
+	buf := b.buf[b.start : b.start+n]
 	b.start += n
 	return buf
 }
@@ -83,12 +82,12 @@ func doConn2(conn net.Conn) {
 			return
 		}
 		for {
-			headBuf, err = buffer.seek(HEAD_SIZE);
+			headBuf, err = buffer.seek(HEAD_SIZE)
 			if err != nil {
 				break
 			}
 			contentSize = int(binary.BigEndian.Uint16(headBuf))
-			if (buffer.Len() >= contentSize-HEAD_SIZE) {
+			if buffer.Len() >= contentSize-HEAD_SIZE {
 				contentBuf = buffer.read(HEAD_SIZE, contentSize)
 				fmt.Println(string(contentBuf))
 				continue
@@ -117,7 +116,6 @@ func StartServer2(address string) {
 	}
 }
 
-
-func main(){
+func main() {
 	StartServer2("localhost:50002")
 }

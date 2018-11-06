@@ -19,9 +19,9 @@ func main() {
 	log.Println("all folders removed")
 
 	fname := "zhengbr2.txt"
-	err=os.Remove("zhengbr2.txt")
+	err = os.Remove("zhengbr2.txt")
 	if err != nil {
-		log.Printf("not able to remove file %v",err)
+		log.Printf("not able to remove file %v", err)
 	}
 	fout, err := os.Create(fname)
 	if err != nil {

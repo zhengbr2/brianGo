@@ -1,4 +1,5 @@
 package main
+
 import (
 	"bufio"
 	"flag"
@@ -8,8 +9,10 @@ import (
 	"strconv"
 	"sync"
 )
+
 var host = flag.String("host", "localhost", "host")
 var port = flag.String("port", "3333", "port")
+
 func main() {
 	flag.Parse()
 	conn, err := net.Dial("tcp", *host+":"+*port)

@@ -20,16 +20,16 @@ func main() {
 
 	// ...
 	dataCh := make(chan int, 100)
-	count:=0
+	count := 0
 
 	// the sender
 	go func() {
 		for {
-			count=count+1
+			count = count + 1
 			if value := rand.Intn(MaxRandomNumber); value == 0 {
 				// the only sender can close the channel safely.
 
-				log.Println("executing count:",count)
+				log.Println("executing count:", count)
 				close(dataCh)
 				return
 			} else {

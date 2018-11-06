@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	var chanTime  <- chan  time.Time
+	var chanTime <-chan time.Time
 	ticker := time.NewTicker(time.Second * 1)
-	chanTime=ticker.C
-	chanTime=time.Tick(time.Millisecond * 500)
+	chanTime = ticker.C
+	chanTime = time.Tick(time.Millisecond * 500)
 
 	go func() {
 		for t := range chanTime {

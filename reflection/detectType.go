@@ -18,7 +18,7 @@ func createQuery(q interface{}) {
 	v := reflect.ValueOf(q)
 	k := t.Kind()
 	k2 := v.Kind()
-	println(k)   //struct
+	println(k)       //struct
 	println(k2 == k) //true
 
 	fmt.Println("Type ", t) // main.order

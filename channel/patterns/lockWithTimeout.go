@@ -5,6 +5,7 @@ import "time"
 type MutexTM struct {
 	ch chan struct{}
 }
+
 func NewMutex2() *MutexTM {
 	mu := &MutexTM{make(chan struct{}, 1)}
 	mu.ch <- struct{}{}
@@ -33,4 +34,3 @@ func (m *MutexTM) TryLock(timeout time.Duration) bool {
 func (m *MutexTM) IsLocked() bool {
 	return len(m.ch) == 0
 }
-

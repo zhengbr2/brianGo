@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
 	isSpace := func(ch byte) bool {
-		switch(ch) {
+		switch ch {
 		case ' ': //error
 
 		case '\t':
@@ -15,7 +15,7 @@ func main(){
 	fmt.Println(isSpace('\t')) //prints true (ok)
 	fmt.Println(isSpace(' '))  //prints false (not ok)
 
-	data := []int{1,2,3}
+	data := []int{1, 2, 3}
 	i := 0
 	i++
 	fmt.Println(data[i])

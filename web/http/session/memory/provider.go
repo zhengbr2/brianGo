@@ -108,4 +108,3 @@ func init() {
 	pder.sessions = make(map[string]*list.Element, 0)
 	session.Register("memory", pder)
 }
-

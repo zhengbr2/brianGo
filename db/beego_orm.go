@@ -1,8 +1,7 @@
 package main
 
-
 import (
-		"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 
 	"fmt"
@@ -20,25 +19,19 @@ func init() {
 	orm.RunSyncdb("default", false, true)
 }
 
-
-
 type User struct {
-	Id     int `PK` //如果表的主键不是id，那么需要加上pk注释，显式的说这个字段是主键
-	Username    string
-	Departname  string
-	Created     time.Time
+	Id         int `PK` //如果表的主键不是id，那么需要加上pk注释，显式的说这个字段是主键
+	Username   string
+	Departname string
+	Created    time.Time
 }
-
-
-
 
 func main() {
 	o := orm.NewOrm()
 	var user User
 	user.Username = "brian"
-	user.Departname="Dev"
-	user.Created=time.Now()
-
+	user.Departname = "Dev"
+	user.Created = time.Now()
 
 	id, err := o.Insert(&user)
 	if err == nil {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"runtime"
 )
+
 func main() {
 	done := false
 	go func() {
@@ -17,5 +18,3 @@ func main() {
 	fmt.Println("done!")
 
 }
-
-

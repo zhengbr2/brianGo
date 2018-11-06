@@ -30,7 +30,7 @@ func main() {
 	}
 
 	result := Person{}
-	query:=c.Find(bson.M{"name": "Ale"})
+	query := c.Find(bson.M{"name": "Ale"})
 	err = query.Sort("_id").One(&result)
 	if err != nil {
 		log.Fatal(err)

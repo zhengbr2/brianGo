@@ -29,4 +29,3 @@ func (this *Arith) Divide(req *pb.ArithRequest, res *pb.ArithResponse) error {
 func main() {
 	pb.ListenAndServeArithService("tcp", "127.0.0.1:8097", new(Arith))
 }
-

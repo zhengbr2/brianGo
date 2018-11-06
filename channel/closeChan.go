@@ -35,19 +35,19 @@ func main() {
 	chanint := make(chan int)
 	close(chanint)
 	select {
-		case i:=<-chanint:
-			println("read i:",i)
+	case i := <-chanint:
+		println("read i:", i)
 	}
 	select {
-	case i:=<-chanint:
-		println("read i:",i)
+	case i := <-chanint:
+		println("read i:", i)
 	}
-	chanint =nil
+	chanint = nil
 	select {
-	case i:=<-chanint:
-		println("read i:",i)
-	 default:
-		 println("never read i!")
+	case i := <-chanint:
+		println("read i:", i)
+	default:
+		println("never read i!")
 	}
 
 }

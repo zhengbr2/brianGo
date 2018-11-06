@@ -1,8 +1,10 @@
 package main
+
 import (
 	"sync"
 	"time"
 )
+
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(10)

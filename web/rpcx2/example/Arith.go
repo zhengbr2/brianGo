@@ -1,9 +1,8 @@
-
 package example
 
 import (
-"context"
-"fmt"
+	"context"
+	"fmt"
 )
 
 type Args struct {

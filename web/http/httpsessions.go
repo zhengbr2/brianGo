@@ -2,15 +2,15 @@ package main
 
 import (
 	"brianGo/web/http/session"
+	_ "brianGo/web/http/session/memory"
+	"crypto/md5"
+	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
-	"time"
-	_ "brianGo/web/http/session/memory"
-	"fmt"
 	"strings"
-	"crypto/md5"
-	"io"
+	"time"
 )
 
 var globalSessions *session.Manager
@@ -43,7 +43,7 @@ func count2(w http.ResponseWriter, r *http.Request) {
 	createtime := sess.Get("createtime")
 	if createtime == nil {
 		sess.Set("createtime", time.Now().Unix())
-	} else if (createtime.(int64) + 360) < (time.Now().Unix()) {    //expired time
+	} else if (createtime.(int64) + 360) < (time.Now().Unix()) { //expired time
 		globalSessions.SessionDestroy(w, r)
 		sess = globalSessions.SessionStart(w, r)
 	}
@@ -56,13 +56,13 @@ func count2(w http.ResponseWriter, r *http.Request) {
 
 	{
 		h := md5.New()
-		salt:="astaxie%^7&8888"
-		io.WriteString(h,salt+time.Now().String())
-		token:=fmt.Sprintf("%x",h.Sum(nil))
-		if r.Form["token"][0]!=token{
+		salt := "astaxie%^7&8888"
+		io.WriteString(h, salt+time.Now().String())
+		token := fmt.Sprintf("%x", h.Sum(nil))
+		if r.Form["token"][0] != token {
 			//提示登录
 		}
-		sess.Set("token",token)
+		sess.Set("token", token)
 	}
 
 	t, _ := template.ParseFiles("count.gtpl")

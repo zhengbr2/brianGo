@@ -27,7 +27,7 @@ func main() {
 	wa2 := &Address{"work", "Boom", "Belgium"}
 	pa3 := &Address{"private", "Aartselaar", "Belgium"}
 	wa3 := &Address{"work", "Boom", "Belgium"}
-	vc := VCard{"Jan", "Kersschot", []*Address{pa, wa,pa2, wa2,pa3, wa3}, "none"}
+	vc := VCard{"Jan", "Kersschot", []*Address{pa, wa, pa2, wa2, pa3, wa3}, "none"}
 	// fmt.Printf("%v: \n", vc) // {Jan Kersschot [0x126d2b80 0x126d2be0] none}:
 	// JSON format:
 	js, _ := json.Marshal(vc)

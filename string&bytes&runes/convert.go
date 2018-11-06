@@ -1,19 +1,18 @@
 package main
 
 import (
-	"strconv"
 	"fmt"
+	"strconv"
 )
 
-func main(){
-	str :=[]byte{}
+func main() {
+	str := []byte{}
 	str = strconv.AppendInt(str, 4567, 10)
 	str = strconv.AppendBool(str, false)
 	str = strconv.AppendQuote(str, "abcdefg")
 	str = strconv.AppendQuoteRune(str, '单')
 
 	fmt.Println(string(str))
-
 
 	a := strconv.FormatBool(false)
 	b := strconv.FormatFloat(123.23, 'g', 12, 64)
@@ -37,8 +36,8 @@ func main(){
 	}
 }
 
-func checkError(e error){
-	if e != nil{
+func checkError(e error) {
+	if e != nil {
 		fmt.Println(e)
 	}
 }

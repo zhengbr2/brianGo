@@ -14,12 +14,12 @@ func main() {
 			select {
 			case out <- val:
 				println("step 2 coming from val")
-				out = nil   // close channel out
-				in = inch  // open channel in
+				out = nil // close channel out
+				in = inch // open channel in
 			case val = <-in:
 				println("step 1 coming from inch")
-				out = outch  //open channel out
-				in = nil  //  close the channel in
+				out = outch //open channel out
+				in = nil    //  close the channel in
 			}
 		}
 	}()

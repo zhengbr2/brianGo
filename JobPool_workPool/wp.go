@@ -1,20 +1,20 @@
 package main
 
 import (
-"bufio"
-"fmt"
-"os"
-"runtime"
-"strconv"
-"time"
+	"bufio"
+	"fmt"
+	"os"
+	"runtime"
+	"strconv"
+	"time"
 
-"github.com/goinggo/workpool"
+	"github.com/goinggo/workpool"
 )
 
 type MyWork struct {
-	Name string
+	Name      string
 	BirthYear int
-	WP *workpool.WorkPool
+	WP        *workpool.WorkPool
 }
 
 func (mw *MyWork) DoWork(workRoutine int) {
@@ -34,10 +34,10 @@ func main() {
 
 	go func() {
 		for i := 0; i < 1000; i++ {
-			work := MyWork {
-				Name: "A" + strconv.Itoa(i),
+			work := MyWork{
+				Name:      "A" + strconv.Itoa(i),
 				BirthYear: i,
-				WP: workPool,
+				WP:        workPool,
 			}
 
 			if err := workPool.PostWork("routine", &work); err != nil {

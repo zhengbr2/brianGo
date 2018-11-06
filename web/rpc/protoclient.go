@@ -1,9 +1,9 @@
 package main
 
 import (
+	"brianGo/web/rpc/proto"
 	"fmt"
 	"log"
-	"brianGo/web/rpc/proto"
 )
 
 func main() {
@@ -27,4 +27,3 @@ func main() {
 	}
 	fmt.Printf("%d / %d, quo is %d, rem is %d\n", req.A, req.B, res.Quo, res.Rem)
 }
-

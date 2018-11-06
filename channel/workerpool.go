@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"time"
 	"sync"
+	"time"
 )
 
 // playload
@@ -96,7 +96,7 @@ func (d *Dispatcher) Run() {
 func (d *Dispatcher) dispatch() {
 	for {
 		select {
-		case job:= <-JobQueue:
+		case job := <-JobQueue:
 			fmt.Println("调度者,接收到一个工作任务")
 			//time.Sleep(10* time.Millisecond)
 			// 调度者接收到一个工作任务
@@ -112,7 +112,7 @@ func (d *Dispatcher) dispatch() {
 
 func initialize() {
 	maxWorkers := 80000 //池子大小
-	maxQueue := 10  //指定任务的队列长度
+	maxQueue := 10      //指定任务的队列长度
 	//初始化一个调度者,并指定它可以操作的 工人个数
 	dispatcher := NewDispatcher(maxWorkers)
 	JobQueue = make(chan Job, maxQueue)
@@ -121,7 +121,7 @@ func initialize() {
 }
 
 func main() {
-	before:=time.Now()
+	before := time.Now()
 	initialize()
 	wg.Add(1000000)
 	for i := 0; i < 1000000; i++ {
@@ -133,9 +133,9 @@ func main() {
 		}
 		//time.Sleep(time.Millisecond * 1)
 	}
-	fmt.Println("任务派遣完毕",time.Now())
+	fmt.Println("任务派遣完毕", time.Now())
 	//time.Sleep(time.Second * 1)
 	wg.Wait()
 	close(JobQueue)
-	fmt.Println("耗时：",time.Now().Sub(before).Seconds())
+	fmt.Println("耗时：", time.Now().Sub(before).Seconds())
 }

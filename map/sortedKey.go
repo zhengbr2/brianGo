@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sort"
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -25,6 +25,6 @@ func main() {
 	}
 	sort.Strings(keys)
 	for indx, k := range keys {
-		fmt.Println("Key:", k, "Value:", m[k], " index:",indx)
+		fmt.Println("Key:", k, "Value:", m[k], " index:", indx)
 	}
 }

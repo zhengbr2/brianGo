@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
-	"fmt"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 	readerWG.Add(1)
 	for i := 0; i < NumPublishers; i++ {
 		go func() {
-			wg.Done()   // to make the msg exchange between goroutine
-			wg.Wait()     // to make the msg exchange between goroutine
+			wg.Done() // to make the msg exchange between goroutine
+			wg.Wait() // to make the msg exchange between goroutine
 			for i := int64(0); i < iterations; {
 				select {
 				case channel <- i:

@@ -60,7 +60,7 @@ func handleClientRequest(client net.Conn) {
 	} else { //http访问
 		if strings.Index(hostPortURL.Host, ":") == -1 { //host不带端口， 默认80
 			address = hostPortURL.Host + ":80"
-			_=address
+			_ = address
 		} else {
 			address = hostPortURL.Host
 		}

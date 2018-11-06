@@ -13,13 +13,11 @@ func main() {
 	}()
 	before := time.Now()
 	fmt.Println("starting time is:", before.Format("2006-01-02 15:04:05"))
-	chanTM:=time.After(time.Second * 1)
+	chanTM := time.After(time.Second * 1)
 
-	
-	go func(tm <-chan time.Time){
+	go func(tm <-chan time.Time) {
 		fmt.Println("read chanTM again:", <-tm)
 	}(chanTM)
-
 
 	select {
 
@@ -30,8 +28,6 @@ func main() {
 		fmt.Println("current time is:", tm.Format("2006-01-02 15:04:05"))
 	}
 	fmt.Println("ellapse duration:", time.Now().Sub(before).Seconds())
-
-
 
 	c2 := make(chan string, 1)
 	go func() {

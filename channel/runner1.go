@@ -1,13 +1,12 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"os"
-	"time"
 	"os/signal"
-	"errors"
+	"time"
 )
-
 
 var ErrTimeOut = errors.New("执行者执行超时")
 var ErrInterrupt = errors.New("执行者被中断")
@@ -74,7 +73,6 @@ func (r *Runner) Start() error {
 		return ErrTimeOut
 	}
 }
-
 
 func main() {
 	log.Println("...开始执行任务...")

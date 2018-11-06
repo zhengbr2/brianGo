@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"net"
-	"log"
 	"bytes"
 	"encoding/binary"
+	"fmt"
+	"log"
+	"net"
 )
 
 //const (
@@ -35,7 +35,7 @@ func StartServer(address string) {
 func doConn(conn net.Conn) {
 	var (
 		buffer           = bytes.NewBuffer(make([]byte, 0, BYTES_SIZE))
-		bytes            = make([]byte, BYTES_SIZE);
+		bytes            = make([]byte, BYTES_SIZE)
 		isHead      bool = true
 		contentSize int
 		head        = make([]byte, HEAD_SIZE)
@@ -43,7 +43,7 @@ func doConn(conn net.Conn) {
 	)
 	for {
 		log.Println("entering first infinite for loop")
-		readLen, err := conn.Read(bytes);
+		readLen, err := conn.Read(bytes)
 		if err != nil {
 			log.Println("Error reading", err.Error())
 			return
@@ -87,7 +87,6 @@ func doConn(conn net.Conn) {
 		}
 	}
 }
-
 
 //func main(){
 //	StartServer("localhost:50002")

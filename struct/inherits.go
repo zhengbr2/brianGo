@@ -10,6 +10,7 @@ type user struct {
 	name  string
 	email string
 }
+
 func (u user) sayHello() {
 	fmt.Println("Hello，i am a user")
 }
@@ -29,16 +30,15 @@ func (u human) hello() {
 	fmt.Println("Hello，i am a human")
 }
 
-
 type admin struct {
 	user
 	level string
 	human
 }
+
 func (a admin) sayHello() {
 	fmt.Println("Hello，i am a admin")
 }
-
 
 func sayHello(h Hello) {
 	h.hello()
@@ -54,6 +54,3 @@ func main() {
 	//sayHello(ad)//使用admin作为参数 //ambiguous
 	sayHello(ad.human) //使用human作为参数
 }
-
-
-

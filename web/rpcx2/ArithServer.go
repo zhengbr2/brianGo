@@ -1,10 +1,9 @@
-
 package main
 
 import (
-"flag"
-"github.com/smallnest/rpcx/server"
-"github.com/rpcx-ecosystem/rpcx-examples3"
+	"flag"
+	"github.com/rpcx-ecosystem/rpcx-examples3"
+	"github.com/smallnest/rpcx/server"
 )
 
 var (

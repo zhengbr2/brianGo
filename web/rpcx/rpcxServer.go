@@ -4,21 +4,19 @@
 package main
 
 import (
-  "flag"
-      "github.com/smallnest/rpcx/server"
-    "brianGo/web/rpcx/raw"
-	"time"
+	"brianGo/web/rpcx/raw"
+	"flag"
 	"github.com/rcrowley/go-metrics"
+	"github.com/smallnest/rpcx/server"
 	"github.com/smallnest/rpcx/serverplugin"
+	"time"
 )
 
-
 var (
-
 	addr     = flag.String("addr", "localhost:8972", "server address")
 	basePath = flag.String("base", "/rpcx", "prefix path")
 )
-	
+
 func main() {
 	flag.Parse()
 
@@ -34,12 +32,11 @@ func main() {
 	s.Serve("tcp", *addr)
 }
 func registerServices(s *server.Server) {
-	s.RegisterName("Arith",new(raw.Arith), "")
-	s.RegisterName("Echo",new(raw.Echo), "")
-	s.RegisterName("TimeS",new(raw.TimeS), "")
+	s.RegisterName("Arith", new(raw.Arith), "")
+	s.RegisterName("Echo", new(raw.Echo), "")
+	s.RegisterName("TimeS", new(raw.TimeS), "")
 	//s.Register(new(raw.TimeS), "")
 }
 func addRegistryPlugin(s *server.Server) {
 
-		
 }

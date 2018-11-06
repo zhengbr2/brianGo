@@ -11,7 +11,7 @@ func process(i int, wg *sync.WaitGroup) {
 	time.Sleep(2 * time.Millisecond)
 	fmt.Printf("Goroutine %d ended\n", i)
 	wg.Done()
-	wg.Wait()   //wg between neibought threads
+	wg.Wait() //wg between neibought threads
 }
 
 func main() {

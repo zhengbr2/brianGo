@@ -30,7 +30,6 @@ func or(chans ...<-chan interface{}) <-chan interface{} {
 	return out
 }
 
-
 func TestOr(t *testing.T) {
 	c1, c2, c3 := make(chan interface{}), make(chan interface{}), make(chan interface{})
 	out := or(c1, c2, c3)
@@ -56,8 +55,6 @@ func TestOr(t *testing.T) {
 	fmt.Printf("what you input is:%v", <-out)
 }
 
-
-
 func or2(channels ...<-chan interface{}) <-chan interface{} {
 	switch len(channels) {
 	case 0:
@@ -78,10 +75,10 @@ func or2(channels ...<-chan interface{}) <-chan interface{} {
 		//reflect.Select(cases)
 		chosen, recv, ok := reflect.Select(cases)
 		if ok {
-			fmt.Println("chosen:",chosen)
-			fmt.Println("value:",recv.Interface())
+			fmt.Println("chosen:", chosen)
+			fmt.Println("value:", recv.Interface())
 			go func() {
-				orDone<-recv.Interface()
+				orDone <- recv.Interface()
 			}()
 		}
 	}()
@@ -113,7 +110,6 @@ func TestOr2(t *testing.T) {
 	fmt.Printf("what you input is:%v", <-out)
 }
 
-
 func or3(channels ...<-chan interface{}) <-chan interface{} {
 	// not work yet
 
@@ -130,10 +126,10 @@ func or3(channels ...<-chan interface{}) <-chan interface{} {
 		switch len(channels) {
 		case 2:
 			select {
-			case v:= <-channels[0]:
-				go func() {done<-v}()
-			case v:=<-channels[1]:
-				go func() {done<-v}()
+			case v := <-channels[0]:
+				go func() { done <- v }()
+			case v := <-channels[1]:
+				go func() { done <- v }()
 			}
 		default:
 			m := len(channels) / 2
@@ -172,7 +168,6 @@ func TestOr3(t *testing.T) {
 	fmt.Printf("what you input is:%v", <-out)
 }
 
-
 func orDone(done <-chan struct{}, c <-chan interface{}) <-chan interface{} {
 	valStream := make(chan interface{})
 	go func() {
@@ -195,7 +190,6 @@ func orDone(done <-chan struct{}, c <-chan interface{}) <-chan interface{} {
 	return valStream
 }
 
-
 func fanIn(chans ...<-chan interface{}) <-chan interface{} {
 	out := make(chan interface{})
 	go func() {
@@ -204,7 +198,7 @@ func fanIn(chans ...<-chan interface{}) <-chan interface{} {
 		for _, c := range chans {
 			go func(c <-chan interface{}) {
 				for v := range c {
-					fmt.Printf("received %v\n",v)
+					fmt.Printf("received %v\n", v)
 					out <- v
 				}
 				wg.Done()
@@ -216,10 +210,9 @@ func fanIn(chans ...<-chan interface{}) <-chan interface{} {
 	return out
 }
 
-
 func TestFanin(t *testing.T) {
 	c1, c2, c3 := make(chan interface{}), make(chan interface{}), make(chan interface{})
-	out := fanIn(c1,c2,c3)
+	out := fanIn(c1, c2, c3)
 
 	go func() {
 		time.Sleep(time.Millisecond * 1)

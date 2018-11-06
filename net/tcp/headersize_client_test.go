@@ -1,11 +1,13 @@
 package main
+
 import (
-"testing"
-"net"
-"fmt"
-"encoding/binary"
+	"encoding/binary"
+	"fmt"
+	"net"
+	"testing"
 	"time"
 )
+
 //
 //func TestStartServer(t *testing.T) {
 //	go StartServer("localhost:50002")

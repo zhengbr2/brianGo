@@ -15,7 +15,7 @@ func (b *Bird) Fly() {
 }
 func main() {
 	sparrow := &Bird{"Sparrow", 3}
-	s := reflect.ValueOf(sparrow).Elem()    // Elem() for pointer.. if not pointer, no need Elem()
+	s := reflect.ValueOf(sparrow).Elem() // Elem() for pointer.. if not pointer, no need Elem()
 	typeOfT := s.Type()
 
 	for i := 0; i < s.NumField(); i++ {
@@ -35,7 +35,7 @@ func main() {
 
 		for i := 0; i < s.NumField(); i++ {
 			f := s.Field(i)
-			fmt.Printf("%d: %s %s = %v\n", i, typeOfT.Field(i).Name, f.Type(), f)   //why no need Interface()
+			fmt.Printf("%d: %s %s = %v\n", i, typeOfT.Field(i).Name, f.Type(), f) //why no need Interface()
 
 		}
 	}

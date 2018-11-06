@@ -1,22 +1,22 @@
 package main
 
 import (
-	"strconv"
 	"github.com/smallnest/rpcx/log"
+	"strconv"
 )
 
 type myError struct {
-	errnum int;
+	errnum int
 }
 
-func (e *myError) Error() string{
+func (e *myError) Error() string {
 	return "error number is :" + strconv.Itoa(e.errnum)
 }
 
 func main() {
 
 	var s string
-	println("s ==\"\":",s == "")
+	println("s ==\"\":", s == "")
 
 	var e myError
 	checkErr(&e)
@@ -25,16 +25,13 @@ func main() {
 	//var e error
 	//checkErr(e)
 
-
-
 }
 
-func checkErr(e error){
-	if (e!=nil) {
+func checkErr(e error) {
+	if e != nil {
 		panic(e.Error())
-	} else{
+	} else {
 		log.Debug("no error")
 	}
-
 
 }

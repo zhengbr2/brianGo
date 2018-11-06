@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-		"time"
+	"time"
 )
 
 func waiter(i int, block, done chan struct{}) {

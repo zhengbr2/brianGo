@@ -31,9 +31,10 @@ func live2() IPeople {
 }
 
 type MyObject struct {
-	name int
+	name  int
 	count int
 }
+
 var ob MyObject
 
 func main() {

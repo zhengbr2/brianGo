@@ -1,12 +1,10 @@
-
 package main
 
 import (
-"fmt"
-"brianGo/add/impl"
+	"brianGo/add/impl"
+	"fmt"
 )
 
 func main() {
 	fmt.Println(add.Add(2, 15))
 }
-

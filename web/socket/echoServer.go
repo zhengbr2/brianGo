@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	_ "io"
 	"net"
 	"os"
 	"runtime/debug"
-	"io"
 )
 
 var (
@@ -48,12 +48,12 @@ func handleRequest(conn net.Conn) {
 	//var buf = make([]byte,1024)
 	defer conn.Close()
 
-		for {
-			fmt.Printf("expected only entring here for 1 time \n")
-			count, _ := io.Copy(conn, conn)
-			fmt.Printf("received chars:%d\n", count)
-		}
-		//n,_:=conn.Read(buf)
-		//conn.Write(buf[0:n])
+	for {
+		fmt.Printf("expected only entring here for 1 time \n")
+		count, _ := io.Copy(conn, conn)
+		fmt.Printf("received chars:%d\n", count)
+	}
+	//n,_:=conn.Read(buf)
+	//conn.Write(buf[0:n])
 
 }

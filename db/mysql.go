@@ -20,19 +20,19 @@ func main() {
 	checkErr(err)
 
 	{
-	stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
-	checkErr(err)
+		stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
+		checkErr(err)
 
-	res, err := stmt.Exec("dindin", "kindergarten", "2012-03-07")
-	checkErr(err)
-	id, err := res.LastInsertId()
-	log.Println("last insert id: ",id)
+		res, err := stmt.Exec("dindin", "kindergarten", "2012-03-07")
+		checkErr(err)
+		id, err := res.LastInsertId()
+		log.Println("last insert id: ", id)
 	}
 
 	id, err := res.LastInsertId()
 	checkErr(err)
 
-	log.Println("last insert id:",id)
+	log.Println("last insert id:", id)
 	//更新数据
 	stmt, err = db.Prepare("update userinfo set username=? where uid=?")
 	checkErr(err)
@@ -43,7 +43,7 @@ func main() {
 	affect, err := res.RowsAffected()
 	checkErr(err)
 
-	log.Println("affected number:",affect)
+	log.Println("affected number:", affect)
 
 	//查询数据
 	rows, err := db.Query("SELECT * FROM userinfo")
@@ -72,7 +72,7 @@ func main() {
 	affect, err = res.RowsAffected()
 	checkErr(err)
 
-	log.Println("affected number after delete:",affect)
+	log.Println("affected number after delete:", affect)
 
 	db.Close()
 

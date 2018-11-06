@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var(
+var (
 	returned = make(chan struct{})
 )
 
@@ -31,7 +31,7 @@ func watch(ctx context.Context, name string) {
 			fmt.Println(name, "监控退出，停止了...")
 
 			//or close(returned)
-			returned<- struct{}{}
+			returned <- struct{}{}
 
 			return
 		default:

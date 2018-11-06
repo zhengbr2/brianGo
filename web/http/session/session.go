@@ -2,12 +2,12 @@ package session
 
 import (
 	"encoding/base64"
-		"math/rand"
+	"fmt"
+	"math/rand"
 	"net/http"
 	"net/url"
 	"sync"
 	"time"
-	"fmt"
 )
 
 type Session interface {
@@ -25,6 +25,7 @@ type Provider interface {
 }
 
 var provides = make(map[string]Provider)
+
 func Register(name string, provider Provider) {
 	if provider == nil {
 		panic("session: Register provider is nil")

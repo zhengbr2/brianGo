@@ -17,7 +17,7 @@ func warrior(name string, done chan struct{}) {
 func main() {
 	done := make(chan struct{})
 	langs := []string{"Go", "C", "C++", "Java", "Perl", "Python"}
-	for _,lang := range langs {
+	for _, lang := range langs {
 
 		go warrior(lang, done)
 	}

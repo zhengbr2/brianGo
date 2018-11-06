@@ -11,7 +11,7 @@ type q struct{}
 func main() {
 
 	ctx, cancel := context.WithCancel(context.Background())
-	retruned :=make(chan struct{})
+	retruned := make(chan struct{})
 	go func(ctx context.Context) {
 		for {
 			select {
