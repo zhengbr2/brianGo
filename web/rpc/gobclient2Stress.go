@@ -54,7 +54,7 @@ func main() {
 		}
 		go func() {
 			for i := 0; i < Repeat; i++ {
-				req := ArithRequest{9, 2}
+				req := ArithRequest{ i/2, i}
 				var res ArithResponse
 
 				err = conn.Call("Arith.Multiply", req, &res) // 乘法运算
