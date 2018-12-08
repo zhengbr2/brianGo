@@ -12,9 +12,11 @@ func printBytes(s string) {
 	}
 }
 
-func printCharsUsingFor(s string) {
+func printCharsUsingFor(p string) {
 	fmt.Println("Printing runes using for")
+	s:=p
 	runes := []rune(s)
+	println(&s, &runes) // diff address
 	for i := 0; i < len(runes); i++ {
 		fmt.Printf("%c ", runes[i])
 	}
@@ -60,6 +62,12 @@ func main() {
 	fmt.Println(str)
 	fmt.Println("length", len(str))         // len is 5
 	fmt.Println("length", len([]rune(str))) // len is 4
+
+	bs:=[]byte("é")
+	fmt.Println("bs[0]",bs[0])  //195
+	fmt.Println("bs[1]",bs[1])  //169
+	r3 := rune('é')
+	fmt.Println(string(r3))
 
 	byteSlice = []byte{67, 97, 102, 195, 169} //decimal equivalent of {'\x43', '\x61', '\x66', '\xC3', '\xA9'}
 	str = string(byteSlice)
