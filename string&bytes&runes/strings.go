@@ -21,13 +21,16 @@ func main() {
 	slice[0] = 'T'
 	println(x, ":", string(slice)) //text:Text
 	fmt.Println(x[0])              //print 116
+	fmt.Println(slice[0])              //print 86
 	fmt.Printf("%T\n", x[0])       //prints uint8
 
-	data := "♥"
-	fmt.Println(len(data))                    //3
-	fmt.Println(utf8.RuneCountInString(data)) //prints: 1
+	//data := "♥"
+	//fmt.Println(len(data))                    //3
+	//fmt.Println(utf8.RuneCountInString(data)) //prints: 1
 
-	data = "é"
+
+	data := "é"
+	// not data ="e"  !!
 	fmt.Println(len(data))                    //prints: 3
 	fmt.Println(utf8.RuneCountInString(data)) //prints: 2
 
@@ -47,4 +50,7 @@ func main() {
 	p("Len: ", len("hello"))
 	p("Char:", "hello"[1])
 	p("value is:", ("hello" == "hello"))
+
+	var c = "hello"[1]
+	fmt.Printf("type of hello[1] %T",c)   //unit8
 }
