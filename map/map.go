@@ -9,10 +9,10 @@ func main() {
 	// just return default vlaue
 	m := make(map[string]int)
 	aa := m["nice"]
+	fmt.Println("aa:", aa)
 
 	m["foo"] = 35
 	println(len(m))
-	fmt.Println("aa:", aa)
 
 	mi := make(map[int]int)
 	ab := mi[123]
@@ -94,5 +94,6 @@ func main() {
 	fmt.Printf("map1 %p, map2 %p \n", &map1, &map2)
 	fmt.Println(unsafe.Sizeof(map1))
 	map2["mike"] = 18000
-	fmt.Println("map1 changed", map2)
+	map2["jamie"] = 99
+	fmt.Println("map1 changed", map1)
 }
