@@ -48,6 +48,14 @@ func countries() []string {
 }
 
 func main() {
+	{
+		slice := []int{1, 2, 3, 4, 5}
+		newSlice := slice[1:3]
+
+		newSlice=append(newSlice,10)
+		fmt.Println(newSlice)
+		fmt.Println(slice)
+	}
 	/*
 		array declaration
 	*/
