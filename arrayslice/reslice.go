@@ -11,6 +11,7 @@ func main(){
 	fmt.Println(sli)
 	fmt.Println(arr)
 	sli=append(sli, 10,10,10,10)  // once over capacity, make a new slice and the old one not updated
+	// we shall not append into a slice
 	fmt.Println(sli)
 	fmt.Println(arr)
 }
