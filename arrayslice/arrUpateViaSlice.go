@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	arr := [...]int{1, 2, 3, 4, 5}
+	fmt.Println("before:",arr)
 	slice := arr[:]
 	slice[0] = 88
 	fmt.Println(cap(slice))

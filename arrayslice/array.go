@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 func main() {
 	var n [10]int /* n 是一个长度为 10 的数组 */
@@ -23,6 +26,8 @@ func main() {
 		a := [...]string{"USA", "China", "India", "Germany", "France"}
 		b := a // a copy of a is assigned to b
 		b[0] = "Singapore"
+		fmt.Println("size of b is ", unsafe.Sizeof(b))
+		fmt.Println("size of abc is ", unsafe.Sizeof("abc"))   // size if 16, 8bytes for address, 8bytes (int64) for str length
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b)
 		fmt.Println(len(b), cap(b))
@@ -40,6 +45,14 @@ func main() {
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b) //both changed.
 
+	}
+	{
+		array := [5]*int{1: new(int), 3:new(int)}
+		*array[1] = 1
+		*array[3] = 3
+		//*array[2] = 2
+		println(array[1])
+		println(array[2])
 	}
 
 }
