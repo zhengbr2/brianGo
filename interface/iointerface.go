@@ -30,4 +30,11 @@ func main() {
 	var w3 io.Writer = (*bytes.Buffer)(nil)
 	fmt.Println(w2, w3)
 
+
+}
+
+func main2() {
+	var b bytes.Buffer
+	fmt.Fprint(&b,"Hello World")
+	fmt.Println(b.String())
 }

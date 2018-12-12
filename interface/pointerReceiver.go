@@ -34,6 +34,7 @@ func main() {
 	p1 := Person{"Sam", 25}
 	d1 = p1
 	d1.Describe()
+	log.Println("value NOT changed!", p1)
 	p2 := Person{"James", 32}
 	d1 = &p2
 	d1.Describe()
