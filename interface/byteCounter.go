@@ -17,9 +17,9 @@ func main() {
 	c = 0          // reset the counter
 	var name = "Dolly"
 	fmt.Fprintf(&c, "hello, %s", name)
-	fmt.Println(c) // "12", = len("hello, Dolly"
+	fmt.Println(c) // "12", = len("hello, Dolly" )
 
 	c = 0
-	c.Write([]byte("hello Dolly"))
+	c.Write([]byte("hello, Dolly"))
 	fmt.Println(c)
 }
