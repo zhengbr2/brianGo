@@ -34,6 +34,7 @@ func main() {
 	persons["李四"] = 23
 	persons["王五"] = 26
 
-	EachFunc(persons, selfInfo)
+	//EachFunc(persons, selfInfo)
+	Each(persons, HandlerFunc(selfInfo))
 
 }
