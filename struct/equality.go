@@ -37,4 +37,23 @@ func main() {
 	fmt.Println("*s1.person==*s2.person:", *s1.person == *s2.person) // ture, compare value
 	fmt.Println("s1==s2:", s1 == s2)                                 // false, since s1.person <> s2.person
 
+	test2()
+}
+
+func test2() {
+	var user_id interface{}
+	user_id = 123
+
+	var id int
+	id = 123
+
+	//这里不能赋值，因为类型不一样
+	//id = user_id
+
+	//但是这里可以判断，为什么不同的类型可以判断相等？？？
+	if user_id == id {
+		fmt.Println("相等", user_id)
+	} else {
+		fmt.Println("不相等", user_id)
+	}
 }
