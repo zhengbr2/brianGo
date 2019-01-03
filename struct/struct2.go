@@ -66,6 +66,21 @@ func main() {
 		salary:    5000,
 	}
 
+
+	emp3b := struct {
+
+		firstName, lastName string
+		age, salary         int
+
+	}{
+		firstName: "Andreah",
+		lastName:  "Nikola",
+		age:       31,
+		salary:    5000,
+	}
+
+	emp3=emp3b  // 排序相同的匿名 struct视为同一类型，是可以比较的
+
 	fmt.Println("\nEmployee 3\n", emp3)
 
 	//zero valued structure

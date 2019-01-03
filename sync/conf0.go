@@ -23,14 +23,14 @@ func main() {
 		go test(i)
 	}
 	fmt.Println("start all")
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 5)
 	fmt.Println("broadcast")
 	cond2.Signal() // 下发一个通知给已经获取锁的goroutine
 	time.Sleep(time.Second * 1)
 	cond2.Signal() // 3秒之后 下发一个通知给已经获取锁的goroutine
-	time.Sleep(time.Second * 3)
+	time.Sleep(time.Second * 1)
 	cond2.Broadcast() //3秒之后 下发广播给所有等待的goroutine
-	time.Sleep(time.Second * 3)
+	time.Sleep(time.Second * 8)
 	fmt.Println("finish all")
 
 }
