@@ -15,6 +15,11 @@ func main() {
 	nextNumber1 := getSequence()
 	fmt.Println(nextNumber1())
 	fmt.Println(nextNumber1())
+
+	// we can resign a function
+	fmt.Println(nextNumber())  //4
+	nextNumber =nextNumber1
+	fmt.Println(nextNumber()) //3
 }
 
 func getSequence() func() int {
