@@ -96,4 +96,5 @@ func main() {
 	map2["mike"] = 18000
 	map2["jamie"] = 99
 	fmt.Println("map1 changed", map1)
+    //if(map2==map1){}    no comparable
 }
