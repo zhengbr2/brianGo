@@ -14,7 +14,7 @@ func test(x int) {
 	fmt.Println("aaa: ", x)
 	cond2.Wait() //等待通知  暂时阻塞
 	fmt.Println("bbb: ", x, " time:", time.Now())
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 	cond2.L.Unlock() //释放锁
 }
 
@@ -28,9 +28,9 @@ func main() {
 	cond2.Signal() // 下发一个通知给已经获取锁的goroutine
 	time.Sleep(time.Second * 1)
 	cond2.Signal() // 3秒之后 下发一个通知给已经获取锁的goroutine
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 3)
 	cond2.Broadcast() //3秒之后 下发广播给所有等待的goroutine
-	time.Sleep(time.Second * 8)
+	time.Sleep(time.Second * 3)
 	fmt.Println("finish all")
 
 }

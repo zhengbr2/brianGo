@@ -32,7 +32,7 @@ func main() {
 				b <- state[read.key]
 			case write := <-writes:
 				state[write.key] = write.val
-				b <- 0
+				b <- 0  //better to use another chan for write sync
 			}
 		}
 	}()

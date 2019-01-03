@@ -9,13 +9,14 @@ import (
 func process(i int, wg *sync.WaitGroup) {
 	fmt.Println("started Goroutine ", i)
 	time.Sleep(2 * time.Millisecond)
-	fmt.Printf("Goroutine %d ended\n", i)
+
 	wg.Done()
-	wg.Wait() //wg between neibought threads
+	wg.Wait() //wg between neibought threads //brian I don't think anybody will write codes like this.
+	fmt.Printf("Goroutine %d ended\n", i)
 }
 
 func main() {
-	no := 3000
+	no := 30000
 	var wg sync.WaitGroup
 	wg.Add(1)
 	for i := 0; i < no; i++ {
