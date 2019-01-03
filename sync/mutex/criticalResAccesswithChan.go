@@ -17,6 +17,7 @@ func increment(wg *sync.WaitGroup, ch chan bool) {
 func main() {
 
 	before := time.Now()
+
 	var w sync.WaitGroup
 	ch := make(chan bool, 1)
 

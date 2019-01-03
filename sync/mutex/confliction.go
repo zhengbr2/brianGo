@@ -9,6 +9,7 @@ import (
 var (
 	count int32
 	wg    sync.WaitGroup
+
 )
 
 func main() {
@@ -21,10 +22,12 @@ func main() {
 
 func incCount() {
 	defer wg.Done()
+
 	for i := 0; i < 2; i++ {
 		value := count
 		runtime.Gosched()
 		value++
 		count = value
 	}
+
 }

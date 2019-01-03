@@ -5,26 +5,30 @@ import (
 	"runtime"
 	"sync/atomic"
 	"time"
+	"github.com/anacrolix/sync"
 )
 
 func main() {
 
 	var ops uint64 = 0
+	var wg sync.WaitGroup
 
+	wg.Add(1000000)
 	before := time.Now()
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 1000000; i++ {
 		go func() {
 
 			atomic.AddUint64(&ops, 1)
 
 			runtime.Gosched()
+			wg.Done()
 
 		}()
 	}
 
-	//time.Sleep(time.Second * 5)
 
-	opsFinal := atomic.LoadUint64(&ops)
+	wg.Wait()
+	opsFinal := atomic.LoadUint64(&ops)   // ops: 1,000,000
 	fmt.Println("ops:", opsFinal)
-	fmt.Println("cost:%f", time.Now().Sub(before).Seconds())
+	fmt.Printf("cost:%f", time.Now().Sub(before).Seconds())
 }
