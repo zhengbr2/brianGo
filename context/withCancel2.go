@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	returned = make(chan struct{})
+	done = make(chan struct{})
 )
 
 func main() {
@@ -17,11 +17,12 @@ func main() {
 	go watch(ctx, "【监控2】")
 	go watch(ctx, "【监控3】")
 
-	time.Sleep(7 * time.Second)
+	time.Sleep(4 * time.Second)
 	fmt.Println("可以了，通知监控停止")
 	cancel()
 	//为了检测监控过是否停止，如果没有监控输出，就表示停止了
-	<-returned
+	<-done
+	time.Sleep(time.Second)
 }
 
 func watch(ctx context.Context, name string) {
@@ -30,13 +31,11 @@ func watch(ctx context.Context, name string) {
 		case <-ctx.Done():
 			fmt.Println(name, "监控退出，停止了...")
 
-			//or close(returned)
-			returned <- struct{}{}
-
+			done <- struct{}{}
 			return
 		default:
 			fmt.Println(name, "goroutine监控中...")
-			time.Sleep(2 * time.Second)
+			time.Sleep(1 * time.Second)
 		}
 	}
 }
