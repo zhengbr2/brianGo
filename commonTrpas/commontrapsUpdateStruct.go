@@ -16,6 +16,7 @@ func main() {
 }
 
 func isDead(p interface{}) {
+
 	if p.(*person).age < 101 { //解指针
 		p.(*person).isDead = true
 	}

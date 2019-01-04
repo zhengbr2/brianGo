@@ -40,6 +40,11 @@ func (a admin) sayHello() {
 	fmt.Println("Hello，i am a admin")
 }
 
+//多态
+func (u admin) hello() {
+	fmt.Println("Hello，i am a admin")
+}
+
 func sayHello(h Hello) {
 	h.hello()
 }
@@ -51,6 +56,6 @@ func main() {
 	ad.human.sayHello()
 
 	sayHello(ad.user) //使用user作为参数
-	//sayHello(ad)//使用admin作为参数 //ambiguous
+	sayHello(ad)//使用admin作为参数 //如果不定义自己的， 则报错ambiguous
 	sayHello(ad.human) //使用human作为参数
 }
