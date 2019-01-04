@@ -17,7 +17,11 @@ func main() {
 		p2.name: p2,
 		p3.name: p3,
 	}
-	//people["px"].isDead = true
+	//people["px"].isDead = true  not allowed， 本质还是：对值类型拷贝再修改其实无效
+	//p3b:=people["px"]
+	//p3b.isDead=true
+	//fmt.Println(p3.isDead)
+
 	whoIsDead(people)
 	p3.isDead=true
 	if p3.isDead {
