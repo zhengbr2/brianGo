@@ -17,11 +17,13 @@ func main() {
 		p2.name: p2,
 		p3.name: p3,
 	}
-	people["px"].isDead = true
+	//people["px"].isDead = true
 	whoIsDead(people)
+	p3.isDead=true
 	if p3.isDead {
 		fmt.Println("who is dead?", p3.name)
 	}
+
 }
 
 func whoIsDead(people map[string]person) {
