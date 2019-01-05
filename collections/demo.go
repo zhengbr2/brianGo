@@ -23,7 +23,7 @@ func (s ByLength) Less(i, j int) bool {
 
 func main() {
 
-	strs := []string{"c", "a", "b"}
+	strs := []string{"ac", "aa", "bb"}
 	sort.Strings(strs)
 	fmt.Println("Strings:", strs)
 

@@ -15,7 +15,7 @@ func main() {
 	log.Println("appending slice::" + time.Now().Sub(before).String())
 
 	before = time.Now()
-	l := list.New()
+	l := list.New()   // list is linked list and performance is poor on random access
 	for i := 0; i < 1*100000*1000; i++ {
 		l.PushBack(1)
 	}
