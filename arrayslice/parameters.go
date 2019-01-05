@@ -3,8 +3,14 @@ package main
 import "fmt"
 
 func find(num int, nums ...int) {
+
+	//以下证明nums是slice
 	fmt.Printf("type of nums is %T\n", nums)
+	//nums = append(nums, 1)
+	_= len(nums)
+
 	found := false
+
 	for i, v := range nums {
 		if v == num {
 			fmt.Println(num, "found at index", i, "in", nums)
