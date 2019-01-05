@@ -46,18 +46,17 @@ type defaultSort []*Track
 
 func (x defaultSort) Len() int           { return len(x) }
 func (x defaultSort) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
-func (x defaultSort) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
+//func (x defaultSort) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
 
 type byArtistReverse struct {
 	defaultSort
 }
-
 func (x byArtistReverse) Less(i, j int) bool { return x.defaultSort[j].Artist < x.defaultSort[i].Artist }
+
 
 type byYear struct {
 	defaultSort
 }
-
 func (x byYear) Less(i, j int) bool { return x.defaultSort[i].Year < x.defaultSort[j].Year }
 
 type customSort struct {
@@ -70,8 +69,8 @@ func (x customSort) Less(i, j int) bool { return x.less(x.defaultSort[i], x.defa
 func main() {
 	fmt.Println("initial")
 	printTracks(tracks)
-	sort.Sort(defaultSort(tracks))
-	fmt.Println("defaultSort")
+	//sort.Sort(defaultSort(tracks))
+	//fmt.Println("defaultSort")
 	printTracks(tracks)
 	//sort.Sort(sort.Reverse(defaultSort(tracks)))
 

@@ -16,6 +16,12 @@ type Track struct {
 	Length time.Duration
 }
 
+func (t Track ) printMe(){
+
+}
+
+type TrackAlias Track
+
 var tracks = []*Track{
 	{"Go", "Delilah", "From the Roots Up", 2012, length("3m38s")},
 	{"Go", "Moby", "Moby", 1992, length("3m37s")},
@@ -64,13 +70,20 @@ func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
 func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
 
 func main() {
+
+
+	t:=Track{}
+	_=TrackAlias(t)
+
 	fmt.Println("initial")
 	printTracks(tracks)
+
 	sort.Sort(byArtist(tracks))
-	fmt.Println("defaultSort")
+
+	fmt.Println("byArtist")
 	printTracks(tracks)
 	sort.Sort(sort.Reverse(byArtist(tracks)))
-	fmt.Println("Reverse(defaultSort)")
+	fmt.Println("Reverse(byArtist)")
 	printTracks(tracks)
 	sort.Sort(byYear(tracks))
 	fmt.Println("byYear")
