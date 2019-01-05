@@ -5,9 +5,14 @@ import "fmt"
 func main() {
 	ages:=[]int{6,6,6}
 	ages2:=ages
-	fmt.Printf("原始slice的内存地址是%p\n",ages)
+	fmt.Printf("原始slice的内存地址是%p\n",ages)  //slice可以直接不取地址输出地址值， 此值为内建数组的起始位置
 	fmt.Printf("原始slice的内存地址是%p\n",ages2)
+	fmt.Printf("ages 的内存地址是%p\n",&ages)   // &ages , &ages2 肯定是不一样的
+	fmt.Printf("ages2的内存地址是%p\n",&ages2)
 	modify(ages)
+	ages=append(ages, 1,2,3,4,5,6,7,8,9)
+	fmt.Printf("修改后的slice的内存地址是%p\n",ages)  //内建数组的起始位置已经改变
+	fmt.Printf("修改slice后， ages2的内存地址是%p\n",ages2) //不变
 	fmt.Println(ages)
 }
 

@@ -27,7 +27,7 @@ func main() {
 		b := a // a copy of a is assigned to b
 		b[0] = "Singapore"
 		fmt.Println("size of b is ", unsafe.Sizeof(b))
-		fmt.Println("size of abc is ", unsafe.Sizeof("abc"))   // size if 16, 8bytes for address, 8bytes (int64) for str length
+		fmt.Println("size of abcdefgasdfasdf is ", unsafe.Sizeof("abcdefgasdfasdf"))   // size if 16, 8bytes for address, 8bytes (int64) for str length
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b)
 		fmt.Println(len(b), cap(b))
@@ -44,6 +44,7 @@ func main() {
 		b[0] = "Singapore"
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b) //both changed.
+		fmt.Println("size of slice ", unsafe.Sizeof(b))
 
 	}
 	{
@@ -52,7 +53,9 @@ func main() {
 		*array[3] = 3
 		//*array[2] = 2
 		println(array[1])
-		println(array[2])
+		println(array[2])   // point the memory address
+		println(*array[1])
+		// println(*array[2]) error
 	}
 
 }

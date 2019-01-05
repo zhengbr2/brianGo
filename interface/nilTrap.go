@@ -29,7 +29,7 @@ func main() {
 
 func checkErr(e error) {
 	if e != nil {
-		panic(e.Error())
+		log.Info("error deteced!")
 	} else {
 		log.Debug("no error")
 	}

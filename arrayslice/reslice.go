@@ -17,10 +17,10 @@ func main(){
 
 	s := make([]int, 2)
 	mdSlice(s)
-	fmt.Println("append into 0 capacity:",s)
+	fmt.Println("append into 2 capacity:",s)
 
 	s = make([]int, 4,4)
-	mdSlice(s)
+	s=mdSlice(s)  // 注意， s 已经初始化为全0， append不会改变初始化的值
 	fmt.Println("append into 4 capacity:",s)
 
 	arr2:=[4]int{}
@@ -31,7 +31,8 @@ func main(){
 	//可以通过slice 改变array，但是不一定能改变其他的slice，因为其Len已经指定了。
 }
 
-func mdSlice(s []int) {
+func mdSlice(s []int) []int {
 	s = append(s, 1)
 	s = append(s, 2)
+	return s
 }
