@@ -40,6 +40,7 @@ func main() {
 	persons["王五"] = 26
 
 	EachFunc(persons, selfInfo)
-	// or Each(persons,  HandlerFunc(selfInfo))
+	fmt.Println("do it again in another way")
+	Each(persons,  HandlerFunc(selfInfo))
 
 }
