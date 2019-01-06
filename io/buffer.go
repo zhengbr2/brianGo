@@ -19,6 +19,9 @@ func main() {
 	if debug {
 		fmt.Println(buf.String())
 	}
+
+	fmt.Println(new(bytes.Buffer).WriteString("Done!\n"))
+
 }
 
 // If out is non-nil, output will be written to it.

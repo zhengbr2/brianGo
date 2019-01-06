@@ -11,12 +11,14 @@ import (
 func main() {
 	//定义零值Buffer类型变量b
 	var b bytes.Buffer
+
 	//使用Write方法为写入字符串
 	bn, be := b.Write([]byte("hello"))
 	log.Println("number of bytes wrritten:", bn)
 	if be != nil {
 		log.Fatal(be)
 	}
+	fmt.Println(b.String())
 
 	//这个是把一个字符串拼接到Buffer里
 	fmt.Fprint(&b, ",", "http://www.flysnow.org\n")
