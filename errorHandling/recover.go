@@ -32,6 +32,6 @@ func main() {
 	fmt.Println("will trigger an panic here")
 	go a()
 
-	time.Sleep(time.Millisecond * 1000)
+	time.Sleep(time.Millisecond * 100)
 	fmt.Println("normally returned from main")
 }

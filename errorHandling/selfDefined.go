@@ -39,22 +39,28 @@ func rectArea(length, width float64) (float64, error) {
 }
 
 func main() {
-	length, width := -5.0, -9.0
+
+	printArea(-9.0, -5.0)
+	fmt.Println("..............")
+	printArea(-9.0, 1)
+	fmt.Println("..............")
+	printArea(9.0, 6.2)
+}
+
+func printArea(length float64, width float64) {
 	area, err := rectArea(length, width)
 	if err != nil {
 		if err, ok := err.(*areaError); ok {
 			if err.lengthNegative() {
 				fmt.Printf("error: length %0.2f is less than zero\n", err.length)
-				return
 			}
 			if err.widthNegative() {
 				fmt.Printf("error: width %0.2f is less than zero\n", err.width)
-				return
 			}
-			return
 		}
 		fmt.Println(err)
-		return
+
+	} else {
+		fmt.Printf("area of rect %f", area)
 	}
-	fmt.Println("area of rect", area)
 }
