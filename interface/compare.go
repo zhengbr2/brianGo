@@ -23,10 +23,14 @@ func main() {
 
 	e1 := errors.New("EOF")
 	e2 := errors.New("EOF")
-	fmt.Println("e1==e2?:", e1 == e2)
-
+	fmt.Println("e1==e2?:", e1 == e2)  //false!
 	fmt.Printf("e1 address %p\n", e1)
 	fmt.Printf("e1 address %p\n", e2)
+
+	var i1 interface{} = "EOF"
+	var i2 interface{} = "EOF"
+	fmt.Println("i1==i2?:", i1 == i2)  //true
+
 
 	e3 := New("shit")
 	e4 := New("shit")
