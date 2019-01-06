@@ -27,11 +27,11 @@ func main() {
 	// 正常情况
 	result, errorMsg := Divide(100, 10)
 
-	if errorMsg == "" {
+	if errorMsg == nil {
 		fmt.Println("100/10 = ", result)
 	}
 	// 当被除数为零的时候会返回错误信息
-	if _, errorMsg := Divide(100, 0); errorMsg != "" {
+	if _, errorMsg := Divide(100, 0); errorMsg != nil {
 		fmt.Println("errorMsg is: ", errorMsg)
 	}
 
@@ -54,16 +54,16 @@ func (de *DivideError) Error() string {
 }
 
 // 定义 `int` 类型除法运算的函数
-func Divide(varDividee int, varDivider int) (result int, errorMsg string) {
+func Divide(varDividee int, varDivider int) (result int, err error) {
 	if varDivider == 0 {
 		dData := DivideError{
 			dividee: varDividee,
 			divider: varDivider,
 		}
-		errorMsg = dData.Error()
-		return
+		return -1, &dData
+
 	} else {
-		return varDividee / varDivider, ""
+		return varDividee / varDivider, nil
 	}
 
 }
