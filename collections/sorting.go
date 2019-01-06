@@ -65,6 +65,11 @@ type customSort struct {
 	less func(x, y *Track) bool
 }
 
+func (x customSort) Len() int           { return len(x.t) }
+func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
+func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
+
+
 type reverse struct {
 	sort.Interface
 }
@@ -76,9 +81,7 @@ func Reverse (i sort.Interface) sort.Interface{
 	return &reverse{i}
 }
 
-func (x customSort) Len() int           { return len(x.t) }
-func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
-func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
+
 
 func main() {
 
@@ -89,17 +92,18 @@ func main() {
 	fmt.Println("initial")
 	printTracks(tracks)
 
-	sort.Sort(byArtist(tracks))
-
 	fmt.Println("byArtist")
+	sort.Sort(byArtist(tracks))
 	printTracks(tracks)
+
 	sort.Sort(sort.Reverse(byArtist(tracks)))
 	fmt.Println("Reverse(byArtist)")
-
-	sort.Sort(sort.Reverse(byArtist(tracks)))
-
-	fmt.Println("---------------Reverse(byArtist2)---------------")
 	printTracks(tracks)
+
+	//sort.Sort( sort.Reverse(sort.Reverse(byArtist(tracks))))
+	//fmt.Println("---------------Reverse(byArtist2)---------------")
+	//printTracks(tracks)
+
 	sort.Sort(byYear(tracks))
 	fmt.Println("byYear")
 	printTracks(tracks)
@@ -121,13 +125,20 @@ func main() {
 
 	sort.Sort(c)
 	printTracks(tracks)
-	sort.Sort(reverse{c})
+
+	sort.Sort(reverse{&c})
 	printTracks(tracks)
 
-	sort.Sort(reverse{c})
+	sort.Sort(reverse{&reverse{&c}})
 	printTracks(tracks)
 
-	sort.Sort(Reverse(c))
+
+	sort.Sort(Reverse(&c))
 	printTracks(tracks)
+
+	sort.Sort(Reverse(Reverse(&c)))
+	printTracks(tracks)
+
+
 
 }
