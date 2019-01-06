@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+		"time"
 	"runtime/debug"
-	"time"
 )
 
 func r() {
 	if r := recover(); r != nil {
-		fmt.Println("Recovered an panic", r)
+		fmt.Println("Recovered an panic:", r)
+		fmt.Println("debug output call stack")
+		time.Sleep(time.Millisecond*2)
 		debug.PrintStack()
 	}
 }
@@ -29,7 +31,7 @@ func main() {
 
 	fmt.Println("will trigger an panic here")
 	go a()
-	fmt.Println("normally returned from main")
-	time.Sleep(time.Millisecond * 100)
 
+	time.Sleep(time.Millisecond * 1000)
+	fmt.Println("normally returned from main")
 }
