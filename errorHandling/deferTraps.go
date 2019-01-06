@@ -4,7 +4,7 @@ func f() (result int) {
 
 	ret := 0
 	defer func() {
-		ret++ // only take effect when defer update the rutured parameters
+		ret++ // only take effect when defer update the returned parameters
 	}()
 	return ret
 }
