@@ -14,6 +14,12 @@ func main() {
 	var x *int = nil
 	Foo(x)
 
+	var x2 interface{} = nil
+	Foo(x2)   // empty
+
+	var x3 *interface{} = nil
+	Foo(x3)   // not empty
+
 	{
 		var data *byte
 		var in interface{}
