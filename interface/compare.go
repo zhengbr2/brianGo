@@ -21,11 +21,27 @@ func (e *errorString) Error() string {
 
 func main() {
 
+	a:="hello"
+	b:="hello"
+	sa := &a
+	sb := &b
+	fmt.Println("sa==sb?:", sa == sb)  //false!
+	fmt.Println(sa,sb)
+
+	s1 := &struct{string }{"Hello"}
+	s2 := &struct{string }{"Hello"}
+	fmt.Println("s1==s2?:", s1 == s2)  //false!
+
+	s3 := struct{string }{"Hello"}
+	s4 := struct{string }{"Hello"}
+	fmt.Println("s3==s4?:", s3 == s4)  //true
+
 	e1 := errors.New("EOF")
 	e2 := errors.New("EOF")
 	fmt.Println("e1==e2?:", e1 == e2)  //false!
 	fmt.Printf("e1 address %p\n", e1)
 	fmt.Printf("e1 address %p\n", e2)
+
 
 	var i1 interface{} = "EOF"
 	var i2 interface{} = "EOF"
