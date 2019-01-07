@@ -21,4 +21,14 @@ func main() {
 	fmt.Println("pers:", pers, "has new length", len(pers), "and capacity", cap(pers))
 	fmt.Println("sizeof:", unsafe.Sizeof(pers))   //24
 
+	n1 := make ([] int, 0,5)
+	n1 = append(n1, 1,2)
+	n2 := n1
+	n2=append(n2, 3)
+	fmt.Println(n1)   // [1,2]
+	fmt.Println(n2)   // [1,2,3]
+	fmt.Printf("address of n1:%p\n",n1)
+	fmt.Printf("address of n2:%p\n",n2)
+
 }
+
