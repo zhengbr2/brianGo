@@ -25,24 +25,36 @@ func (iPhone IPhone) call() {
 }
 
 var x interface{} = time.Now()
+var x2 interface{} = nil
 
 func main() {
 	var phone Phone
-
 	phone = new(NokiaPhone)
-
 	phone.call()
 
 	phone = new(IPhone)
 	phone.call()
 
-	fmt.Println("size of phone", unsafe.Sizeof(phone))
-	fmt.Println("size of x", unsafe.Sizeof(x))
+	interfaceCompare()
+}
+
+func interfaceCompare(){
+	var phone Phone
+	phone = new(NokiaPhone)
+
+	fmt.Println("size of phone", unsafe.Sizeof(phone))   //16
+	fmt.Println("size of x", unsafe.Sizeof(x)) //16
+	fmt.Println("size of x2", unsafe.Sizeof(x2)) //16
+
 	var x interface{} = [3]int{1, 2, 3}
 	fmt.Println("array is comparble, equal?:", x == x) //uncomparable for [] int
+	ss:=IntSet{}
+	_=ss.String()
+	_=IntSet{}.String()
 
-	var _ = (IntSet{}).String() // compile error: String requires *IntSet receiver
-	var _ = (&IntSet{}).String() // compile error: String requires *IntSet receiver
+
+	 _ = (IntSet{}).String() // compile error: String requires *IntSet receiver
+	 _ = (&IntSet{}).String() // compile error: String requires *IntSet receiver
 
 	s := IntSet{}
 	var _ fmt.Stringer = &s // OK
