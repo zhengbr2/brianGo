@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"unsafe"
+	"reflect"
 )
 
 func main() {
-
 	cars := []string{"Ferrari", "Honda", "Ford"}
 	fmt.Println("cars:", cars, "has old length", len(cars), "and capacity", cap(cars)) // capacity of cars is 3
 	cars = append(cars, "Toyota")
@@ -30,5 +30,25 @@ func main() {
 	fmt.Printf("address of n1:%p\n",n1)
 	fmt.Printf("address of n2:%p\n",n2)
 
-}
+	sh1:=(*reflect.SliceHeader)(unsafe.Pointer(&n1))
+	fmt.Printf("A1 Data:%d,Len:%d,Cap:%d\n",sh1.Data,sh1.Len,sh1.Cap)
 
+	sh2 :=(*reflect.SliceHeader)(unsafe.Pointer(&n2))
+	fmt.Printf("A Data:%d,Len:%d,Cap:%d\n", sh2.Data, sh2.Len, sh2.Cap)
+
+	n3:=[]int {1,2}
+	fmt.Println("n3",n3)
+	n3=append(n3, 3)
+	fmt.Println("n3",n3)
+
+	m1:= map[int]string {
+		1:"brian",
+		2:"quan",
+	}
+
+	m1[3]="Ken"
+	fmt.Println(m1)
+
+
+
+}
