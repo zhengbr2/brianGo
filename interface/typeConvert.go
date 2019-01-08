@@ -40,7 +40,8 @@ func main() {
 
 	var w io.Writer
 	w = os.Stdout
-	f := w.(*os.File) // success: f == os.Stdout
+	f,ok := w.(*os.File) // success: f == os.Stdout
+	fmt.Println("\n", f, ok)
 	c,ok := w.(*bytes.Buffer)
-	fmt.Println("\n", f, c,ok)
+	fmt.Println("\n", c,ok)
 }

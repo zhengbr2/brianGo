@@ -30,8 +30,8 @@ func main() {
 	assert(s)
 
 	s = "Steven Paul"
-	//assert(s)
-	assert2(s)
+	//assert(s) panic here, 转不成就挂掉了
+	assert2(s)  //更稳妥
 
 	findType("Naveen")
 	findType(77)
