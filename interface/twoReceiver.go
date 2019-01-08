@@ -53,15 +53,13 @@ func main(){
 	{
 		fmt.Println(" ---------- senario 2, assgine to interface ------------------")
 		var t1 T = T{"t1"}
-		t1.M1()
-		t1.M2()
-
 		var t2 Intf
 		// 如果赋值给接口，就不一样了
 		//t2 = t1   //T does not implement Intf (M2 method has pointer receiver)
 		t2 = &t1
 		t2.M1()
 		t2.M2()
+		fmt.Println("Intf调用后：", t1.Name)
 	}
 
 	{
@@ -80,6 +78,7 @@ func main(){
 		var intf Intf = &s
 		intf.M1()
 		intf.M2()   // 改变s.T.Name, t1 不变
+		fmt.Println("intf.M2()调用后：", s.Name,t1.Name)
 
 	}
 	{
@@ -95,11 +94,14 @@ func main(){
 		fmt.Println(t1.Name)   //s.T.Name 其实 和 .Name一样的地址！ 都变了
 
 
+		t1 = T{"t1"}
+		s = SP{&t1}
 		var intf Intf = s
 		//var intf2 Intf = &s   两者运行都一样的输出结果， 见 senario1
 		intf.M1()
 		intf.M2()
-		fmt.Println(s.Name)
+		fmt.Println("intf.M2()调用后：", s.Name)
+		fmt.Println(s.Name, t1.Name)
 
 	}
 
