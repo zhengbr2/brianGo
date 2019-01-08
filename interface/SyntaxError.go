@@ -9,12 +9,12 @@ type SyntaxError struct {
 
 func (e *SyntaxError) Error() string { return e.msg }
 
-func Decode() *SyntaxError { // 错误，将可能导致上层调用者err!=nil的判断永远为true。
-	var err *SyntaxError // 预声明错误变量
+func Decode() *SyntaxError {
+	var err *SyntaxError
 	if false {
 		err = &SyntaxError{}
 	}
-	return err // 错误，err永远等于非nil，导致上层调用者err!=nil的判断始终为true
+	return err
 }
 
 func Decode2() error { // 错误，将可能导致上层调用者err!=nil的判断永远为true。
@@ -30,5 +30,5 @@ func main() {
 	log.Println(s == nil)
 
 	s2 := Decode2()
-	log.Println(s2 == nil)
+	log.Println("s2 == nil",s2 == nil)
 }
