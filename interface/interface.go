@@ -48,13 +48,11 @@ func interfaceCompare(){
 
 	var x interface{} = [3]int{1, 2, 3}
 	fmt.Println("array is comparble, equal?:", x == x) //uncomparable for [] int
-	ss:=IntSet{}
-	_=ss.String()
-	_=IntSet{}.String()
-
 
 	 _ = (IntSet{}).String() // compile error: String requires *IntSet receiver
-	 _ = (&IntSet{}).String() // compile error: String requires *IntSet receiver
+	ss:=IntSet{}
+	_=ss.String()   // okay
+	 _ = (&IntSet{}).String() // okay
 
 	s := IntSet{}
 	var _ fmt.Stringer = &s // OK
