@@ -20,7 +20,7 @@ func pase_student() {
 	fmt.Printf("%p\n", &stus[1])
 	fmt.Printf("%v\n", &stus[1])
 
-	for _, stu := range stus {
+	for _, stu := range stus {   // range 中返回值拷贝给 stu
 		fmt.Printf(" range value &stu %p\n", &stu)
 		m[stu.Name] = &stu // don't get pointer in a range loop
 	}
