@@ -8,10 +8,10 @@ import (
 
 func main() {
 	//t := time.Now().UnixNano()
-	NumPublishers := 3 //runtime.NumCPU()
+	NumPublishers := 4 //runtime.NumCPU()
 	totalIterations := int64(1000 * 1000 * 20)
 	iterations := totalIterations / int64(NumPublishers)
-	totalIterations = iterations * int64(NumPublishers)
+
 	channel := make(chan int64, 1024*64)
 	var wg sync.WaitGroup
 	wg.Add(NumPublishers + 1)
@@ -19,8 +19,10 @@ func main() {
 	readerWG.Add(1)
 	for i := 0; i < NumPublishers; i++ {
 		go func() {
-			wg.Done() // to make the msg exchange between goroutine
-			wg.Wait() // to make the msg exchange between goroutine
+			fmt.Println(time.Now(), "goroutine",i)
+			wg.Done() // no use?
+			wg.Wait() //
+			fmt.Println(time.Now(), "goroutine after wait",i)
 			for i := int64(0); i < iterations; {
 				select {
 				case channel <- i:
@@ -29,25 +31,27 @@ func main() {
 					continue
 				}
 			}
+
 		}()
 	}
 	go func() {
 		for i := int64(0); i < totalIterations; i++ {
 			select {
-			case msg := <-channel:
-				if NumPublishers == 1 && msg != i {
-					//panic("Out of sequence")
-				}
+			case  <-channel:
+
+
 			default:
 				continue
 			}
 		}
 		readerWG.Done()
 	}()
+	//time.Sleep(time.Second * 1 )
 	wg.Done()
 	t := time.Now().UnixNano()
 	wg.Wait()
 	readerWG.Wait()
 	t = (time.Now().UnixNano() - t) / 1000000 //ms
 	fmt.Printf("opsPerSecond: %d\n", totalIterations*1000/t)
+	fmt.Println(time.Now(),"time elapse: %d\n", t)
 }
