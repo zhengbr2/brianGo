@@ -13,13 +13,15 @@ func main() {
 	}
 	close(requests)
 
-	fmt.Println(time.Now())
-	limiter := time.Tick(time.Millisecond * 200)
+	fmt.Println(time.Now())    // 0.0  时刻
+	limiter := time.Tick(time.Millisecond * 200)  //0.2 时刻第一次打点
 	time.Sleep(time.Second)
-	fmt.Println(time.Now())
+	fmt.Println(time.Now())  // 1.0 时刻
 	for req := range requests {
 
 		fmt.Println("request", req, <-limiter, "current time:", time.Now())
+		// 1.0 时刻拿到 0.2
+		// 1.2 时刻拿到 1.2
 	}
 
 	time.Sleep(time.Second)

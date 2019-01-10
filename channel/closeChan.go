@@ -42,6 +42,7 @@ func main() {
 	case i := <-chanint:
 		println("read i:", i)
 	}
+
 	chanint = nil
 	select {
 	case i := <-chanint:
