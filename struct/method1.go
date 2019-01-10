@@ -17,11 +17,6 @@ func (r *rectangle) area2() {
 	r.length = 88
 }
 
-type myInt int
-
-func (a myInt) add(b myInt) myInt {
-	return a + b
-}
 
 func area(r rectangle) {
 
@@ -39,22 +34,21 @@ func main() {
 	fmt.Printf("2) parameters: %d, %d\n", r.length, r.width)
 	r.area()
 	fmt.Printf("3) parameters: %d, %d\n", r.length, r.width)
+	r.area2()
+	fmt.Printf("4) parameters: %d, %d\n", r.length, r.width)
 
 	p := &r
 	/*
 	   compilation error, cannot use p (type *rectangle) as type rectangle
 	   in argument to area
 	*/
-	//area(p)
+	//area(p)     // 这是函数参数类型， 不是方法接收器
 
 	p.area() //通过指针调用值接收器
-	fmt.Printf("4) parameters: %d, %d\n", r.length, r.width)
+	fmt.Printf("5) parameters: %d, %d\n", r.length, r.width)
 
 	p.area2()                                                //通过指针调用值接收器
-	fmt.Printf("5) parameters: %d, %d\n", r.length, r.width) //changed!!!!
+	fmt.Printf("6) parameters: %d, %d\n", r.length, r.width) //changed!!!!
 
-	num1 := myInt(5)
-	num2 := myInt(10)
-	sum := num1.add(num2)
-	fmt.Println("Sum is", sum)
+
 }

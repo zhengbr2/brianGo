@@ -17,19 +17,13 @@ func main() {
 	b := person{"brian", 30}
 
 	fmt.Println("a==b?:", a == b)
-	fmt.Println("&a==&b?:", &a == &b)
+	fmt.Println("&a==&b?:", &a == &b)   //地址肯定不等啦
 
-	var any interface{}
-	any = a
-	var any2 interface{}
-	any2 = a
-
-	var any3 interface{}
-	any3 = b
+	var any interface{} = a
+	var any2 interface{} = b
 	fmt.Println("any==any2:", any == any2)
-	fmt.Println("any&==&any2:", &any == &any2)
 	//intreface的值是可比较的。如果两个interface 有相同的动态类型和相同的动态值，而且不为nil，那么这两个interface就是相同的
-	fmt.Println("any&==&any3:", &any == &any3)
+
 
 	s1 := student{123, &person{"brian", 30}}
 	s2 := student{123, &person{"brian", 30}}
@@ -47,8 +41,9 @@ func test2() {
 	var id int
 	id = 123
 
-	//这里不能赋值，因为类型不一样
+	//这里不能赋值，因为类型不一样  k
 	//id = user_id
+	id2 := user_id.(int)   //当然要转型啦
 
 	//但是这里可以判断，为什么不同的类型可以判断相等？？？
 	if user_id == id {
@@ -56,4 +51,5 @@ func test2() {
 	} else {
 		fmt.Println("不相等", user_id)
 	}
+	fmt.Println(id2==id)
 }
