@@ -29,7 +29,7 @@ func main() {
 	{
 		var i Duration = 111
 		var j int64 = 222
-		fmt.Println(i, j)
+		fmt.Println(i, j)    // String()值接收，如果是引用接受， 这里就不会调用自定义输出
 		j = int64(i)
 		fmt.Println(&i, j) // can use ref also
 		fmt.Println(i.String(), j)
