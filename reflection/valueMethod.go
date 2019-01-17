@@ -33,47 +33,33 @@ type Person struct {
 func main() {
 	u := User{"张三", 20}
 	t := reflect.TypeOf(u)
-	fmt.Println(t)
-
 	v := reflect.ValueOf(u)
-	fmt.Println(v)
+	fmt.Println(t,v)
 
-	{
+	{//&{张三 20}
 		v := reflect.ValueOf(&u)
 		fmt.Println(v)
 	}
-
-	t2 := v.Type()
-	fmt.Println(t2)
-	fmt.Println(t2 == t) //true
-	fmt.Println("kind:", t2.Kind())
-
-	fmt.Printf("%T\n", u)
-	fmt.Printf("%v\n", u)
+	{//{张三 20}
+		v := reflect.ValueOf(&u).Elem()
+		fmt.Println(v)
+	}
 
 	user, ok := v.Interface().(User) // Value->Interface-> Type Instance
-
-	fmt.Println("ok?:", ok)
-	fmt.Println("user:", user)
-
-	{
-		user, ok := v.Interface().(Person)
-
-		fmt.Println("person ok?:", ok) //false
-		fmt.Println("person:", user)   //person: { 0}
-	}
-
-	fmt.Println("println all the field") //false
-	for i := 0; i < t.NumField(); i++ {
-		fmt.Println(t.Field(i).Name)
-	}
+	//user, ok = v.(User)  // compile error
+	fmt.Println("ok?:", ok, "user:", user)
 
 	fmt.Println("println all the Method") //no Greet2()
 	for i := 0; i < t.NumMethod(); i++ {
-		fmt.Println(t.Method(i).Name)
+		fmt.Println(t.Method(i).Name)    //Greet, Print
 	}
 
-	{
+	t2 := reflect.TypeOf(&u)
+	for i := 0; i < t2.NumMethod(); i++ {
+		fmt.Println(t2.Method(i).Name)   //Greet, Greet2, Print
+	}
+
+	{// set value by passing pointer's Value
 		x := 2
 		v := reflect.ValueOf(&x)
 		v.Elem().SetInt(100)
@@ -82,6 +68,10 @@ func main() {
 
 	{
 		mPrint := v.MethodByName("Print")
+		Greet := v.MethodByName("Greet")   //Greet is not nil
+		Greet2 := v.MethodByName("Greet2") //Greet2 is nil
+		Greet2b := reflect.ValueOf(&u).MethodByName("Greet2") //Greet2b is NOT nil
+		_,_,_=Greet,Greet2,Greet2b
 		args := []reflect.Value{reflect.ValueOf("UserInfo")}
 		rets := mPrint.Call(args)
 		if len(rets) > 0 {
