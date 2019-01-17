@@ -19,13 +19,15 @@ func (u User) Print(prfix string) {
 	fmt.Printf("%s:Name is %s,Age is %d", prfix, u.Name, u.Age)
 }
 
-type Person struct {
-	Name string
-	Age  int
-}
 
 func (p *User) Greet2() string {
 	return "hello:" + p.Name + ";" + strconv.Itoa(p.Age)
+}
+
+
+type Person struct {
+	Name string
+	Age  int
 }
 
 func main() {
