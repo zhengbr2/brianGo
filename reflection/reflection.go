@@ -20,7 +20,8 @@ func main() {
 
 	for i := 0; i < s.NumField(); i++ {
 		f := s.Field(i)
-		fmt.Printf("%d: %s %s = %v\n", i, typeOfT.Field(i).Name, f.Type(), f.Interface())
+		fmt.Printf("%d: %s %s = %v | %v \n", i, typeOfT.Field(i).Name, f.Type(), f, f.Interface())
+		//f.Interface() turn to interface again
 	}
 
 	for i := 0; i < typeOfT.NumField(); i++ {
