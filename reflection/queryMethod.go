@@ -33,10 +33,12 @@ func main() {
 	{//&{张三 20}
 		v := reflect.ValueOf(&u)
 		fmt.Println(v)
+		fmt.Println("reflect.ValueOf(&u)==reflect.ValueOf(u)?:",reflect.ValueOf(&u)==reflect.ValueOf(u))   //false
 	}
 	{//{张三 20}
 		v := reflect.ValueOf(&u).Elem()
 		fmt.Println(v)
+		fmt.Println("reflect.ValueOf(&u).Elem()==reflect.ValueOf(u)?:",reflect.ValueOf(&u).Elem()==reflect.ValueOf(u)) //false!
 	}
 
 	user, ok := v.Interface().(User) // Value->Interface-> Type Instance
