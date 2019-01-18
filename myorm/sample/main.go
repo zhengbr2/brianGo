@@ -44,7 +44,8 @@ func main() {
 		"first_name": "Tom4",
 		"last_name":  "Zzy",
 	}
-	users().Insert([]interface{}{user1, user2})
+
 	users().Insert(user3)
 	users().Insert(user4)
+	users().Insert([]interface{}{user1, user2})
 }
