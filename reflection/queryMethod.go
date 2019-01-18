@@ -19,16 +19,10 @@ func (u User) Print(prfix string) {
 	fmt.Printf("%s:Name is %s,Age is %d", prfix, u.Name, u.Age)
 }
 
-
 func (p *User) Greet2() string {
 	return "hello:" + p.Name + ";" + strconv.Itoa(p.Age)
 }
 
-
-type Person struct {
-	Name string
-	Age  int
-}
 
 func main() {
 	u := User{"张三", 20}
@@ -54,17 +48,11 @@ func main() {
 		fmt.Println(t.Method(i).Name)    //Greet, Print
 	}
 
-	t2 := reflect.TypeOf(&u)
+	t2 := reflect.TypeOf(&u)    // has Greet2()
 	for i := 0; i < t2.NumMethod(); i++ {
 		fmt.Println(t2.Method(i).Name)   //Greet, Greet2, Print
 	}
 
-	{// set value by passing pointer's Value
-		x := 2
-		v := reflect.ValueOf(&x)
-		v.Elem().SetInt(100)
-		fmt.Println("new x:", x)
-	}
 
 	{
 		mPrint := v.MethodByName("Print")
@@ -86,4 +74,10 @@ func main() {
 		fmt.Println(mPrint.Call(args)[0])
 	}
 
+	{// set value by passing pointer's Value
+		x := 2
+		v := reflect.ValueOf(&x)
+		v.Elem().SetInt(100)
+		fmt.Println("new x:", x)
+	}
 }
