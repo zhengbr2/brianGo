@@ -20,27 +20,28 @@ func main() {
 	ormDB, _ := myorm.Connect("root:root@tcp(127.0.0.1:3306)/ormdb")
 	users := myorm.Table(ormDB, "user")
 
+
 	a := users()
 	fmt.Println(a)
 
 	user1 := User{
 		Age:       30,
-		FirstName: "Tom",
+		FirstName: "Tom1",
 		LastName:  "Cat",
 	}
 	user2 := User{
 		Age:       30,
-		FirstName: "Tom",
+		FirstName: "Tom2",
 		LastName:  "Curise",
 	}
 	user3 := User{
 		Age:       30,
-		FirstName: "Tom",
+		FirstName: "Tom3",
 		LastName:  "Hanks",
 	}
 	user4 := map[string]interface{}{
 		"age":        30,
-		"first_name": "Tom",
+		"first_name": "Tom4",
 		"last_name":  "Zzy",
 	}
 	users().Insert([]interface{}{user1, user2})

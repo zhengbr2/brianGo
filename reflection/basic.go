@@ -19,6 +19,12 @@ func main() {
 		commodity:  "fruits",
 	}
 
+	o2 := order{
+		ordId:      777,
+		customerId: 511,
+		commodity:  "Candy",
+	}
+
 	showTypes()
 
 	queryType(o)
@@ -29,6 +35,7 @@ func main() {
 
 	fmt.Println("valueToInterface(value).commodity:",valueToInterface(value).commodity)
 
+	sliceInterface( []interface{}{&o2, &o} )
 }
 
 func showTypes(){
@@ -76,5 +83,27 @@ func queryField(q interface{}) {
 func  valueToInterface(value reflect.Value ) order {
 
 	return value.Interface().(order)
+
+}
+
+func sliceInterface(i interface{}){
+	v:= reflect.ValueOf(i)
+
+	if(v.Kind() == reflect.Ptr) {
+		v=v.Elem()
+	}
+	if (v.Kind() == reflect.Slice){
+
+		sv1 :=v.Index(0)
+
+		if (sv1.Kind() == reflect.Interface) {
+			sv1 = sv1.Elem()
+		}
+		if (sv1.Kind() == reflect.Ptr) {
+			sv1 = sv1.Elem()
+		}
+		fmt.Printf( "%#v\n", sv1)
+		fmt.Printf( "%#v\n", sv1.Interface())
+	}
 
 }
