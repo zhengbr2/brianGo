@@ -21,7 +21,7 @@ type User struct {
 
 func main() {
 	looptimes := 10000000
-	u := User{66, "nxin", "beijing"}
+	u := User{66, "nxin", "beiuqweouirqyoweruyqweufhlasdjfhlajksdhfasdlfgqlwieurlweuijing"}
 	gobbegintimestamp := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
 	gobbeginint, _ := strconv.Atoi(gobbegintimestamp)
 	fmt.Println("gob序列化==============================", gobbeginint)
@@ -42,9 +42,9 @@ func main() {
 	jsonbeginint, _ := strconv.Atoi(jsonbegintimestamp)
 	fmt.Println("json序列化==============================", jsonbeginint)
 	for j := 0; j < looptimes; j++ {
-		_, e := json.Marshal(u)
+		A, e := json.Marshal(u)
 		if e != nil {
-			log.Fatal(e)
+			log.Fatal(e,A)
 		}
 	}
 	jsonendtimestamp := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
@@ -54,7 +54,7 @@ func main() {
 	protobufbegintimestamp := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
 	protobufbeginint, _ := strconv.Atoi(protobufbegintimestamp)
 	fmt.Println("protobuf序列化==============================", protobufbeginint)
-	hw := &myproto.User{Age: 10, Name: "wang", BornAt: "beijing"}
+	hw := &myproto.User{Age: 10, Name: "wang", BornAt: "beiuqweouirqyoweruyqweufhlasdjfhlajksdhfasdlfgqlwieurlweuijing"}
 	for j := 0; j < looptimes; j++ {
 		_, e := proto.Marshal(hw)
 		if e != nil {
