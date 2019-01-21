@@ -9,7 +9,7 @@ import (
 var p = fmt.Println
 
 func main() {
-
+	
 	var str string
 	//if str==nil  str by defalt is "" and not comparable to nil
 
@@ -21,8 +21,9 @@ func main() {
 	x := "text"
 	slice := []byte(x)
 	slice[0] = 'T'
-	println(x, ":", string(slice)) //text:Text
+	fmt.Println(x, ":", string(slice)) //text:Text
 	fmt.Println(x[0])              //print 116
+	fmt.Println(string(rune(x[0])))              //print t
 	fmt.Println(slice[0])              //print 86
 	fmt.Printf("%T\n", x[0])       //prints uint8
 

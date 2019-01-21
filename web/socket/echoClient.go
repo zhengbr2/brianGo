@@ -47,6 +47,6 @@ func handleRead(conn net.Conn, wg *sync.WaitGroup) {
 			fmt.Print("Error to read message because of ", err)
 			return
 		}
-		fmt.Print(line)
+		fmt.Print("reader returned:",line)
 	}
 }

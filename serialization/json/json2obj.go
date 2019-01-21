@@ -34,6 +34,10 @@ func main() {
   ]
 }`
 
-	json.Unmarshal([]byte(str), &s)
-	fmt.Println(s)
+	err:=json.Unmarshal([]byte(str), &s)
+	if err == nil {
+		fmt.Println(s)
+	}else {
+		fmt.Println(err)
+	}
 }
