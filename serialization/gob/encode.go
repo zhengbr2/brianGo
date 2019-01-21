@@ -29,7 +29,7 @@ func main() {
 	wa2 := &Address{"work", "Boom", "Belgium"}
 	pa3 := &Address{"private", "Aartselaar", "Belgium"}
 	wa3 := &Address{"work", "Boom", "Belgium"}
-	vc := VCard{"Jan", "Kersschot", []*Address{pa, wa, pa2, wa2, pa3, wa3}, "none"}
+	vc := VCard{"Jan", "Kersschot", []*Address{pa, wa, pa2, wa2, pa3, wa3}, "none remarks"}
 	// fmt.Printf("%v: \n", vc) // {Jan Kersschot [0x126d2b80 0x126d2be0] none}:
 	// using an encoder:
 	file, _ := os.OpenFile("vcard.gob", os.O_CREATE|os.O_WRONLY, 0666)
@@ -44,11 +44,11 @@ func main() {
 	vc2 := VCard{}
 	file2, _ := os.OpenFile("vcard.gob", os.O_RDONLY, 0666)
 	dec := gob.NewDecoder(file2)
-	err = dec.Decode(&vc2)
+	err = dec.Decode(&vc2) // must be pointer
 	if err != nil {
 		log.Println("Error in encoding gob")
 	}
 	file2.Close()
-	fmt.Println("%v", vc2)
+	fmt.Printf("%v\n", vc2)
 	fmt.Printf("xxx", vc2.Addresses[0], vc2.Addresses[1])
 }
