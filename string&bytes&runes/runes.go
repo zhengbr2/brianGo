@@ -33,11 +33,6 @@ func length(s string) {
 	fmt.Printf("length of %s is %d\n", s, utf8.RuneCountInString(s))
 }
 
-func mutate(s []rune) string {
-	fmt.Println("String mutate")
-	s[0] = 'a'
-	return string(s)
-}
 
 func mutate2(s []rune) []rune {
 	fmt.Println("String mutate")
@@ -82,11 +77,5 @@ func main() {
 
 	length(str)
 	fmt.Println(len(str)) //6
-
-	fmt.Println()
-	rn := []rune("hello")
-	mt := mutate2(rn)
-	fmt.Println(mt)
-	fmt.Println(&rn, &mt)
 
 }
