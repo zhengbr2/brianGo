@@ -9,6 +9,7 @@ import (
 	"brianGo/web/grpc/inf"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 const (
@@ -25,11 +26,15 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	s := grpc.NewServer()
-	inf.RegisterDataServer(s, &Data{})
-	s.Serve(lis)
+	rpcsvr := grpc.NewServer()
+	inf.RegisterDataServer(rpcsvr, &Data{})
+	reflection.Register(rpcsvr)
+	if err = rpcsvr.Serve(lis); err != nil {
+		log.Fatalln("faile serve at: " + ":" + port)
+	}
 
-	log.Println("grpc server in: %s", port)
+	log.Println("grpc server in: %rpcsvr", port)
+
 }
 
 // 定义方法

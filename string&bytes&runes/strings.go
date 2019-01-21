@@ -11,6 +11,8 @@ var p = fmt.Println
 func main() {
 
 	var str string
+	//if str==nil  str by defalt is "" and not comparable to nil
+
 	if str == "" {
 		str = "default"
 		println(str)
