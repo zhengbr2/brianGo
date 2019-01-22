@@ -6,3 +6,4 @@
 C:\Users\zhengbr2\go\src\brianGo\web\grpc>protoc --go_out=plugins=grpc:. grpc.proto
 
 C:\Users\zhengbr2\go\src\brianGo\web\grpc>protoc --go_out=plugins=grpc:. data.proto
+

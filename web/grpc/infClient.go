@@ -64,7 +64,7 @@ func getUser(client inf.DataClient) {
 
 	//判断返回结果是否正确
 	if id, _ := strconv.Atoi(strings.Split(response.Name, ":")[0]); id == r {
-		log.Printf("response error  %#v", response)
+		log.Printf("response okay:  %#v", response)
 	}
 
 }
