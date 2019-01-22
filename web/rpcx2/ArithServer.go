@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/rpcx-ecosystem/rpcx-examples3"
 	"github.com/smallnest/rpcx/server"
+	"brianGo/web/rpcx2/example"
 )
 
 var (

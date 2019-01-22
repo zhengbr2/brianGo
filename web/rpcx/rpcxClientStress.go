@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	CLIENT_NUM   = 4
-	SINGLE_COUNT = 100000
+	CLIENT_NUM   = 100
+	SINGLE_COUNT = 1000
 )
 
 func main() {
@@ -27,8 +27,9 @@ func main() {
 	}
 
 	wg.Wait()
-	log.Println("consumed time %f:", time.Now().Sub(before).Seconds())
-	log.Println("average %f:", float64(CLIENT_NUM*SINGLE_COUNT)/time.Now().Sub(before).Seconds())
+	t := time.Now().Sub(before).Seconds()
+	log.Println("total time:", t)
+	log.Println("QPS:", float64(CLIENT_NUM*SINGLE_COUNT)/t)
 }
 
 func queryTime(d client.ServiceDiscovery, wg *sync.WaitGroup) {
