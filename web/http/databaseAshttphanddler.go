@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	db := database{"shoes": 50, "socks": 5}
+	db := database{"shoes": 65, "socks": 3}
 	log.Fatal(http.ListenAndServe("localhost:8000", db))
 }
 

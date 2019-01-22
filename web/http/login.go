@@ -19,12 +19,6 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("key:", k)
 		fmt.Println("val:", strings.Join(v, ""))
 	}
-	//f, err := os.Create("./workingdirectory.txt")
-	//if(err !=nil) {
-	//	fmt.Println(w, err.Error())
-	//}
-	//f.Close()
-
 	fmt.Fprintf(w, "Hello astaxie!") //这个写入到w的是输出到客户端的
 }
 

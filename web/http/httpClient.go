@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"fmt"
 	"strconv"
 	"sync"
 	"time"
@@ -15,8 +16,8 @@ var wg sync.WaitGroup
 func main() {
 
 	var now = time.Now()
-	wg.Add(200)
-	for j := 0; j < 200; j++ {
+	wg.Add(20)
+	for j := 0; j < 20; j++ {
 
 		go gethttp(j)
 	}
@@ -27,28 +28,19 @@ func main() {
 
 func gethttp(j int) {
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		resp, err := http.Get("http://localhost:9090")
-
 		if err != nil {
-
-			//log.Fatal(err)
-			continue
-
+			log.Fatal(err)
 		}
 
 		body, err := ioutil.ReadAll(resp.Body)
-
 		if err != nil {
-
-			// handle error
-			continue
-
+			log.Fatal(err)
 		}
 
 		fmt.Println(string(body) + strconv.Itoa(j*100+i))
 		//resp.Body.Close()
-
 	}
 	wg.Done()
 
