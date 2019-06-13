@@ -13,11 +13,11 @@ func main() {
 		for {
 			select {
 			case out <- val:
-				println("step 2 coming from val")
+				println("step 2 coming from val:",val)
 				out = nil // close channel out
 				in = inch // open channel in
 			case val = <-in:
-				println("step 1 coming from inch")
+				println("step 1 coming from inch:",val)
 				out = outch //open channel out
 				in = nil    //  close the channel in
 			}
@@ -29,7 +29,7 @@ func main() {
 		}
 	}()
 	time.Sleep(0)
-	inch <- 1
-	inch <- 2
+	inch <- 888
+	inch <- 999
 	time.Sleep(3 * time.Second)
 }

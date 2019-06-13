@@ -25,6 +25,7 @@ func main() {
 		fmt.Println("Received ", v, ok)
 	}
 
+
 	ch2 := make(chan int)
 	go producer(ch2)
 	for v := range ch2 {
