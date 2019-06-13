@@ -53,7 +53,7 @@ func main() {
 	emp2 := Employee{"Thomas", "Paul", 29, 800}
 
 	fmt.Println("Employee 1\n", emp1)
-	fmt.Println("\nEmployee 2\n", emp2)
+	fmt.Println("Employee 2\n", emp2)
 
 	//creating anonymous structure
 	emp3 := struct {
@@ -79,7 +79,7 @@ func main() {
 		salary:    5000,
 	}
 
-	emp3=emp3b  // 排序相同的匿名 struct视为同一类型，是可以比较的
+	fmt.Println ("emp3==emp3b ",emp3==emp3b ) // 排序相同的匿名 struct视为同一类型，是可以比较的
 
 	fmt.Println("\nEmployee 3\n", emp3)
 
@@ -106,6 +106,8 @@ func main() {
 
 	//Pointer to a struct
 	emp8 := &Employee{"Sam", "Anderson", 55, 6000}
+	fmt.Printf("%p,%p \n",emp8 ,&(*emp8))     // (*emp8) won't create a new value
+	fmt.Println(emp8 == &(*emp8))
 	fmt.Println("\nEmployee 8\nFirst Name:", (*emp8).firstName)
 	fmt.Println("Age:", (*emp8).age)
 	fmt.Println("Age:", emp8.lastName)

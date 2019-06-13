@@ -65,4 +65,10 @@ func test2() {
 		fmt.Println("flt_id不相等", user_id)
 	}
 
+	if 123 == 1234.0000{
+		fmt.Println(" 123 == 123.33 equal")
+	} else{
+		fmt.Println(" 123 == 123.3 not equal")
+	}
+
 }
