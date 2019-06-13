@@ -29,8 +29,10 @@ func main() {
 	Book1.book_id = 6495407
 
 	printBook(Book1)
+	//printBook(&Book1)
+	//printBook2(Book1)  doesn't work.. it is function , but no method
 	printBook2(&Book1)
-	printBook(Book1)
+
 
 }
 
