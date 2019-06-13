@@ -24,6 +24,7 @@ func main() {
 	fmt.Println("any==any2:", any == any2)
 	//intreface的值是可比较的。如果两个interface 有相同的动态类型和相同的动态值，而且不为nil，那么这两个interface就是相同的
 
+	fmt.Println("p1==p2:", &person{"brian", 30} ==&person{"brian", 30}) //false, memory address differ
 
 	s1 := student{123, &person{"brian", 30}}
 	s2 := student{123, &person{"brian", 30}}
@@ -31,6 +32,9 @@ func main() {
 	fmt.Println("*s1.person==*s2.person:", *s1.person == *s2.person) // ture, compare value
 	fmt.Println("s1==s2:", s1 == s2)                                 // false, since s1.person <> s2.person
 
+	s3:=student{sid:123, person: &a}
+	s4:=student{sid:123, person: &a}
+	fmt.Println("s3==s4:", s3 == s4)                      //true, value equals
 	test2()
 }
 
@@ -52,4 +56,13 @@ func test2() {
 		fmt.Println("不相等", user_id)
 	}
 	fmt.Println(id2==id)
+
+	var flt_id interface{}
+	flt_id=3.14
+	if user_id == flt_id {
+		fmt.Println("flt_id相等", user_id)
+	} else {
+		fmt.Println("flt_id不相等", user_id)
+	}
+
 }
