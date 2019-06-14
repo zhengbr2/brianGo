@@ -110,6 +110,14 @@ func main() {
 		printSlice(from)
 		printSlice(to)
 	}
+	{
+		s0:=make([]int, 0)
+		s1:=make([]int, 5)
+		s2:=make([]int, 0, 5)
+		fmt.Println(s0)
+		fmt.Println(s1)
+		fmt.Println(s2)
+	}
 
 }
 
