@@ -10,11 +10,13 @@ func main() {
 	arr := [10]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	fmt.Println(arr)
 	fmt.Printf("type of array %T, size of array related to lengh! %d\n", arr, unsafe.Sizeof(arr))
+
 	sl := arr[0:3]
 	sl2 := sl
 	sl2[0] = 99
 	fmt.Println(sl)
 	fmt.Printf("type of slice %T, size of slice related to lengh! %d\n", sl, unsafe.Sizeof(sl))
+	fmt.Printf("type of slice %T, size of slice related to lengh! %d\n", sl, unsafe.Sizeof(arr[0:7]))  // 地址， 长度， 容量 3×8=24
 	fmt.Println(arr)
 
 	var s []int
@@ -94,9 +96,10 @@ func main() {
 		var from = []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
 		var to = []int{9, 9, 9, 9, 9}
 
-		copy(to, from)
+		cnt:=copy(to, from)
 		printSlice(from)
 		printSlice(to)
+		fmt.Println(cnt)
 
 	}
 	{

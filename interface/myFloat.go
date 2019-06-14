@@ -23,7 +23,8 @@ func describeobj(t ITest) {
 func main() {
 	var t ITest
 	f := MyFloat(89.7)
-	t = f
-	describeobj(t)
-	t.Tester()
+	t = &f
+	describeobj( t)
+	describeobj( f)
+	//t.Tester()
 }
