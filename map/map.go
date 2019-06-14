@@ -6,6 +6,12 @@ import (
 )
 
 func main() {
+	{
+		var m map[int]bool
+		a, ok := m[1] //can read nil map
+		//m[2]=true
+		fmt.Println(a, ok) // false  false
+	}
 	// just return default vlaue
 	m := make(map[string]int)
 	aa := m["nice"]

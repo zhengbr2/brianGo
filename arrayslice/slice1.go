@@ -34,6 +34,7 @@ func main(){
 		slice2 :=arr[1:3:5]
 		fmt.Println(slice2)
 
+
 	}
 
 }
