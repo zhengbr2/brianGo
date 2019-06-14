@@ -206,6 +206,7 @@ func main() {
 	vegslice := vegarray[1:3]
 	fmt.Printf("length of slice %d capacity %d\n", len(vegslice), cap(vegslice)) //length of is 2 and capacity is 6
 	vegslice = vegslice[:cap(fruitslice)]                                        //re-slicing furitslice till its capacity
+	//vegslice = vegslice[:7]
 	fmt.Println("After re-slicing length is", len(vegslice), "and capacity is", cap(vegslice))
 
 	/*

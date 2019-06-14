@@ -23,4 +23,17 @@ func main(){
 		fmt.Println(slice)
 		fmt.Println(arr)
 	}
+
+	{
+		arr:=[]int{1,2,3,4,5,6}
+		slice:=arr[2:5:5]
+		//slice:=arr[2:5:4] failed
+		//slice:=arr[2:5:7] failed
+		fmt.Println(slice)
+
+		slice2 :=arr[1:3:5]
+		fmt.Println(slice2)
+
+	}
+
 }
