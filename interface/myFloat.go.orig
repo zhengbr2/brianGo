@@ -30,12 +30,19 @@ func describeobj(t ITest) {
 func main() {
 	var t ITest
 	f := MyFloat(89.7)
+<<<<<<< HEAD
 	t = &f
-
 	describeobj( t)
+	describeobj( f)
+	//t.Tester()
+=======
+	t = f
+
+	describeobj(t)
 	describeobj(&f)
 
 	y := YouFloat(0.12)
 	describeobj(&y)
 	//describeobj(y)
+>>>>>>> e365d941e32f3a757bf716e15fc42aff33578693
 }
