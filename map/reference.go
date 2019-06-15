@@ -16,7 +16,7 @@ func main() {
 	fmt.Printf("p2：%d\n",unsafe.Sizeof(p2))
 	fmt.Printf("p3：%d\n",unsafe.Sizeof(p3))
 
-	fmt.Printf("注意这个：persons的数组地址: %p:\n",persons)
+	fmt.Printf("注意这个：persons的底层地址: %p:\n",persons)
 	modify(persons)
 	modify(persons)
 
