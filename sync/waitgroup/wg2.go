@@ -7,6 +7,7 @@ import (
 )
 
 func process(i int, wg *sync.WaitGroup) {
+
 	fmt.Println("started Goroutine ", i)
 	time.Sleep(2 * time.Millisecond)
 

@@ -19,6 +19,7 @@ func main() {
 		go func() {
 
 			atomic.AddUint64(&ops, 1)
+			//ops++
 
 			runtime.Gosched()
 			wg.Done()
