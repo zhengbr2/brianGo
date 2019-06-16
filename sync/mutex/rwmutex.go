@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"sync"
+	"runtime"
 )
 
 var count int
@@ -22,12 +23,12 @@ func main() {
 
 	wg.Wait()
 }
-
+//看不出有什么竞争冲突
 func read(n int) {
 	fmt.Printf("读goroutine %d 正在读取...\n", n)
 
 	v := count
-
+	runtime.Gosched()
 	fmt.Printf("读goroutine %d 读取结束，值为：%d\n", n, v)
 	wg.Done()
 }
