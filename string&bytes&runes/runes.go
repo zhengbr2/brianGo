@@ -41,6 +41,10 @@ func mutate2(s []rune) []rune {
 }
 
 func main() {
+
+	{
+
+	}
 	name := "Señor"
 	printBytes(name)
 	fmt.Println("\n")
