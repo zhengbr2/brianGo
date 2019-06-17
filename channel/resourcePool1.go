@@ -111,14 +111,14 @@ func main() {
 	}
 	wg.Wait()
 	time.Sleep(time.Second)
-	wg.Add(maxGoroutine)
-	for query := 15; query < 2*maxGoroutine; query++ {
-		go func(q int) {
-			dbQuery(q, pool)
-			wg.Done()
-		}(query)
-	}
-	wg.Wait()
+	//wg.Add(maxGoroutine)
+	//for query := 15; query < 2*maxGoroutine; query++ {
+	//	go func(q int) {
+	//		dbQuery(q, pool)
+	//		wg.Done()
+	//	}(query)
+	//}
+	//wg.Wait()
 	log.Println("开始关闭资源池")
 	pool.Close()
 }
