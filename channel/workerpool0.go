@@ -69,7 +69,7 @@ func main() {
 	go allocate(noOfJobs)
 	done := make(chan bool)
 	go result(done)
-	noOfWorkers := 20000
+	noOfWorkers := 40000
 	createWorkerPool(noOfWorkers)
 	<-done
 	endTime := time.Now()
