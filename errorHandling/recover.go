@@ -8,6 +8,7 @@ import (
 
 func r() {
 	if r := recover(); r != nil {
+		fmt.Printf("%T:\n", r)
 		fmt.Println("Recovered an panic:", r)
 		fmt.Println("debug output call stack")
 		time.Sleep(time.Millisecond*2)
@@ -30,6 +31,7 @@ func main() {
 	}()
 
 	fmt.Println("will trigger an panic here")
+	time.Sleep(time.Millisecond*2)
 	go a()
 
 	time.Sleep(time.Millisecond * 100)

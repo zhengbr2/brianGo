@@ -8,20 +8,23 @@ import (
 
 func main() {
 
-	const n = 100
+	const n = 13
 
 	finish := make(chan bool)
 	var done sync.WaitGroup
+	done.Add(n)
 
 	for i := 0; i < n; i++ {
-		done.Add(1)
+
 		go func() {
+			defer done.Done()
+
 			select {
-			case <-time.After(1 * time.Hour):
+			case <-time.After(1 * time.Minute):
 			case <-finish:
 				fmt.Println("return from selecct", time.Now())
 			}
-			done.Done()
+
 		}()
 	}
 

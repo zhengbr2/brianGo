@@ -29,7 +29,7 @@ func f3() (r int) {
 	defer func(r int) {
 		r = r + 5 //masked
 	}(r)
-	return 1
+	return 99
 }
 
 func main() {
