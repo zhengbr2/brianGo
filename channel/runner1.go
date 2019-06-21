@@ -74,27 +74,24 @@ func (r *Runner) Start() error {
 	}
 }
 
-type  person struct{
-	age int
-	name string
-}
+
 func main() {
 	log.Println("...开始执行任务...")
 
-	{
-
-		s:= make (chan error)
-		go func () {s<-nil}()  //nil只能赋值给指针、channel、func、interface、map或slice类型的变量
-		time.Sleep(111)
-		select {
-			case output:=<-s:
-					println(output ==nil)
-					//println("I have output here!" + output.Error())
-			default:
-				println("default output")
-		}
-		return
-	}
+	//{
+	//
+	//	s:= make (chan error)
+	//	go func () {s<-nil}()  //nil只能赋值给指针、channel、func、interface、map或slice类型的变量
+	//	time.Sleep(111)
+	//	select {
+	//		case output:=<-s:
+	//				println(output ==nil)
+	//				//println("I have output here!" + output.Error())
+	//		default:
+	//			println("default output")
+	//	}
+	//	return
+	//}
 
 	timeout := 5 * time.Second
 	r := New(timeout)

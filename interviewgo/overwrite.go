@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 type People struct{}
 
@@ -21,6 +24,7 @@ func (t *Teacher) ShowB() {
 
 func main() {
 	t := Teacher{}
+	fmt.Println(unsafe.Sizeof(t)) //0
 	t.ShowA()
 	t.ShowB()
 }
