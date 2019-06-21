@@ -30,6 +30,7 @@ func main() {
 	}()
 
 	fmt.Println("will trigger an panic here")
+	time.Sleep(time.Millisecond*2)
 	go a()
 
 	time.Sleep(time.Millisecond * 100)

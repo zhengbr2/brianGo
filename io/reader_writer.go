@@ -24,14 +24,19 @@ func main() {
 	fmt.Fprint(&b, ",", "http://www.flysnow.org\n")
 
 	//把Buffer里的内容打印到终端控制台
-	b.WriteTo(os.Stdout)
-
+	fmt.Println("1:",b.String())
+	b.WriteTo(os.Stdout)   // 清空buffer 从头写
+	fmt.Println("2:",b.String())
 	bn, be = b.Write([]byte("ILoveYou"))
+	fmt.Println("3:",b.String())
 	log.Println("number of bytes wrritten:", bn)
+
 	log.Println("current length of b:", b.Len())
 	if be != nil {
 		log.Fatal(be)
 	}
+	fmt.Println(b.String())
+
 	var p = []byte{'a', 'b', 'c', 'd', 'e'}
 	n, err := b.Read(p[:])
 	log.Println(n, err, string(p[:n])) // abcde-> ILove
