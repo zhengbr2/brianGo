@@ -8,6 +8,7 @@ import (
 func main() {
 	{
 		var m map[int]bool
+
 		a, ok := m[1] //can read nil map
 		//m[2]=true
 		fmt.Println(a, ok) // false  false
@@ -21,6 +22,7 @@ func main() {
 	println(len(m))
 
 	mi := make(map[int]int)
+	//mi2 := make(map[int]int); println(mi==mi2)  not comparable
 	ab := mi[123]
 	fmt.Println("ab:", ab)
 

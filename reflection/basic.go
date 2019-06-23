@@ -13,6 +13,8 @@ type order struct {
 
 
 func main() {
+
+	showTypes()
 	o := order{
 		ordId:      456,
 		customerId: 56,
@@ -25,7 +27,7 @@ func main() {
 		commodity:  "Candy",
 	}
 
-	showTypes()
+
 
 	queryType(o)
 
@@ -98,11 +100,13 @@ func sliceInterface(i interface{}){
 
 		if (sv1.Kind() == reflect.Interface) {
 			sv1 = sv1.Elem()
+			fmt.Printf( "%#v\n", sv1)   //是指针
 		}
 		if (sv1.Kind() == reflect.Ptr) {
 			sv1 = sv1.Elem()
+			fmt.Printf( "%#v\n", sv1)
 		}
-		fmt.Printf( "%#v\n", sv1)
+
 		fmt.Printf( "%#v\n", sv1.Interface())
 	}
 

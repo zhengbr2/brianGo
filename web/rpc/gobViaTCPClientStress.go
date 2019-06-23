@@ -33,8 +33,8 @@ var (
 func init() {
 	println("Usage Sample:")
 	println(os.Args[0] + " -thread 100  -repeat 5000")
-	flag.IntVar(&ThreadCount, "thread", 100, "how many threads(goroutine) running in client side")
-	flag.IntVar(&Repeat, "repeat", 5000, "repeat count within one thread")
+	flag.IntVar(&ThreadCount, "thread", 50, "how many threads(goroutine) running in client side")
+	flag.IntVar(&Repeat, "repeat", 10000, "repeat count within one thread")
 	flag.Parse()
 	println("your input: -thread:" + strconv.Itoa(ThreadCount) + " -repeat:" + strconv.Itoa(Repeat))
 }

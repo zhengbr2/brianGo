@@ -12,8 +12,10 @@ func main() {
 	fmt.Printf("type of array %T, size of array related to lengh! %d\n", arr, unsafe.Sizeof(arr))
 
 	sl := arr[0:3]
+	//slb := arr[0:3]
+	//fmt.Print(sl == slb)  not comparable
 	sl2 := sl
-	sl2[0] = 99
+	sl2[0] == 99
 	fmt.Println(sl)
 	fmt.Printf("type of slice %T, size of slice related to lengh! %d\n", sl, unsafe.Sizeof(sl))
 	fmt.Printf("type of slice %T, size of slice related to lengh! %d\n", sl, unsafe.Sizeof(arr[0:7]))  // 地址， 长度， 容量 3×8=24

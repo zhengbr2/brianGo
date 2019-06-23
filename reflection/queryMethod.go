@@ -36,7 +36,7 @@ func main() {
 		fmt.Println("reflect.ValueOf(&u)==reflect.ValueOf(u)?:",reflect.ValueOf(&u)==reflect.ValueOf(u))   //false
 	}
 	{//{张三 20}
-		v := reflect.ValueOf(&u).Elem()
+		v := reflect.ValueOf(&u).Elem()  //for interface or pointer
 		fmt.Println(v)
 		fmt.Println("reflect.ValueOf(&u).Elem()==reflect.ValueOf(u)?:",reflect.ValueOf(&u).Elem()==reflect.ValueOf(u)) //false!
 	}

@@ -34,7 +34,7 @@ func Peer2Peer() {
 			defer xclient.Close()
 			for i := 0; i < RepeatCount; i++ {
 				args := &service.Args{
-					A: 10,
+					A: i,
 					B: 20,
 				}
 
@@ -44,7 +44,7 @@ func Peer2Peer() {
 					log.Fatalf("failed to call: %v", err)
 				}
 
-				//log.Printf("%d * %d = %d", args.A, args.B, reply.C)
+				log.Printf("%d * %d = %d", args.A, args.B, reply.C)
 
 			}
 			wg.Done()
