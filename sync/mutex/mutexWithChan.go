@@ -46,7 +46,7 @@ func main() {
 					resp: make(chan int)}
 				reads <- read
 				total += <-read.resp
-				fmt.Println(total)
+				//fmt.Println(total)
 				atomic.AddInt64(&ops, 1)
 			}
 		}()
