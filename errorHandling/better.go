@@ -24,6 +24,13 @@ func main() {
 	_, err4 := openFile4()
 	fmt.Printf("%+v", err4)
 
+	fmt.Println("\n....................erros.Cause....................\n")
+
+	fmt.Printf("\n%+v", errors.Cause(err4))
+	fmt.Printf("\n%+v", errors.Cause(err3))
+	fmt.Printf("\n%+v", errors.Cause(err2))
+	fmt.Printf("\n%+v", errors.Cause(err))
+
 }
 
 func openFile() ([]byte, error) {
