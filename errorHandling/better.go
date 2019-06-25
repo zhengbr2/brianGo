@@ -3,16 +3,27 @@ package main
 import (
 	"fmt"
 	"github.com/pkg/errors"
+	"os"
 )
 
 
 func main() {
-	conent, err := openFile2()
-	if err != nil {
-		fmt.Printf("%+v", err)
-	} else {
-		fmt.Println(string(conent))
-	}
+	fmt.Println("....................erros.New....................\n")
+	_, err := openFile()
+	fmt.Printf("%+v", err)
+
+	fmt.Println("\n....................erros.WithStack....................\n")
+	_, err2 := openFile2()
+	fmt.Printf("%+v", err2)
+
+	fmt.Println("\n....................erros.WithMessage....................\n")
+	_, err3 := openFile3()
+	fmt.Printf("%+v", err3)
+
+	fmt.Println("\n....................erros.Wrap....................\n")
+	_, err4 := openFile4()
+	fmt.Printf("%+v", err4)
+
 }
 
 func openFile() ([]byte, error) {
@@ -20,17 +31,23 @@ func openFile() ([]byte, error) {
 }
 
 func openFile2() ([]byte, error) {
-	conent, err := openFile()
-	//if err !=nil {
-	//	err = errors.WithMessage(err, "failed in openFile2")   // one more message
-	//}
-
-	//if err !=nil {
-	//	err = errors.WithStack(err)    //withStack for those without stack
-	//}
+	_, err := os.Open("non_exist.txt")
 
 	if err !=nil {
-		err = errors.Wrap(err, "msg in wrap()")   // one more message + stack
+		err = errors.WithStack(err)    //withStack for those without stack
 	}
-	return conent, err
+
+	return []byte("bytes"), err
+}
+
+func openFile3() ([]byte, error) {
+	str,err:=openFile()
+	err = errors.WithMessage(err, "with self-defined error message")
+	return str,err
+}
+
+func openFile4() ([]byte, error) {
+	str,err:=openFile()
+	err = errors.Wrap(err,"wraped msg")
+	return str,err
 }
