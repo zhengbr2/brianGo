@@ -59,6 +59,14 @@ func interfaceCompare(){
 	var sg fmt.Stringer = &s // OK
 	// var _ fmt.Stringer = s  // compile error: IntSet lacks String method
 	fmt.Println("size of Stringer", unsafe.Sizeof(sg))   //16   8bytes for value , and 8 bytes for type
+	var i1 interface{}= struct{}{}
+	var i2 interface{}= struct{
+							name int
+							age string
+						}{30,"Jack"}
+
+	fmt.Println("size of interface 1", unsafe.Sizeof( i1))
+	fmt.Println("size of interface 2", unsafe.Sizeof( i2))
 }
 
 type IntSet struct { /* ... */

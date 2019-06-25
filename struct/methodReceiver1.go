@@ -7,6 +7,7 @@ func main() {
 	fmt.Printf("address outsite modify:%p\n", &p)
 	p.modify()  //复制传值
 	fmt.Println(p.String()) //复制传值
+
 }
 
 type person struct {
@@ -19,7 +20,7 @@ func (p person) String() string{
 	return "the person name is "+p.name
 }
 
-func (p person) modify(){
+func (p *person) modify(){
 	fmt.Printf("address in modify:%p\n", &p)
 	p.name = "李四"
 }
