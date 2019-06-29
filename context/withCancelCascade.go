@@ -14,8 +14,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	done := make(chan struct{})
 	go func(ctx context.Context) {
-		ctxsub, cal2 := context.WithCancel(ctx)
-		cal2()
+		ctxsub, _ := context.WithCancel(ctx)
 
 		for {
 			select {
