@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"os"
+	"time"
 )
 
 
@@ -31,7 +32,17 @@ func main() {
 	fmt.Printf("\n%+v", errors.Cause(err2))
 	fmt.Printf("\n%+v", errors.Cause(err))
 
+	a:=ctx(3)
+	t,ok:=a.Deadline()
+	fmt.Println(t,ok)
 }
+
+type ctx int
+
+func (*ctx )Deadline() (deadline time.Time, ok bool) {
+	return
+}
+
 
 func openFile() ([]byte, error) {
 	return nil, errors.New("wrong file name!")
