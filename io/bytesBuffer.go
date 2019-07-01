@@ -55,4 +55,20 @@ func read(){
 	buf.ReadFrom(file)
 	fmt.Println(buf.String()) //bob hello world
 	file.Close()
+
+	buff =bytes.NewBufferString("Hello!!!")
+	s4 := []byte("hello")
+	buff.Read(s4)
+	fmt.Println(buff.String())  // !!!
+	n,err:=buff.Read(s4)
+	fmt.Println(buff.String())  // ""
+	fmt.Println(string(s4[0:n]))  // !!!
+
+	fmt.Println("empty now")
+	buff.Read(s4)   //buff drained
+	fmt.Println(buff.String())  // ""
+	buff.Reset() //buff drained
+	fmt.Println(buff.String())  // ""
+
+
 }
