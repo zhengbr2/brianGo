@@ -7,8 +7,10 @@ import (
 )
 
 func main(){
+	//write 不断地添加到缓冲区, 底层slice不断增长，
 	write()
 	fmt.Println(".........................................")
+	//读完了就没有了，drain了
 	read()
 }
 
