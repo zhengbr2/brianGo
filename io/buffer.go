@@ -7,11 +7,11 @@ import (
 	"fmt"
 )
 
-const debug = true
+const debug = false
 
 func main() {
 	var buf *bytes.Buffer
-	//var buf io.Writer
+	//var buf io.Writer  // 这里应该定义接口
 	if debug {
 		buf = new(bytes.Buffer) // enable collection of output
 	}
