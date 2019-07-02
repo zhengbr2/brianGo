@@ -37,6 +37,9 @@ func main() {
 	}
 	fmt.Println(b.String())
 
+	data, err := ioutil.ReadAll(&b)
+	fmt.Println(string(data), err)
+
 	var p = []byte{'a', 'b', 'c', 'd', 'e'}
 	n, err := b.Read(p[:])
 	log.Println(n, err, string(p[:n])) // abcde-> ILove
@@ -44,8 +47,7 @@ func main() {
 	log.Println(n, err, string(p[:n])) // abcde-> You
 	n, err = b.Read(p[:])
 	log.Println(n, err, string(p[:n])) // _ 0 EOF
-
-	data, err := ioutil.ReadAll(&b)
+	data, err = ioutil.ReadAll(&b)
 	fmt.Println(string(data), err)
 
 }

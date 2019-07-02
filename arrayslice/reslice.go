@@ -4,9 +4,16 @@ import "fmt"
 
 func main(){
 
+
 	arr := [8] int {1,2,3,4,5,6,7,8}
 	sli := arr[0:5]
 	fmt.Println(sli)
+	{
+		sli2 := sli[:0]
+		fmt.Println(sli2)
+		sli3 := sli2[:cap(sli2)]
+		fmt.Println(sli3)
+	}
 	sli=append(sli, 9)   //base arr is updated!
 	fmt.Println(sli)
 	fmt.Println(arr)

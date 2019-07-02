@@ -57,12 +57,17 @@ func main() {
 		a := 1
 		b := 2
 		ctx, cancel := context.WithTimeout(context.Background(), timeout)
-
+		tm, b2:=ctx.Deadline()
+		fmt.Println("goroutine监控中2..." , tm,b2)
 		go func() {
 			time.Sleep(2 * time.Second)
 			cancel() // 在调用处主动取消    //context canceled
+
 		}()
 		res := Add(ctx, 1, 2)
 		fmt.Printf("Compute: %d+%d, result: %d\n", a, b, res)
+		tm, b2=ctx.Deadline()
+		fmt.Println("goroutine监控中2..." , tm,b2)
+
 	}
 }
