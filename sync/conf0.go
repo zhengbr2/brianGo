@@ -12,7 +12,9 @@ var cond2 = sync.NewCond(locker)
 func test(x int) {
 	cond2.L.Lock() //获取锁
 	fmt.Println("aaa: ", x)
-	cond2.Wait() //等待通知  暂时阻塞
+	time.Sleep(time.Millisecond*500)
+	fmt.Println("aaa: ", x)
+	cond2.Wait() //等待通知  暂时阻塞自己， 让别人进入临界区
 	fmt.Println("bbb: ", x, " time:", time.Now())
 	//time.Sleep(time.Second * 1)
 	cond2.L.Unlock() //释放锁
