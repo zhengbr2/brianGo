@@ -17,7 +17,7 @@ func main() {
 		p2.name: p2,
 		p3.name: p3,
 	}
-	people["px"].isDead = true
+
 
 	whoIsDead3(people)
 	if p3.isDead {
@@ -27,9 +27,9 @@ func main() {
 
 func whoIsDead3(people map[string]*person) {
 	for name, _ := range people {
-		if people[name].isDead {
-			people[name].age = -1
-			fmt.Println(people[name], people[name].isDead)
+		if people[name].age < 30 {
+			people[name].isDead=true
+			fmt.Println(*people[name])
 
 		}
 	}
