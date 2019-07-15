@@ -34,14 +34,14 @@ func f3() (r int) {
 
 func main() {
 	i := f()
-	println("0 or 1 ?:", i)
+	println("f() 0 or 1 ?:", i)
 
 	i = f1()
-	println("0 or 1 ?:", i)
+	println("f1() 0 or 1 ?:", i)
 
 	i = f2()
-	println("0 or 1 ?:", i)
+	println("f2() 0 or 1 ?:", i)
 
 	i = f3()
-	println("0 or 1 ?:", i)
+	println("f3() 0 or 1 ?:", i)
 }
