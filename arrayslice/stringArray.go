@@ -13,10 +13,10 @@ func main(){
 	arr2:=arr1
 	fmt.Println(arr2)
 	arr2[0]="Hi"
-	string1 :="Hi"
-	string2 :="Hi"
 	fmt.Println("arr1:",arr1)
 	fmt.Println("arr2:",arr2)
+	string1 :="Hi"
+	string2 :="Hi"
 	fmt.Printf("string1 pointer %p:\n",&string1)
 	fmt.Printf("string2 pointer %p:\n",&string2)
 	fmt.Printf("arr1 pointer %p:",&arr1)

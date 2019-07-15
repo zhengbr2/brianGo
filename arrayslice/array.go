@@ -13,6 +13,10 @@ func main() {
 	for i, v := range array {
 		fmt.Printf("索引:%d,值:%d\n", i, v)
 	}
+	fmt.Println("------------empty array--------------")
+	for i, v := range n {
+		fmt.Printf("索引:%d,值:%d\n", i, v) // actually not empty but all value is 0 for value type.
+	}
 
 	/* 为数组 n 初始化元素 */
 	for i = 0; i < 10; i++ {
@@ -46,6 +50,8 @@ func main() {
 	{
 		a := []string{"USA", "China", "India", "Germany", "France"} // this is a slice
 		b := a                                                      // a copy of a is assigned to b
+		//a := [5]string{"USA", "China", "India", "Germany", "France"} // this is a slice
+		//b := a[:]	  //数组是复制传值， 要想改变原数组， 传递指针或者用 slice
 		b[0] = "Singapore"
 		fmt.Println("a is ", a)
 		fmt.Println("b is ", b) //both changed.
