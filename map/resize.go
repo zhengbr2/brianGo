@@ -5,6 +5,8 @@ import "fmt"
 func main() {
 	var m map[int64]int64
 	m = make(map[int64]int64, 1)
+
+	// map 增加元素后指向的首地址依然不变
 	fmt.Printf("m 原始的地址是：%p\n", m)  // 0xc000062240
 	changeM(m)
 	fmt.Printf("m 改变后地址是：%p\n", m)  // 0xc000062240
