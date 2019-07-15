@@ -43,6 +43,7 @@ func read(){
 	buff.Read(s3)
 	fmt.Println(string(s3))  //hel,s3的容量为3，只能读3个
 	fmt.Println(buff.String()) //lo world
+	fmt.Println(buff.String()) //lo world
 
 	buff.Read(s3)  // 会把s3覆盖掉
 	fmt.Println(string(s3))  // lo
@@ -60,9 +61,10 @@ func read(){
 
 	buff =bytes.NewBufferString("Hello!!!")
 	s4 := []byte("hello")
-	buff.Read(s4)
-	fmt.Println(buff.String())  // !!!
 	n,err:=buff.Read(s4)
+	fmt.Println(string(s4[0:n]))  // Hello
+	fmt.Println(buff.String())  // !!!
+	n,err=buff.Read(s4)
 	fmt.Println(buff.String())  // ""
 	fmt.Println(string(s4[0:n]))  // !!!
 

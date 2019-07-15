@@ -15,7 +15,7 @@ func (t *T) M2() {
 }
 
 
-type Intf interface {
+type InterfaceMM interface {
 	M1()
 	M2()
 }
@@ -53,13 +53,14 @@ func main(){
 	{
 		fmt.Println(" ---------- senario 2, assgine to interface ------------------")
 		var t1 T = T{"t1"}
-		var t2 Intf
+		var t2 InterfaceMM
 		// 如果赋值给接口，就不一样了
-		//t2 = t1   //T does not implement Intf (M2 method has pointer receiver)
+		//t2 = t1   //T does not implement InterfaceMM (M2 method has pointer receiver)
 		t2 = &t1
 		t2.M1()
+		fmt.Println("Intf调用M1()后：", t1.Name)
 		t2.M2()
-		fmt.Println("Intf调用后：", t1.Name)
+		fmt.Println("Intf调用M2()后：", t1.Name)
 	}
 
 	{
@@ -74,8 +75,8 @@ func main(){
 		fmt.Println("M2调用后：", s.Name)
 		fmt.Println(t1.Name)   // t not changed!
 
-		//var intf Intf = s 编译错误
-		var intf Intf = &s
+		//var intf InterfaceMM = s 编译错误
+		var intf InterfaceMM = &s
 		intf.M1()
 		intf.M2()   // 改变s.T.Name, t1 不变
 		fmt.Println("intf.M2()调用后：", s.Name,t1.Name)
@@ -96,8 +97,8 @@ func main(){
 
 		t1 = T{"t1"}
 		s = SP{&t1}
-		var intf Intf = s
-		//var intf2 Intf = &s   两者运行都一样的输出结果， 见 senario1
+		var intf InterfaceMM = s
+		//var intf2 InterfaceMM = &s   两者运行都一样的输出结果， 见 senario1
 		intf.M1()
 		intf.M2()
 		fmt.Println("intf.M2()调用后：", s.Name)
