@@ -49,7 +49,7 @@ func main() {
 		close(chanint)
 		select {
 		case i,okay := <-chanint:
-			println("read i:", i,okay)
+			println("read i:", i,okay)		//drain the closed channel
 		}
 	}
 

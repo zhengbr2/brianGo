@@ -8,16 +8,16 @@ func main() {
 	outch := make(chan int)
 	go func() {
 		var in <-chan int = inch
-		var out chan<- int
+		var out chan<- int = nil //初始化为nil
 		var val int
 		for {
 			select {
 			case out <- val:
-				println("step 2 coming from val:",val)
+				println("step 2 coming from val:", val)
 				out = nil // close channel out
 				in = inch // open channel in
 			case val = <-in:
-				println("step 1 coming from inch:",val)
+				println("step 1 coming from inch:", val)
 				out = outch //open channel out
 				in = nil    //  close the channel in
 			}
