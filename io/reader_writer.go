@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 )
@@ -18,6 +17,7 @@ func main() {
 	if be != nil {
 		log.Fatal(be)
 	}
+	fmt.Println(b.String())
 	fmt.Println(b.String())
 
 	//这个是把一个字符串拼接到Buffer里
@@ -37,8 +37,8 @@ func main() {
 	}
 	fmt.Println(b.String())
 
-	data, err := ioutil.ReadAll(&b)
-	fmt.Println(string(data), err)
+	//data, err := ioutil.ReadAll(&b)     // drain &b
+	//	//fmt.Println(string(data), err)  //
 
 	var p = []byte{'a', 'b', 'c', 'd', 'e'}
 	n, err := b.Read(p[:])
@@ -47,7 +47,7 @@ func main() {
 	log.Println(n, err, string(p[:n])) // abcde-> You
 	n, err = b.Read(p[:])
 	log.Println(n, err, string(p[:n])) // _ 0 EOF
-	data, err = ioutil.ReadAll(&b)
-	fmt.Println(string(data), err)
+	//data, err = ioutil.ReadAll(&b)
+	//	//fmt.Println(string(data), err)
 
 }

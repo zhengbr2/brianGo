@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-const debug = false
+const debug = true
 
 func main() {
 	var buf *bytes.Buffer
@@ -28,6 +28,6 @@ func main() {
 func f(out io.Writer) {
 	// ...do something...
 	if out != nil {
-		out.Write([]byte("done!\n"))
+		out.Write([]byte("out is not nil!!!\n"))
 	}
 }
