@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	)
 
 type ByteCounter int
 
@@ -11,8 +14,13 @@ func (c *ByteCounter) Write(p []byte) (int, error) {
 }
 
 func main() {
-	var c ByteCounter
+	var c ByteCounter=0
 	c.Write([]byte("hello"))
+	(&c).Write([]byte("hello"))
+
+	//var w io.Writer = &c
+	//w.Write([]byte("brian"))
+
 	fmt.Println(c) // "5", = len("hello")
 	c = 0          // reset the counter
 	var name = "Dolly"

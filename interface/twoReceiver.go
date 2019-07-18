@@ -58,8 +58,9 @@ func main(){
 		//t2 = t1   //T does not implement Intf (M2 method has pointer receiver)
 		t2 = &t1
 		t2.M1()
+		fmt.Println("Intf调用后a：", t1.Name)
 		t2.M2()
-		fmt.Println("Intf调用后：", t1.Name)
+		fmt.Println("Intf调用后b：", t1.Name)
 	}
 
 	{

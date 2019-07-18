@@ -60,7 +60,8 @@ func main() {
 
 	e7 := &struct{ name string }{"brian"}
 	e8 := &struct{ name string }{"brian"}
-	fmt.Println("e7==e8", e7 == e8)
+	fmt.Println("e7==e8", e7 == e8)  //false
+	fmt.Println("e7==e8", *e7 == *e8) //true 解指针
 
 }
 
