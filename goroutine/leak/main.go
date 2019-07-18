@@ -95,12 +95,14 @@ func main() {
 // work creates a map, sets a key, and then closes it down.
 func work() {
 	m := NewMap(5 * time.Minute)
+	defer m.Close()
+
 	m.Set("my-key", []byte("my-value"))
 
 	if _, ok := m.Get("my-key"); !ok {
 		panic("no value present")
 	}
-	//m.Close()
+
 	// m goes out of scope
 }
 
