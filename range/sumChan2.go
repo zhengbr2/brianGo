@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"sync"
-	"time"
+
 )
 
 func sum(values []int, resultChan chan int, wg *sync.WaitGroup) {
@@ -35,4 +35,11 @@ func main() {
 		total = i + total
 	}
 	println(total)
+
+//dead lock below
+	var resultChan2  chan int
+	for i := range resultChan2 {
+		fmt.Println("resultChan22:", i)
+
+	}
 }
