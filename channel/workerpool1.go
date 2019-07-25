@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"sync"
 	"time"
+	"net/http"
+	"runtime/pprof"
 )
 
 // playload
@@ -93,6 +95,14 @@ func (d *Dispatcher) Run() {
 	go d.dispatch()
 }
 
+func dumpHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain")
+
+	p := pprof.Lookup("goroutine")
+	p.WriteTo(w, 1)
+}
+
+
 func (d *Dispatcher) dispatch() {
 	for {
 		select {
@@ -100,7 +110,7 @@ func (d *Dispatcher) dispatch() {
 			fmt.Println("调度者,接收到一个工作任务")
 			//time.Sleep(10* time.Millisecond)
 			// 调度者接收到一个工作任务
-			go func(job Job) {
+		go	func(job Job) {    //这里开启了无限协程
 				//从现有的对象池中拿出一个
 				jobChannel := <-d.WorkerPool
 				jobChannel <- job
@@ -111,7 +121,7 @@ func (d *Dispatcher) dispatch() {
 }
 
 func initialize() {
-	maxWorkers := 80000 //池子大小
+	maxWorkers := 8000 //池子大小
 	maxQueue := 10      //指定任务的队列长度
 	//初始化一个调度者,并指定它可以操作的 工人个数
 	dispatcher := NewDispatcher(maxWorkers)
@@ -121,10 +131,19 @@ func initialize() {
 }
 
 func main() {
+
+
+go func() {
+	http.HandleFunc("/dump", dumpHandler)
+	http.ListenAndServe(":8080", nil)
+}()
+
+
+
 	before := time.Now()
 	initialize()
-	wg.Add(1000000)
-	for i := 0; i < 1000000; i++ {
+	wg.Add(10000000)
+	for i := 0; i < 10000000; i++ {
 		p := Payload{
 			fmt.Sprintf("playload-[%s]", strconv.Itoa(i)),
 		}
