@@ -118,6 +118,21 @@ func main() {
 		printSlice(to)
 	}
 	{
+		var temp = []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
+		s1 := temp[0:5]
+		s2 := temp[3:8]
+		printSlice(s1)
+		printSlice(s2)
+		copy(s1, s2)
+		printSlice(temp)
+		printSlice(s1)
+		printSlice(s2)
+		s1=s1[0:len(s1)+3]   //len 8, cap:9
+		printSlice(s1)
+
+	}
+
+	{
 		s0:=make([]int, 0)
 		s1:=make([]int, 5)
 		s2:=make([]int, 0, 5)
