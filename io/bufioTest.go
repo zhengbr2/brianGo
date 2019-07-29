@@ -79,8 +79,11 @@ func TestRead() {
 	s := strings.NewReader("123456789")
 	br := bufio.NewReader(s)
 	b := make([]byte, 4)
+	fmt.Printf("buffered reader size %d \n", br.Buffered()) // 0 ??
 	n, err := br.Read(b)
+	fmt.Printf("buffered reader size %d \n", br.Buffered())  //5 = 9-4
 	fmt.Printf("%s %v %v\n", b[:n], n, err) // 1234 4
+
 
 	n, err = br.Read(b)
 	fmt.Printf("%s %v %v\n", b[:n], n, err) // 5678 4
@@ -332,10 +335,11 @@ func TestWrite() {
 
 	// Flush 将缓存中的数据提交到底层的 io.Writer 中
 	// func (b *Writer) Flush() error
-	p := [...]byte{'a', 'b', 'c'}
-	b := bytes.NewBuffer(make([]byte, 0))
+	p := []byte("helloworld")
+	b := bytes.NewBuffer(make([]byte, 1))
 	bw := bufio.NewWriter(b)
-	bw.Write(p[:])
+	bw.Write(p)
+	fmt.Printf(" buffered () %d\n", bw.Buffered())
 	bw.Flush()
 	fmt.Printf("%q\n", b)
 }
