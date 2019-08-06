@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// TestPeek()
+	TestPeek()
 	TestRead()
 	// TestBuffered()
 	// TestReadByte()
@@ -61,9 +61,9 @@ func TestPeek() {
 	br := bufio.NewReader(s)
 
 	b, _ := br.Peek(5)
-	b[0] = 'a'
+	b[0] = 'M'
 	b, _ = br.Peek(5)
-	fmt.Printf("%q\n", b) // "ay na"
+	fmt.Printf("%q\n", b) // "My na"
 }
 
 func TestRead() {

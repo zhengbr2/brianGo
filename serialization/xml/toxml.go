@@ -25,7 +25,6 @@ func main() {
 	if err != nil {
 		fmt.Printf("error: %v\n", err)
 	}
-	os.Stdout.Write([]byte(xml.Header))
-
+	os.Stdout.Write([]byte(xml.Header)) //<?xml version="1.0" encoding="UTF-8"?>
 	os.Stdout.Write(output)
 }
