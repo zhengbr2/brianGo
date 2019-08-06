@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	TestPeek()
-	TestRead()
+	// TestPeek()
+	// TestRead()
 	// TestBuffered()
 	// TestReadByte()
 	// TestUnreadByte()
@@ -37,15 +37,15 @@ func main() {
 
 func TestPeek() {
 	/*
-	func NewReaderSize(rd io.Reader, size int) *Reader
-	NewReaderSize 将 rd 封装成一个带缓存的 bufio.Reader 对象，
-	缓存大小由 size 指定（如果小于 16 则会被设置为 16）。
-	minReadBufferSize = 16
-	如果 rd 的基类型就是有足够缓存的 bufio.Reader 类型，则直接将
-	rd 转换为基类型返回。
+		func NewReaderSize(rd io.Reader, size int) *Reader
+		NewReaderSize 将 rd 封装成一个带缓存的 bufio.Reader 对象，
+		缓存大小由 size 指定（如果小于 16 则会被设置为 16）。
+		minReadBufferSize = 16
+		如果 rd 的基类型就是有足够缓存的 bufio.Reader 类型，则直接将
+		rd 转换为基类型返回。
 
-	NewReader()方法返回一个默认大小的带缓存的bufio.Reader对象
-	即 NewReaderSize(rd, 4096)
+		NewReader()方法返回一个默认大小的带缓存的bufio.Reader对象
+		即 NewReaderSize(rd, 4096)
 	*/
 	s := strings.NewReader("hello world")
 
@@ -61,9 +61,9 @@ func TestPeek() {
 	br := bufio.NewReader(s)
 
 	b, _ := br.Peek(5)
-	b[0] = 'M'
+	b[0] = 'a'
 	b, _ = br.Peek(5)
-	fmt.Printf("%q\n", b) // "My na"
+	fmt.Printf("%q\n", b) // "ay na"
 }
 
 func TestRead() {
@@ -79,11 +79,8 @@ func TestRead() {
 	s := strings.NewReader("123456789")
 	br := bufio.NewReader(s)
 	b := make([]byte, 4)
-	fmt.Printf("buffered reader size %d \n", br.Buffered()) // 0 ??
 	n, err := br.Read(b)
-	fmt.Printf("buffered reader size %d \n", br.Buffered())  //5 = 9-4
 	fmt.Printf("%s %v %v\n", b[:n], n, err) // 1234 4
-
 
 	n, err = br.Read(b)
 	fmt.Printf("%s %v %v\n", b[:n], n, err) // 5678 4
@@ -196,8 +193,7 @@ func TestReadLine() {
 
 	s := strings.NewReader("123\nzzz")
 	br := bufio.NewReader(s)
-	for line, isPrefix, err := []byte{0}, false, error(nil);
-		len(line) > 0 && err == nil; {
+	for line, isPrefix, err := []byte{0}, false, error(nil); len(line) > 0 && err == nil; {
 		line, isPrefix, err = br.ReadLine()
 		// "123" false
 		// "zzz" false
@@ -335,11 +331,10 @@ func TestWrite() {
 
 	// Flush 将缓存中的数据提交到底层的 io.Writer 中
 	// func (b *Writer) Flush() error
-	p := []byte("helloworld")
-	b := bytes.NewBuffer(make([]byte, 1))
+	p := [...]byte{'a', 'b', 'c'}
+	b := bytes.NewBuffer(make([]byte, 0))
 	bw := bufio.NewWriter(b)
-	bw.Write(p)
-	fmt.Printf(" buffered () %d\n", bw.Buffered())
+	bw.Write(p[:])
 	bw.Flush()
 	fmt.Printf("%q\n", b)
 }
@@ -415,7 +410,7 @@ func TestReadWriter() {
 	fmt.Println(b)
 }
 
-func TestNewScanner()  {
+func TestNewScanner() {
 	// Scanner 提供了一个方便的接口来读取数据，例如遍历多行文本中的行。Scan 方法会通过
 	// 一个“匹配函数”读取数据中符合要求的部分，跳过不符合要求的部分。“匹配函数”由调
 	// 用者指定。本包中提供的匹配函数有“行匹配函数”、“字节匹配函数”、“字符匹配函数”
@@ -439,12 +434,11 @@ func TestNewScanner()  {
 	// 底层数组指向的数据可能会被下一次Scan的调用重写。
 	// func (s *Scanner) Bytes() []byte
 
-
 	// Buffer()方法设置扫描时使用的初始缓冲区和最大值
 	// 默认情况下，Scan使用内部缓冲区并设置MaxScanTokenSize的最大令牌大小
 	s := strings.NewReader("周起\n卡牌\n程序员\n")
 	bs := bufio.NewScanner(s)
-	bs.Buffer(make([]byte,0),bufio.MaxScanTokenSize)
+	bs.Buffer(make([]byte, 0), bufio.MaxScanTokenSize)
 	for bs.Scan() {
 		// 周起
 		// 卡牌
@@ -453,7 +447,7 @@ func TestNewScanner()  {
 	}
 }
 
-func TestSplit()  {
+func TestSplit() {
 	// Split设置该Scanner的分割函数。默认设置为 bufio.ScanLines()
 	// 本方法必须在Scan之前调用。
 	// func (s *Scanner) Split(split SplitFunc)
@@ -464,12 +458,12 @@ func TestSplit()  {
 	// Text返回由Scan调用生成的最新标记，
 	// 作为保存其字节的新分配字符串。
 
-	for bs.Scan()  {
+	for bs.Scan() {
 		fmt.Printf("%s\n", bs.Text())
 	}
 }
 
-func TestScan()  {
+func TestScan() {
 	// Scan方法获取当前位置的token（该token可以通过Bytes或Text方法获得），
 	// 并让Scanner的扫描位置移动到下一个token。
 	// 当扫描因为抵达输入流结尾或者遇到错误而停止时，
@@ -480,18 +474,18 @@ func TestScan()  {
 	s := strings.NewReader("周起 卡牌 程序员")
 	bs := bufio.NewScanner(s)
 	bs.Split(bufio.ScanWords)
-	for bs.Scan()  {
+	for bs.Scan() {
 		fmt.Printf("%s %s\n", bs.Text(), bs.Bytes())
 	}
 }
 
-func TestScanBytes()  {
+func TestScanBytes() {
 	// Bytes方法返回最近一次Scan调用生成的token。
 	// 底层数组指向的数据可能会被下一次Scan的调用重写。
 	s := strings.NewReader("abcd")
 	bs := bufio.NewScanner(s)
 	bs.Split(bufio.ScanBytes)
-	for bs.Scan(){
+	for bs.Scan() {
 		// a
 		// b
 		// c
@@ -500,19 +494,25 @@ func TestScanBytes()  {
 	}
 }
 
-func TestScanRunes()  {
+func TestScanRunes() {
 	// ScanRunes是用于Scanner类型的分割函数（符合SplitFunc），
 	// 本函数会将每个utf-8编码的unicode码值作为一个token返回。
 	s := strings.NewReader("周起卡牌程序员")
 	bs := bufio.NewScanner(s)
 	bs.Split(bufio.ScanRunes)
-	for bs.Scan()  {
-
+	for bs.Scan() {
+		// 周
+		// 起
+		// 卡
+		// 牌
+		// 程
+		// 序
+		// 员
 		fmt.Printf("%s\n", bs.Text())
 	}
 }
 
-func TestScanWords()  {
+func TestScanWords() {
 	// ScanRunes是用于Scanner类型的分割函数(符合SplitFunc)，
 	// 本函数会将空白(参见unicode.IsSpace)
 	// 分隔的片段（去掉前后空白后）作为一个token返回。
@@ -520,7 +520,7 @@ func TestScanWords()  {
 	s := strings.NewReader("我 是 卡 牌")
 	bs := bufio.NewScanner(s)
 	bs.Split(bufio.ScanWords)
-	for bs.Scan(){
+	for bs.Scan() {
 		// 我
 		// 是
 		// 卡
@@ -529,13 +529,13 @@ func TestScanWords()  {
 	}
 }
 
-func TestScanLines()  {
+func TestScanLines() {
 	// 将每一行文本去掉末尾的换行标记作为一个token返回
 	// 此函数的bs.Scan()的默认值
 	s := strings.NewReader("卡牌\n周起\n程序员\n")
 	bs := bufio.NewScanner(s)
 	bs.Split(bufio.ScanLines)
-	for bs.Scan(){
+	for bs.Scan() {
 		// 卡牌
 		// 周起
 		// 程序员
